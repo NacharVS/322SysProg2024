@@ -12,12 +12,19 @@
 
         public Footman() : base(60, "Footman")
         {
-            _damage = 7;
+            if (!IsAlive)
+            {
+                _damage = 0;
+            }
+            else
+            {
+                _damage = 7;
+            }
         }
 
         public void InflictDamage(Unit unit)
         {
-            unit.Health -= _damage;
+            unit.Health -= _damage;   
         }
 
     }
