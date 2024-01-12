@@ -55,6 +55,10 @@
             {
                 Console.WriteLine("Is moving");
             }
+            else
+            {
+                Console.WriteLine($"{Name} не может двигатся т.к. умер");
+            }
         }
 
         public virtual void ShowInfo(string additionalText = "")

@@ -14,6 +14,5 @@ ps1.ShowInfo();
 footman2.ShowInfo();
 bishop1.ShowInfo();
 bishop1.Heal(footman2);
-bishop1.Heal(footman2);
 footman2.ShowInfo();
 bishop1.ShowInfo();

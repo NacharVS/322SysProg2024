@@ -37,7 +37,7 @@ namespace StrategyUnits
 
         public Bishop() : base(50, "Bishop")
         {
-            _energy = 3;
+            _energy = 6;
             MaxEnergy = Energy;
         }
 
@@ -45,13 +45,13 @@ namespace StrategyUnits
         {
             if (!IsAlive)
             {
-                base.ShowInfo("Не может никого лечить так как мертв.");
+                base.ShowInfo("Не может никого лечить т.к. мертв.");
                 return;
             }
 
             if (!unit.IsAlive)
             {
-                Console.WriteLine($"{Name} не может лечить {unit.Name}, т.к {unit.Name} мертв.");
+                Console.WriteLine($"{Name} не может лечить {unit.Name}, т.к. {unit.Name} мертв.");
                 return;
             }
 

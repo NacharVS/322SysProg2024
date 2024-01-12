@@ -21,6 +21,10 @@
             {
                 unit.Health -= _damage;
             }
+            else
+            {
+                Console.WriteLine($"{Name} не может атаковать т.к. умер.");
+            }
         }
 
     }
