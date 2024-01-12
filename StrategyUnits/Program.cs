@@ -10,3 +10,8 @@ footman.InflictDamage(ps1);
 footman.InflictDamage(footman2);
 ps1.ShowInfo();
 footman2.ShowInfo();
+
+Bishop bishop = new Bishop();
+bishop.ShowInfo();
+bishop.Heal(footman);
+footman.ShowInfo();
