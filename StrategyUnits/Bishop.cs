@@ -6,34 +6,8 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class Bishop : Unit
+    internal class Bishop : MagicUnit
     {
-        private int _energy;
-
-        public int Energy
-        {
-            get { return _energy; }
-            set 
-            {
-                if (value < 0)
-                {
-                    _energy = 0;
-                }
-                else
-                {
-                    if (value > MaxHeath)
-                    {
-                        _energy = MaxHeath;
-                    }
-                    else
-                    {
-                        _energy = value;
-                    }
-                }
-            }
-        }
-
-        public int MaxEnergy;
 
         public Bishop() : base(50, "Bishop")
         {
