@@ -9,9 +9,9 @@
         {
             _energy = 60;
         }
-        public void Helping(Unit unit)
+        public void Hellping(Unit unit)
         {
-            if(_energy != 0 && unit.Alive != false)
+            if (_energy != 0 && unit.Alive != false)
             {
                 if (unit.Health != unit.MaxHealth)
                 {
@@ -20,20 +20,24 @@
                     {
                         _energy -= a * 2;
                         unit.Health += a;
+                        Console.WriteLine($"Hellping...{unit.Name} energy gone {a * 2} energy left {Energy} HP {a}");
+
                     }
                     else
                     {
                         a = _energy / 2;
                         _energy -= a * 2;
                         unit.Health += a;
+                        Console.WriteLine($"Hellping...{unit.Name} energy gone {a * 2} energy left {Energy} HP {a}");
                     }
                 }
+                else { Console.WriteLine("Unit Max HP"); }
+
             }
+            else { Console.WriteLine("Cannot be hellping"); }
+            
 
         }
-        public void InfoEnergy()
-        {
-            Console.WriteLine($"Max energy {_energy}");
-        }
+
     }
 }

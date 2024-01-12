@@ -17,8 +17,8 @@ footman.InflictDamage(ps1);
 footman.InflictDamage(ps1);
 footman.InflictDamage(ps1);
 
-bishop.Helping(ps1);
-bishop.InfoEnergy();
+bishop.Hellping(ps1);
+
 
 footman.InflictDamage(bishop);
 footman.InflictDamage(ps2);
@@ -26,10 +26,10 @@ footman.InflictDamage(ps2);
 footman.InflictDamage(ps2);
 footman.InflictDamage(ps2);
 
-bishop.Helping(ps2);
-bishop.InfoEnergy();
+bishop.Hellping(ps2);
 
-bishop.Helping(bishop);
+
+bishop.Hellping(bishop);
 
 ps1.ShowInfo();
 ps2.ShowInfo();

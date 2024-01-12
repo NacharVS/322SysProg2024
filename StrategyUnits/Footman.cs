@@ -17,7 +17,12 @@
 
         public void InflictDamage(Unit unit)
         {
-            unit.Health -= _damage;
+            if (unit.Alive != false)
+            {
+                unit.Health -= _damage;
+                Console.WriteLine($"Demage 7 hp to {unit.Name}");
+            }
+            
         }
 
     }

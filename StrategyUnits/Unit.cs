@@ -36,6 +36,7 @@ namespace StrategyUnits
                 {
                     _health=0;
                     _alive = false;
+                    Console.WriteLine("RIP...");
                 }
                 else
                 {
