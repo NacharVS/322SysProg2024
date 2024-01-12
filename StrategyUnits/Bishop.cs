@@ -21,14 +21,20 @@
         }
         public void HealUnit(Unit unit)
         {
-            if (Energy > 0) { 
-            unit.Health += _heal;
-            Energy -= 1;
+            if (IsAlive)
+            {
+                if (Energy > 0)
+                {
+                    unit.Health += _heal;
+                    Energy -= 1;
+                }
+                else
+                {
+                    Console.WriteLine("Недостаточно энергии");
+                }
             }
             else
-            {
-                Console.WriteLine("Недостаточно энергии");
-            }
+                Console.WriteLine("This unit is fucked");
         }
         public override void ShowInfo(string text="")
         {

@@ -5,7 +5,7 @@
         private int _currentHealth;
         private string? _name;
         public int MaxHealth { get; private set; }
-
+        public bool IsAlive { get =>_currentHealth>0;}
         public Unit(int health, string? name)
         {
             _currentHealth = health;
@@ -18,7 +18,6 @@
             get { return _name; }
             set { _name = value; }
         }
-
         public int Health 
         { 
             get
