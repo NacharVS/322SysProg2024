@@ -10,6 +10,7 @@ namespace StrategyUnits
     {
         private int _healAmount;
         private int _energy;
+        private int _healCost;
 
         public int Energy
         {
@@ -26,11 +27,26 @@ namespace StrategyUnits
         public Bishop() : base(50, "Bishop")
         {
             _healAmount = 5;
+            _energy = 3;
+            _healCost = 1;
         }
 
         public void Heal(Unit unit)
         {
-            unit.Health += _healAmount;
+            if (_energy >= _healCost)
+            {
+                unit.Health += _healAmount;
+                _energy -= _healCost;
+            }
+            else
+            {
+                Console.WriteLine($"У {Name} недостаточно энергии для лечения {unit.Name}");
+            }
+        }
+
+        public override void ShowInfo (string additionalText = "") 
+        {
+            base.ShowInfo($"Энергия: {_energy}. {additionalText}");
         }
     }
 }
