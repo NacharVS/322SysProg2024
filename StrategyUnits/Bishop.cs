@@ -6,24 +6,46 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class Bishop : Unit
+    internal class Bishop : MagicUnit
     {
-        private int _healPoints;
-
-        public int HealPoints
-        {
-            get { return _healPoints; }
-            set { _healPoints = value; }
-        }
+        
+        
         public Bishop() : base(25, "Колдун")
         {
-            HealPoints = 5;
+            HealPoints = 1;
+            EnergyPoints = 60;
+            energyLimit = 100;
         }
-
 
         public void Heal(Unit unit)
         {
-            unit.Health += HealPoints;
+            if (unit.Alive is false)
+            {
+                Console.WriteLine(unit.Name + " умер.");
+            }
+            else
+            {
+                if(EnergyPoints / 2 < unit.MaxHealth - unit.Health)
+            {
+                while(EnergyPoints > 0)
+                {
+                    unit.Health += HealPoints;
+                    EnergyPoints -= 2;
+                }
+                
+                
+            }
+            else
+            {
+                while (unit.Health < unit.MaxHealth)
+                {
+                    unit.Health += HealPoints;
+                        EnergyPoints -= 2;
+
+                    }
+                }
+            }
+            
         }
     }
 }
