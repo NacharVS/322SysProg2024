@@ -36,6 +36,7 @@ namespace StrategyUnits
             {
                 unit.Health += _heal;
                 bishop.Energy -= _ener;
+
             }
         }
     }
