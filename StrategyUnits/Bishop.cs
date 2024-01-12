@@ -2,39 +2,62 @@
 {
     internal class Bishop : Unit
     {
-        private int _heal;
         private int _energy;
-        public int Heal
-        {
-            get { return _heal; }
-            set { _heal = value; }
-        }
         public int Energy
         {
-            get { return _energy; }
-            set { _energy = value; }
+            get
+            {
+                return _energy;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    _energy = 0;
+                }
+                else
+                {
+                    if (value > MaxHealth)
+                    {
+                        _energy = MaxHealth;
+                    }
+                    else
+                    {
+                        _energy = value;
+                    }
+                }
+            }
         }
+        public int MaxEnergy;
+        
         public Bishop() : base(60, "Bishop")
         {
-            _heal= 7;
-            _energy = 5;
+            _energy = 60;
+            MaxEnergy = Energy;
         }
         public void HealUnit(Unit unit)
         {
-            if (IsAlive)
+            if (!IsAlive)
             {
-                if (Energy > 0)
+                Console.WriteLine("This unit is fucked");
+                return; 
+            }
+            if (!unit.IsAlive)
+            {
+                Console.WriteLine("Healing unit is fucked");
+                return;
+            }
+
+            if (_energy >= 2)
                 {
-                    unit.Health += _heal;
-                    Energy -= 1;
+                int lives = Math.Min(unit.RemovedHealth, _energy/2);
+                    unit.Health += lives;
+                    Energy -= lives *2;
                 }
                 else
                 {
                     Console.WriteLine("Недостаточно энергии");
                 }
-            }
-            else
-                Console.WriteLine("This unit is fucked");
         }
         public override void ShowInfo(string text="")
         {

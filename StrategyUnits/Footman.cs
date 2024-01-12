@@ -12,7 +12,7 @@
 
         public Footman() : base(60, "Footman")
         {
-            if (IsAlive)
+            if (!IsAlive)
             {
                 _damage = 0;
             }

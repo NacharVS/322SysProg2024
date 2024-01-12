@@ -18,6 +18,7 @@
             get { return _name; }
             set { _name = value; }
         }
+        
         public int Health 
         { 
             get
@@ -42,10 +43,16 @@
                 }
             }
         }
-
+        public int RemovedHealth
+        {
+            get => MaxHealth-Health;
+        }
         public void Move()
         {
-            Console.WriteLine("Is moving");
+            if (IsAlive)
+                Console.WriteLine("Is moving");
+            else
+                Console.WriteLine("hahah you died");
         }
 
         public virtual void ShowInfo(string text = "")
