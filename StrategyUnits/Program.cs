@@ -13,3 +13,4 @@ ps1.ShowInfo();
 footman2.ShowInfo();
 bishop1.HealUnit(footman2);
 footman2.ShowInfo();
+bishop1.ShowInfo();
