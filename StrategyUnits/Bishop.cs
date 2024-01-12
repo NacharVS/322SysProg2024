@@ -8,9 +8,7 @@ namespace StrategyUnits
 {
     internal class Bishop : Unit
     {
-        private int _healAmount;
         private int _energy;
-        private int _healCost;
 
         public int Energy
         {
@@ -18,29 +16,34 @@ namespace StrategyUnits
             set { _energy = value; }
         }
 
-        public int HealAmount
-        {
-            get { return _healAmount; }
-            set { _healAmount = value; }
-        }
-
         public Bishop() : base(50, "Bishop")
         {
-            _healAmount = 5;
             _energy = 3;
-            _healCost = 1;
         }
 
         public void Heal(Unit unit)
         {
-            if (_energy >= _healCost)
+            if (!IsAlive)
             {
-                unit.Health += _healAmount;
-                _energy -= _healCost;
+                base.ShowInfo("Не может никого лечить так как мертв.");
+                return;
+            }
+
+            if (!unit.IsAlive)
+            {
+                Console.WriteLine($"{Name} не может лечить {unit.Name}, т.к {unit.Name} мертв.");
+                return;
+            }
+
+            if (_energy >= 2)
+            {
+                int lives = Math.Min(unit.RemovedHealth, Energy / 2);
+                unit.Health += lives;
+                Energy -= lives * 2;
             }
             else
             {
-                Console.WriteLine($"У {Name} недостаточно энергии для лечения {unit.Name}");
+                Console.WriteLine($"У {Name} нет энергии для лечения {unit.Name}");
             }
         }
 

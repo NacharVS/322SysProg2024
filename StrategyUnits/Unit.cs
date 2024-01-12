@@ -6,6 +6,7 @@
         private string? _name;
 
         public int MaxHeath { get; private set; }
+        public bool IsAlive { get => _health > 0;}
 
         public Unit(int health, string? name)
         {
@@ -43,9 +44,17 @@
             } 
         }
 
+        public int RemovedHealth
+        {
+            get => MaxHeath - Health;
+        }
+
         public void Move()
         {
-            Console.WriteLine("Is moving");
+            if (IsAlive)
+            {
+                Console.WriteLine("Is moving");
+            }
         }
 
         public virtual void ShowInfo(string additionalText = "")
