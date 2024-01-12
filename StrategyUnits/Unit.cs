@@ -2,13 +2,15 @@
 {
     internal class Unit
     {
-        private int _health;
+        private int _currentHealth;
         private string? _name;
+        public int MaxHealth { get; private set; }
 
         public Unit(int health, string? name)
         {
-            _health = health;
+            _currentHealth = health;
             _name = name;
+            MaxHealth = health;
         }
 
         public string Name
@@ -19,8 +21,27 @@
 
         public int Health 
         { 
-            get => _health; 
-            set => _health = value; 
+            get
+            {
+                return _currentHealth;
+            }
+            set 
+            { 
+                if(value < 0)
+                {
+                    _currentHealth = 0;
+                }
+                else { 
+                    if(value > MaxHealth) 
+                    {
+                        _currentHealth = MaxHealth;
+                    }
+                    else
+                    {
+                        _currentHealth = value;
+                    }
+                }
+            }
         }
 
         public void Move()
@@ -30,7 +51,7 @@
 
         public virtual void ShowInfo(string text = "")
         {
-            Console.WriteLine($"Unit: {_name} Health: {_health} " + text);
+            Console.WriteLine($"Unit: {_name} Health: {_currentHealth} " + text);
         }
     }
 }
