@@ -39,12 +39,12 @@
         {
             if (!IsAlive)
             {
-                Console.WriteLine("This unit is fucked");
+                Console.WriteLine("This unit is DEAD");
                 return; 
             }
             if (!unit.IsAlive)
             {
-                Console.WriteLine("Healing unit is fucked");
+                Console.WriteLine("Healing unit is DEAD");
                 return;
             }
 
