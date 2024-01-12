@@ -13,12 +13,32 @@ namespace StrategyUnits
         public int Energy
         {
             get { return _energy; }
-            set { _energy = value; }
+            set 
+            {
+                if (value < 0)
+                {
+                    _energy = 0;
+                }
+                else
+                {
+                    if (value > MaxHeath)
+                    {
+                        _energy = MaxHeath;
+                    }
+                    else
+                    {
+                        _energy = value;
+                    }
+                }
+            }
         }
+
+        public int MaxEnergy;
 
         public Bishop() : base(50, "Bishop")
         {
             _energy = 3;
+            MaxEnergy = Energy;
         }
 
         public void Heal(Unit unit)
