@@ -10,7 +10,7 @@
             set { _damage = value; }
         }
 
-        public Footman() : base(60, "Footman")
+        public Footman() : base(60, 100, "Footman")
         {
             _damage = 7;
         }
