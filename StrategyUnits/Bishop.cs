@@ -32,8 +32,6 @@ namespace StrategyUnits
                     unit.Health += HealPoints;
                     EnergyPoints -= 2;
                 }
-                
-                
             }
             else
             {
