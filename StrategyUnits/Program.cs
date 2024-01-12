@@ -14,4 +14,4 @@ footman2.ShowInfo();
 bishop1.InflictHeal(footman2);
 footman2.ShowInfo();
 bishop1.InflictHeal(ps1);
-ps1.ShowInfo();
+ps1.ShowInfo(); 
