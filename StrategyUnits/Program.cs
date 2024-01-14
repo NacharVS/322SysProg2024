@@ -18,4 +18,6 @@ bishop2.InflictHeal(footman2);
 ps1.ShowInfo();
 footman2.ShowInfo();
 bishop1.ShowInfo();
-
+Altar altar = new Altar(30);
+altar.RestoreEnergy(bishop1);
+bishop1.ShowInfo();

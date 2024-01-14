@@ -13,18 +13,14 @@ namespace StrategyUnits
         {
             energy = intialEnergy;
         }
-        public void EnterAltar()
+        public void RestoreEnergy(Bishop bishop)
         {
-            if (energy < 10)
+            if (energy > 0)
             {
-                RestoreEnergy();
+                int energyCount = Math.Min(bishop.MaxEnergy - bishop.energy, energy);
+                bishop.energy += energyCount;
+                energy -= energyCount;
             }
         }
-  
-        private void RestoreEnergy()
-            {
-            energy += 10;
-        }
-        
     }
 }
