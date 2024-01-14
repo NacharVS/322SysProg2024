@@ -11,12 +11,33 @@ namespace StrategyUnits
     {
         private int _heal;
         private int _energy;
+        private int _altar;
         public int MaxEnergy
         {
             get;
             private set;
         }
-        
+        public int altar
+        {
+            get
+            {
+                return _altar;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    _energy = 0;
+                }
+                else
+                {
+                    if (value > MaxEnergy)
+                        _energy = MaxEnergy;
+                    else
+                        _energy = value;
+                }
+            }
+        }
         public int energy
         {
 
