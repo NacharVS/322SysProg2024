@@ -9,23 +9,21 @@ namespace StrategyUnits
     internal class Altar
     {
         public int energy { get; set; }
-        public Bishop(int intialenergy)
+        public Altar(int intialEnergy)
         {
-            energy = intialenergy;
+            energy = intialEnergy;
         }
-        public void EnterAltar(Altar altar)
+        public void EnterAltar()
         {
-            if (altar.CanRestoreEnergy)
+            if (energy < 10)
             {
-                energy =10;
+                RestoreEnergy();
             }
         }
-        public class Altar
-        {
-            public bool CanRestoreEnergy()
+  
+        private void RestoreEnergy()
             {
-                return true;
-            }
+            energy += 10;
         }
         
     }
