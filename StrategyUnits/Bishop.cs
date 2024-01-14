@@ -6,32 +6,40 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class Bishop : Unit
+    internal class Bishop : MagicUnit
     {
         private int _hill;
-        
+        private int _energyCost;
+
         public int Hill
         {
             get { return _hill; }
             set { _hill = value; }
         }
 
-        
+        public int EnergyCost
+        {
+            get { return _energyCost; }
+            set { _energyCost = value; }
+        }
 
         public Bishop() : base(20, "Bishop")
         {
             _hill = 1;
+            _energyCost = 2;
+            _energy = 60;
+            MaxEnergy= _energy;
         }
 
-        public void InFlickHill(MagicUnit magicUnit)
+        public void InFlickHill(Unit unit)
         {
-            while (magicUnit.Health < magicUnit.MaxHealth)
+            while (unit.Health < unit.MaxHealth)
             {
-                if (magicUnit.Energy <= 0) { break; }
-                magicUnit.Health += _hill;
-                magicUnit.Energy -= 2;
+                if (Energy <= 0) { break; }
+                unit.Health += _hill;
+                Energy -= _energyCost;
             }
-            
         }
+        
     }
 }
