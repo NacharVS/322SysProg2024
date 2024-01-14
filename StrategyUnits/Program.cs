@@ -5,6 +5,7 @@ Footman footman2 = new Footman();
 Peasant ps1 = new Peasant();
 Peasant ps2 = new Peasant();
 Bishop bishop = new Bishop();
+Altar altar = new Altar();
 ps1.ShowInfo();
 ps2.ShowInfo();
 footman2.ShowInfo();
@@ -29,6 +30,8 @@ footman.InflictDamage(ps2);
 bishop.Hellping(ps2);
 
 
+bishop.Hellping(bishop);
+altar.GetEnergy(bishop);
 bishop.Hellping(bishop);
 
 ps1.ShowInfo();

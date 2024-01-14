@@ -4,10 +4,17 @@
     {
         private int _energy {  get;  set; }
 
-        public int Energy { get { return _energy; } }
+        private int _maxenergy;
+
+        public int Energy {
+            get { return _energy; }  
+            set { _energy = value;} 
+        }
+        public int Maxenergy { get { return _maxenergy; } }
         public Bishop() : base(15, "Bishop")
         {
             _energy = 60;
+            _maxenergy = _energy;
         }
         public void Hellping(Unit unit)
         {
