@@ -4,6 +4,7 @@
     {
         private int _health;
         private string? _name;
+        public bool Dead = false;
         public int MaxHealth { get; private set; }
 
         public Unit(int health, string? name)
@@ -30,6 +31,7 @@
                 if (value < 0)
                 {
                     _health = 0;
+                    Dead = true;
                 }
                 else if (MaxHealth < value)
                 {

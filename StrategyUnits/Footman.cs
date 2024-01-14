@@ -17,7 +17,14 @@
 
         public void InflictDamage(Unit unit)
         {
-            unit.Health -= _damage;
+            if (Dead)
+            {
+                Console.WriteLine("Действие не может быть выполнено - персонаж мертв");
+            }
+            else
+            {
+                unit.Health -= _damage;
+            }
         }
 
     }

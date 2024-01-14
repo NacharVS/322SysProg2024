@@ -38,14 +38,8 @@ bishop.ShowInfo();
 bishop.ShowInfoEnergy();
 Console.WriteLine();
 
+footman2.InflictDamage(ps1);
 church.EnergyRegen(bishop);
-ps1.ShowInfo();
-footman2.ShowInfo();
-bishop.ShowInfo();
-bishop.ShowInfoEnergy();
-Console.WriteLine();
-
-bishop.InFlickHill(footman2);
 ps1.ShowInfo();
 footman2.ShowInfo();
 bishop.ShowInfo();

@@ -18,17 +18,24 @@ namespace StrategyUnits
 
         public void EnergyRegen(MagicUnit magicUnit)
         {
-            if (EnergyReserve > 0)
+            if (magicUnit.Dead)
             {
-                if (magicUnit.EnergySpent >= EnergyReserve)
+                Console.WriteLine("Действие не может быть выполнено - персонаж мертв");
+            }
+            else
+            {
+                if (EnergyReserve > 0)
                 {
-                    magicUnit.Energy += EnergyReserve;
-                    EnergyReserve = 0;
-                }
-                else
-                {
-                    magicUnit.Energy += magicUnit.EnergySpent;
-                    EnergyReserve -= magicUnit.EnergySpent;
+                    if (magicUnit.EnergySpent >= EnergyReserve)
+                    {
+                        magicUnit.Energy += EnergyReserve;
+                        EnergyReserve = 0;
+                    }
+                    else
+                    {
+                        magicUnit.Energy += magicUnit.EnergySpent;
+                        EnergyReserve -= magicUnit.EnergySpent;
+                    }
                 }
             }
         }

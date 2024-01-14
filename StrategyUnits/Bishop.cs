@@ -33,11 +33,18 @@ namespace StrategyUnits
 
         public void InFlickHill(Unit unit)
         {
-            while (unit.Health < unit.MaxHealth)
+            if (Dead || unit.Dead)
             {
-                if (Energy <= 0) { break; }
-                unit.Health += _hill;
-                Energy -= _energyCost;
+                Console.WriteLine("Действие не может быть выполнено - персонаж мертв");
+            }
+            else
+            {
+                while (unit.Health < unit.MaxHealth)
+                {
+                    if (Energy <= 0) { break; }
+                    unit.Health += _hill;
+                    Energy -= _energyCost;
+                }
             }
         }
         
