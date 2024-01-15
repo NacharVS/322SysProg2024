@@ -10,7 +10,7 @@
             set { _damage = value; }
         }
 
-        public Footman() : base(60, "Footman")
+        public Footman() : base(60, 100, 50, 50, "Footman")
         {
             _damage = 7;
         }
@@ -20,9 +20,5 @@
             unit.Health -= _damage;
         }
 
-        public override void ShowInfo()
-        {
-            Console.WriteLine($"{Name} damage: {_damage}. {Health}/{MaxHealth}");
-        }
     }
 }

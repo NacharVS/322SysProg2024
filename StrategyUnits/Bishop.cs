@@ -8,20 +8,30 @@ namespace StrategyUnits
 {
     internal class Bishop : Unit
     {
-        private int _energy;
-        public Bishop() : base(40, "BP")
+        private int _heal;
+
+
+        public int Heal
         {
-            _energy = 60;
+            get { return _heal; }
+            set { _heal = value; }
         }
 
 
-        public void HealSomebody(Unit unit)
+        public Bishop() : base(25, 30, 40, 40, "Bishop")
         {
-            while (unit.Health < unit.MaxHealth && _energy > 0)
+            _heal = 1;
+        }
+
+        public void InflictHeal(Unit unit)
+        {
+            while (unit.Health < unit._MaxHealth & _mana > 0 & _fountain > 2)
             {
-                unit.Health++;
-                _energy -= 2;
+                unit.Health += _heal;
+                Mana += 2;
+                _fountain -= 2;
             }
         }
     }
 }
+
