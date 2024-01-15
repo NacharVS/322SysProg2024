@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class MagicUnit : Unit
+    internal class MagicUnit : MiliataryUnit
     {
         protected int _energy;
 
@@ -37,7 +37,7 @@ namespace StrategyUnits
 
         public int MaxEnergy;
 
-        public MagicUnit(int health, string? name) : base(health, name)
+        public MagicUnit(int health, string? name, int minDamage, int maxDamage, int defence) : base(health, name, minDamage, maxDamage, defence)
         {
         }
     }

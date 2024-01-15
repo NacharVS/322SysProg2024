@@ -9,7 +9,7 @@ namespace StrategyUnits
     internal class Bishop : MagicUnit
     {
 
-        public Bishop() : base(50, "Bishop")
+        public Bishop() : base(50, "Bishop", 1, 3, 0)
         {
             _energy = 6;
             MaxEnergy = Energy;
@@ -32,7 +32,7 @@ namespace StrategyUnits
             if (_energy >= 2)
             {
                 int lives = Math.Min(unit.RemovedHealth, Energy / 2);
-                unit.Health += lives;
+                unit.GetDamage(lives);
                 Energy -= lives * 2;
             }
             else

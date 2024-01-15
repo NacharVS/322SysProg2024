@@ -6,13 +6,15 @@
         private string? _name;
 
         public int MaxHeath { get; private set; }
-        public bool IsAlive { get => _health > 0;}
+        public bool IsAlive { get => _health > 0; }
+        public int Defence { get; set; }
 
-        public Unit(int health, string? name)
+        public Unit(int health, string? name, int defence)
         {
             _health = health;
             _name = name;
             MaxHeath = health;
+            Defence = defence;
         }
 
         public string Name
@@ -21,7 +23,7 @@
             set { _name = value; }
         }
 
-        public int Health 
+        private int Health 
         { 
             get => _health; 
             set
@@ -64,6 +66,16 @@
         public virtual void ShowInfo(string additionalText = "")
         {
             Console.WriteLine($"Unit: {_name} Health: {_health}/{MaxHeath}. {additionalText}");
+        }
+
+        public void GetDamage(int damage)
+        {
+            Health -= damage - Defence;
+        }
+
+        public void GetHeal(int healAmount)
+        {
+            Health += healAmount;
         }
     }
 }
