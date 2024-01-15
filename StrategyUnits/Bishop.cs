@@ -18,14 +18,18 @@ namespace StrategyUnits
         }
 
 
-        public Bishop() : base(25, 30, "Bishop")
+        public Bishop() : base(25, 30, 40, 40, "Bishop")
         {
             _heal = 1;
         }
 
         public void InflictHeal(Unit unit)
         {
-            unit.Health += _heal;
+            while (unit.Health < unit._MaxHealth & _mana > 0 & _fountain > 2)
+            {
+                unit.Health += _heal;
+                Fountain(2);
+            }
         }
     }
 }
