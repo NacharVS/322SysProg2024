@@ -23,6 +23,10 @@ namespace StrategyUnits
                 magicUnit.Energy += energy;
                 EnergyCapacity -= energy;
             }
+            else
+            {
+                Console.WriteLine("Фонтан иссяк");
+            }
         }
     }
 }

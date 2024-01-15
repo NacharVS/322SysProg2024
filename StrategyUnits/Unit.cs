@@ -1,13 +1,19 @@
-﻿namespace StrategyUnits
+﻿using System;
+using System.Reflection.Metadata.Ecma335;
+
+namespace StrategyUnits
 {
     internal class Unit
     {
+        private Random random = new Random();
         private int _currentHealth;
         private string? _name;
+        public int Defense { get; set ; }
         public int MaxHealth { get; private set; }
         public bool IsAlive { get =>_currentHealth>0;}
-        public Unit(int health, string? name)
+        public Unit(int health,int defense ,string? name)
         {
+            Defense = defense;
             _currentHealth = health;
             _name = name;
             MaxHealth = health;
@@ -19,7 +25,8 @@
             set { _name = value; }
         }
         
-        public int Health 
+
+        private int Health 
         { 
             get
             {
@@ -57,7 +64,18 @@
 
         public virtual void ShowInfo(string text = "")
         {
-            Console.WriteLine($"Unit: {_name} Health: {_currentHealth} " + text);
+            Console.WriteLine($"Unit: {_name} Health: {_currentHealth}/{MaxHealth} " + text);
+        }
+        public void GetDamage(int damage)
+        {
+            if (IsAlive)
+                Health -= damage - Defense;
+            else
+                Console.WriteLine("Attacked unit is dead");
+        }
+        public void GetHeal(int healAmount)
+        {
+            Health += healAmount;
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class MagicUnit : Unit
+    internal class MagicUnit : MilitaryUnit
     {
         public int _energy;
         public int Energy
@@ -23,9 +23,9 @@ namespace StrategyUnits
                 }
                 else
                 {
-                    if (value > MaxHealth)
+                    if (value > MaxEnergy)
                     {
-                        _energy = MaxHealth;
+                        _energy = MaxEnergy;
                     }
                     else
                     {
@@ -40,8 +40,16 @@ namespace StrategyUnits
         }
 
         public int MaxEnergy;
-        public MagicUnit(int health, string? name) : base(health, name)
+        public MagicUnit(int health, int mindamage, int maxdamage, int defense,int energy, string? name) : base(health,mindamage,maxdamage ,defense, name)
         {
+            _energy= energy;
+            MaxEnergy = Energy;
+        }
+        public override void ShowInfo(string text = "")
+        {
+
+            base.ShowInfo($"Energy: {_energy}/{MaxEnergy}");
+
         }
     }
 }
