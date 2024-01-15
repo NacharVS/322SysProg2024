@@ -2,10 +2,11 @@
 
 Footman footman = new Footman();
 Peasant ps1 = new Peasant();
+Footman footman2 = new Footman();
+ps1.ShowInfo();
+footman.InflictDamage(ps1);
 
-ps1.ShowInfo();
-footman.InflictDamage(ps1);
-footman.InflictDamage(ps1);
-footman.InflictDamage(ps1);
-ps1.Health += 100;
-ps1.ShowInfo();
+footman.InflictDamage(footman2);
+
+
+footman2.ShowInfo();
