@@ -6,34 +6,34 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class MilitaryUnit: Unit
+    internal class MagicUnit: MilitaryUnit
     {
-        private int _damage;
-        private int _damageMax;
+        public int _MP;
+        public int _MaxMP;
 
-        public int Damage
+        public MagicUnit() 
         {
-            get { return _damage; } // Отображает при вызове
+            _MP = 60;
+        }
+
+        public int MP
+        {
+            get { return _MP; } // Отображает при вызове
             set  // Происходит при каком-то изменении
             {
                 if (value < 0)
                 {
-                    _damage = 0;
+                    _MP = 0;
                 }
-                else if (_damageMax < value)
+                else if (_MaxMP < value)
                 {
-                    _damage = _damageMax;
+                    _MP = _MaxMP;
                 }
                 else
                 {
-                    _damage = value;
+                    _MP = value;
                 }
             }
-        }
-
-        public Defence()
-        {
-
         }
     }
 }

@@ -21,11 +21,11 @@ namespace StrategyUnits
             _healing = 60;
         }
 
-        public void HealMagic(Unit unit)
+        public void HealMagic(MagicUnit magicUnit)
         {
-            while(unit.Health < unit.Max_healt)
+            while(magicUnit.Health < magicUnit.Max_healt)
             {
-                unit.Health++;
+                magicUnit.Health++;
                 _healing -= 2;
             }
 

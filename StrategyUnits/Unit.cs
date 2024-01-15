@@ -45,7 +45,7 @@
             Console.WriteLine("Is moving");
         }
 
-        public void ShowInfo()
+        public virtual void ShowInfo()
         {
             Console.WriteLine($"Unit: {_name} Health: {_health}");
         }
