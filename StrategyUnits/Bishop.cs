@@ -32,7 +32,7 @@ namespace StrategyUnits
             if (_energy >= 2)
             {
                 int lives = Math.Min(unit.RemovedHealth, Energy / 2);
-                unit.GetDamage(lives);
+                unit.GetHeal(lives);
                 Energy -= lives * 2;
             }
             else
