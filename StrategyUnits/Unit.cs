@@ -47,7 +47,10 @@
         {
             Console.WriteLine("Is moving");
         }
+        public void Deference()
+        {
 
+        }
         public virtual void ShowInfo()
         {
             Console.WriteLine($"Unit: {_name} Health: {_currenthealth} MaxHealth: {MaxHealth}");

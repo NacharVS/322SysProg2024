@@ -50,7 +50,7 @@ namespace StrategyUnits
         public Bishop() : base(32, "Bishop")
         {
             _heal = 7;
-            _energy = 10; 
+            _energy = 60; 
             MaxEnergy = energy;
         }
 
@@ -58,8 +58,11 @@ namespace StrategyUnits
         {
          
             while(unit.Health < MaxEnergy  & _energy>0)
-          unit.Health = 1;
+            {
+             unit.Health = 1;
             energy -= 2;
+            }
+        
         }
         
         public override void ShowInfo()
