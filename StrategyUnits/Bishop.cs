@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace StrategyUnits
 {
@@ -33,9 +34,13 @@ namespace StrategyUnits
 
         public void InFlickHill(Unit unit)
         {
-            if (Dead || unit.Dead)
+            if (Dead)
             {
-                Console.WriteLine("Действие не может быть выполнено - персонаж мертв");
+                Console.WriteLine("Исцеление не может быть проведено - исцеляющий персонаж мертв");
+            }
+            else if (unit.Dead)
+            {
+                Console.WriteLine("Исцеление не может быть проведено - персонаж, которого исцеляют, мертв");
             }
             else
             {
@@ -47,6 +52,9 @@ namespace StrategyUnits
                 }
             }
         }
-        
+        public override void ShowInfo()
+        {
+            Console.WriteLine($"{Name} Hill: {Hill} Energy: {Energy}/{MaxEnergy} Health: {Health}/{MaxHealth}");
+        }
     }
 }

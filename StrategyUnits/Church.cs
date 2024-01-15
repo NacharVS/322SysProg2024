@@ -9,18 +9,40 @@ namespace StrategyUnits
 {
     internal class Church
     {
-        public int EnergyReserve { get; private set; }
+        public int energyReserve;
+        public int Restoration;
+        public int EnergyReserve
+        {
+            get { return energyReserve; }
+            set
+            {
+                if (value < 0)
+                {
+                    energyReserve = 0;
+                }
+                else if (MaxEnergyReserve < value)
+                {
+                    energyReserve = MaxEnergyReserve;
+                }
+                else
+                {
+                    energyReserve = value;
+                }
+            }
+        }
+        public int MaxEnergyReserve { get; private set; }
 
         public Church()
         {
-            EnergyReserve = 600;
+            energyReserve = 600;
+            MaxEnergyReserve = energyReserve;
         }
 
         public void EnergyRegen(MagicUnit magicUnit)
         {
             if (magicUnit.Dead)
             {
-                Console.WriteLine("Действие не может быть выполнено - персонаж мертв");
+                Console.WriteLine("Церковь не может восстановить энергию - персонаж мертв");
             }
             else
             {
@@ -33,11 +55,16 @@ namespace StrategyUnits
                     }
                     else
                     {
-                        magicUnit.Energy += magicUnit.EnergySpent;
-                        EnergyReserve -= magicUnit.EnergySpent;
+                        Restoration = magicUnit.EnergySpent;
+                        magicUnit.Energy += Restoration;
+                        EnergyReserve -= Restoration;
                     }
                 }
             }
+        }
+        public void ShowInfo()
+        {
+            Console.WriteLine($"Church Energy reserve: {EnergyReserve}/{MaxEnergyReserve}");
         }
     }
 }

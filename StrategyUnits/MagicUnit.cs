@@ -44,9 +44,5 @@ namespace StrategyUnits
                 }
             }
         }
-        public void ShowInfoEnergy()
-        {
-            Console.WriteLine($"Energy: {_energy}");
-        }
     }
 }

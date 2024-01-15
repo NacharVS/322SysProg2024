@@ -19,13 +19,20 @@
         {
             if (Dead)
             {
-                Console.WriteLine("Действие не может быть выполнено - персонаж мертв");
+                Console.WriteLine("Атака не может быть проведена - атакующий персонаж мертв");
+            }
+            else if (unit.Dead)
+            {
+                Console.WriteLine("Атака не может быть проведена - персонаж, которого атакуют, мертв");
             }
             else
             {
                 unit.Health -= _damage;
             }
         }
-
+        public override void ShowInfo()
+        {
+            Console.WriteLine($"{Name} Damage: {Damage} Health: {Health}/{MaxHealth}");    
+        }
     }
 }
