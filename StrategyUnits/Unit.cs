@@ -4,6 +4,8 @@
     {
         private int _health;
         private string? _name;
+        private int Max_healt { get; private set; }
+
 
         public Unit(int health, string? name)
         {
@@ -18,9 +20,24 @@
         }
 
         public int Health 
-        { 
-            get => _health; 
-            set => _health = value; 
+        {
+            get { return _health; } // Отображает при вызове
+            set  // Происходит при каком-то изменении
+            { 
+                if(value < 0)
+                {
+                    _health = 0;
+                }
+                else if (Max_healt < value)
+                {
+                    _health = Max_healt;
+                }
+                else
+                {
+                    _health = value;
+                }
+            }
+           
         }
 
         public void Move()
