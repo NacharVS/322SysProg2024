@@ -37,8 +37,10 @@ namespace StrategyUnits
 
         public int MaxEnergy;
 
-        public MagicUnit(int health, string? name, int minDamage, int maxDamage, int defence) : base(health, name, minDamage, maxDamage, defence)
+        public MagicUnit(int health, string? name, int minDamage, int maxDamage, int defence, int energy) : base(health, name, minDamage, maxDamage, defence)
         {
+            _energy = energy;
+            MaxEnergy = Energy;
         }
     }
 }

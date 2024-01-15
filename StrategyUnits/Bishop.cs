@@ -9,10 +9,8 @@ namespace StrategyUnits
     internal class Bishop : MagicUnit
     {
 
-        public Bishop() : base(50, "Bishop", 1, 3, 0)
+        public Bishop() : base(50, "Bishop", 1, 3, 0, 12)
         {
-            _energy = 6;
-            MaxEnergy = Energy;
         }
 
         public void Heal(Unit unit)
