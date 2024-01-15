@@ -22,6 +22,7 @@ namespace StrategyUnits
                 int mana = Math.Min(magicUnit.RemovedMana, EnergyCapacity * 10);
                 magicUnit.Mana += mana;
                 EnergyCapacity -= Convert.ToInt32(Math.Ceiling(mana / 10d));
+                Console.WriteLine($"Фонтан восстановил {magicUnit.Name} {mana} маны.");
             }
             else
             {

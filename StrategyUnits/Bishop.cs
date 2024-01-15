@@ -32,6 +32,7 @@ namespace StrategyUnits
                 int lives = Math.Min(unit.RemovedHealth, Mana / 2);
                 unit.GetHeal(lives);
                 Mana -= lives * 2;
+                Console.WriteLine($"{Name} восстановил {unit.Name} {lives} жизней.");
             }
             else
             {

@@ -37,5 +37,10 @@ namespace StrategyUnits
         {
             return random.Next(MinDamage, MaxDamage);
         }
+
+        public override void ShowInfo(string additionalText = "")
+        {
+            base.ShowInfo($"Урон: {MinDamage}-{MaxDamage}. " + additionalText);
+        }
     }
 }
