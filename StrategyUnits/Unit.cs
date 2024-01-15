@@ -70,7 +70,7 @@
 
         public void GetDamage(int damage)
         {
-            Health -= damage - Defence;
+            Health -= Math.Max(0, damage - Defence);
         }
 
         public void GetHeal(int healAmount)
