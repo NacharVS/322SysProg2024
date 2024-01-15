@@ -23,8 +23,12 @@ namespace StrategyUnits
 
         public void HealMagic(Unit unit)
         {
-            while()
-            
+            while(unit.Health < unit.Max_healt)
+            {
+                unit.Health++;
+                _healing -= 2;
+            }
+
         }
     }
 }

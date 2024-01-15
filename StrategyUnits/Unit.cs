@@ -2,9 +2,9 @@
 {
     internal class Unit
     {
-        private int _health;
+        public int _health;
         private string? _name;
-        private int Max_healt { get; private set; }
+        public int Max_healt { get; private set; }
 
 
         public Unit(int health, string? name)

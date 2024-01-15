@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class Altar
+    internal class MilitaryUnit: Unit
     {
-        private int _energy;
-        private int _energyMax;
-
     }
 }
