@@ -43,7 +43,7 @@ namespace StrategyUnits
 
         public override void ShowInfo (string additionalText = "") 
         {
-            base.ShowInfo($"Энергия: {_energy}. {additionalText}");
+            base.ShowInfo($"Энергия: {_energy}/{MaxEnergy}. {additionalText}");
         }
     }
 }

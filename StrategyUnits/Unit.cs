@@ -63,7 +63,7 @@
 
         public virtual void ShowInfo(string additionalText = "")
         {
-            Console.WriteLine($"Unit: {_name} Health: {_health}. {additionalText}");
+            Console.WriteLine($"Unit: {_name} Health: {_health}/{MaxHeath}. {additionalText}");
         }
     }
 }
