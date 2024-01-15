@@ -7,20 +7,29 @@ namespace StrategyUnits
         private int _currenthealth;
         private string? _name;
         private int _energy;
+        public int _altar = 5000;
+        public int _maxmana;
 
         public int MaxHealth { get; private set; }
 
-        public Unit(int health, string? name)
+        public Unit(int health, int mana, int maxmana, string? name)
         {
             _currenthealth = health;
             _name = name;
             MaxHealth = health;
+            _energy = mana;
+            _maxmana = maxmana;
         }
 
         public string Name
         {
             get { return _name; }
             set { _name = value; }
+        }
+        public int MaxMana
+        {
+            get { return _maxmana; }
+            set { _maxmana = value; }
         }
 
         public int Health
@@ -53,7 +62,13 @@ namespace StrategyUnits
 
         public virtual void ShowInfo() 
         {
-            Console.WriteLine($"Unit: {_name} Health: {_currenthealth}");
+            Console.WriteLine($"Unit: {_name} Health: {_currenthealth} MaxHealth {MaxHealth} Mana: {_energy} altar: {_altar}");
+        }
+
+        public void Altar(int Amount)
+        {
+            _energy += Amount;
+            _altar -= Amount;
         }
     }
 }

@@ -16,7 +16,7 @@ namespace StrategyUnits
             get { return _heal; }
             set { _heal = value; }
         }
-        public Bishop() : base(25, "Bishop")
+        public Bishop() : base(25, 60, 60, "Bishop")
         {
             _heal = 7;
             Energy = 40;
@@ -24,7 +24,11 @@ namespace StrategyUnits
         }
         public void InflictHeal(Unit unit)
         {
-            unit.Health += _heal;
+            while (unit.Health < unit.MaxHealth)
+            {
+                unit.Health++;
+                Altar(2);
+            }
         }
 
         private int _energy;
@@ -54,7 +58,7 @@ namespace StrategyUnits
         }
         public override void ShowInfo()
         {
-            Console.WriteLine($"Unit: {Name} Health: {Health} MaxHealth: {MaxHealth} Energy:{Energy} MaxEnergy:{MaxEnergy}");
+            Console.WriteLine($"Unit: {Name} Health: {Health} MaxHealth: {MaxHealth} Energy:{Energy} MaxEnergy:{MaxEnergy} altar: {_altar}");
         }
     }
 }
