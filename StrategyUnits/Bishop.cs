@@ -27,11 +27,11 @@ namespace StrategyUnits
                 return;
             }
 
-            if (_energy >= 2)
+            if (Mana >= 2)
             {
-                int lives = Math.Min(unit.RemovedHealth, Energy / 2);
+                int lives = Math.Min(unit.RemovedHealth, Mana / 2);
                 unit.GetHeal(lives);
-                Energy -= lives * 2;
+                Mana -= lives * 2;
             }
             else
             {
@@ -41,7 +41,7 @@ namespace StrategyUnits
 
         public override void ShowInfo (string additionalText = "") 
         {
-            base.ShowInfo($"Энергия: {_energy}/{MaxEnergy}. {additionalText}");
+            base.ShowInfo($"Энергия: {Mana}/{MaxMana}. {additionalText}");
         }
     }
 }

@@ -8,39 +8,39 @@ namespace StrategyUnits
 {
     internal class MagicUnit : MiliataryUnit
     {
-        protected int _energy;
+        protected int _mana;
 
-        public int Energy
+        public int Mana
         {
-            get { return _energy; }
+            get { return _mana; }
             set
             {
                 if (value < 0)
                 {
-                    _energy = 0;
+                    _mana = 0;
                 }
                 else
                 {
                     if (value > MaxHeath)
                     {
-                        _energy = MaxHeath;
+                        _mana = MaxHeath;
                     }
                     else
                     {
-                        _energy = value;
+                        _mana = value;
                     }
                 }
             }
         }
 
-        public int RemovedEnergy { get => MaxEnergy - Energy; }
+        public int RemovedMana { get => MaxMana - Mana; }
 
-        public int MaxEnergy;
+        public int MaxMana;
 
         public MagicUnit(int health, string? name, int minDamage, int maxDamage, int defence, int energy) : base(health, name, minDamage, maxDamage, defence)
         {
-            _energy = energy;
-            MaxEnergy = Energy;
+            _mana = energy;
+            MaxMana = Mana;
         }
     }
 }

@@ -14,10 +14,10 @@ namespace StrategyUnits
 
         public void SaintJuglement(Unit unit)
         {
-            if (Energy >= 3)
+            if (Mana >= 3)
             {
                 unit.GetDamage(RandomDamage() * 2);
-                Energy -= 3;
+                Mana -= 3;
             }
         }
     }

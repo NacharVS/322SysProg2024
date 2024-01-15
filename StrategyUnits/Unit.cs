@@ -65,7 +65,7 @@
 
         public virtual void ShowInfo(string additionalText = "")
         {
-            Console.WriteLine($"Unit: {_name} Health: {_health}/{MaxHeath}. {additionalText}");
+            Console.WriteLine($"Unit: {_name} Health: {_health}/{MaxHeath}. Защита {Defence}. {additionalText}");
         }
 
         public void GetDamage(int damage)
