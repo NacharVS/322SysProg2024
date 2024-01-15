@@ -16,11 +16,11 @@ namespace StrategyUnits
         }
         public Altar()
         {
-            _reserv = 250;
+            _reserv = 5000;
         }
         public void BishopAltar(Bishop bishop)
         {
-            while (Reservs > 0 && bishop.energy < 60)
+            while (Reservs > 0 && bishop.energy < 61)
             {
 
                 bishop.energy++;

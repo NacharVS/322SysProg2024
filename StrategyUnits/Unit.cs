@@ -52,5 +52,10 @@
         {
             Console.WriteLine($"Unit: {_name} Health: {_currenthealth} MaxHealth: {MaxHealth}");
         }
+
+        public void Defence()
+        {
+
+        }
     }
 }
