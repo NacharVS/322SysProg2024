@@ -2,13 +2,18 @@
 {
     internal class Unit
     {
-        private int _currentHealth;
+        private int Currenthealth;
         private string? _name;
+        private bool alive = true;
+        public bool Alive
+        {
+            get { return alive; }
+        }
         public int MaxHealth { get; private set; }
 
         public Unit(int health, string? name)
         {
-            _currentHealth = health;
+            Currenthealth = health;
             _name = name;
             MaxHealth = health;
         }
@@ -19,28 +24,34 @@
             set { _name = value; }
         }
 
-        public int Health
-        {
-            get
-            {
-                return _currentHealth;
-            }
+        public int Health 
+        { 
+            get => Currenthealth; 
             set
             {
-                if(value < 0)
+                if (alive is false)
                 {
-                    _currentHealth=0;
+                    Console.WriteLine("Юнит погиб. Действие не выполнено.");
                 }
                 else
                 {
-                    if(value > MaxHealth)   
-                        _currentHealth = MaxHealth;
-                    else
-                        _currentHealth = value;
+                if (value <= 0)
+                {
+                    Currenthealth = 0;
+                    alive = false;
                 }
-                
+                else if (value >= MaxHealth)
+                {
+                    Currenthealth = MaxHealth;
+                }
+                else
+                {
+                    Currenthealth = value;
+                }
+                }
             }
         }
+
         public void Move()
         {
             Console.WriteLine("Is moving");
@@ -48,7 +59,7 @@
 
         public void ShowInfo()
         {
-            Console.WriteLine($"Unit: {_name} Health: {_currentHealth}");
+            Console.WriteLine($"Unit: {_name} Health: {Currenthealth}");
         }
     }
 }
