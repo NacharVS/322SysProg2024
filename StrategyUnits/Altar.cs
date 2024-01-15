@@ -1,20 +1,28 @@
 ﻿
 
+using System.Xml.Linq;
+
 namespace StrategyUnits
 {
-    internal class Altar : Unit
+    internal class Altar 
     {
-        public Altar() : base(25 , "Altar")
+        private int _mana = 5000;
+
+        public int Mana { get { return _mana;} }
+        public void GetEnergy(MagicUnit magicUnit)//алтарь
         {
-        
-        }
-        public void GetEnergy(Bishop bishop)
-        {
-            while(bishop.Energy < bishop.Maxenergy)
+
+            while(magicUnit.Energy < magicUnit.MaxEnergy && _mana <0)
             {
-                bishop.Energy++;
+                magicUnit.Energy++;
+                _mana -= 10 ;
             }
-            Console.WriteLine($"Set full energy {bishop.Name}");
+            Console.WriteLine($"Set  energy {magicUnit.Name} Mana left {_mana}");
+        }
+        public void Info()
+        {
+
+            Console.WriteLine($"Mana: {_mana} ");
         }
     }
 }
