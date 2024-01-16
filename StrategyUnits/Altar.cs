@@ -12,14 +12,17 @@ namespace StrategyUnits
         public Altar(int intialEnergy)
         {
             energy = intialEnergy;
+
         }
-        public void RestoreEnergy(Bishop bishop)
+        public void RestoreEnergy(MagicUnit magicUnit)
         {
             if (energy > 0)
             {
-                int energyCount = Math.Min(bishop.MaxMana - bishop.mana, energy);
-                bishop.mana += energyCount;
+                int energyCount = Math.Min(magicUnit.MaxMana - magicUnit.mana, energy);
+                magicUnit.mana += energyCount * 10;
                 energy -= energyCount;
+
+
             }
         }
     }

@@ -16,7 +16,7 @@ namespace StrategyUnits
             set { _heal = value; }
         }
 
-        public Bishop() : base(32, "Bishop",10,3,7)
+        public Bishop() : base(32, "Bishop",10,3,7, 5)
         {
             _heal = 7;
         }
@@ -30,11 +30,6 @@ namespace StrategyUnits
             mana -= 2;
             }
         
-        }
-        
-        public override void ShowInfo()
-        {
-            Console.WriteLine($"Unit: {Name} Health: { Health} MaxHealth: {MaxHealth} Energy:{mana} MaxEnergy:{MaxMana} ");
         }
     }
 }

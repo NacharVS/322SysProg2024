@@ -10,7 +10,7 @@ namespace StrategyUnits
     {
 
         private int _mana;
-        public MagicUnit(int health, string? name, int _damangemax, int _damangemin,int mana) : base(health,name,_damangemax, _damangemin)
+        public MagicUnit(int health, string? name, int _damangemax, int _damangemin,int mana,int defense) : base(health,name,_damangemax, _damangemin,defense)
         {
             MaxMana = mana;
             _mana = mana;
@@ -42,6 +42,10 @@ namespace StrategyUnits
                         _mana = value;
                 }
             }
+        }
+        public override void ShowInfo()
+        {
+            Console.WriteLine($"Unit: {Name} Health: {Health} MaxHealth: {MaxHealth} Energy:{mana} MaxEnergy:{MaxMana} DamangeMax:{DamangeMax} DamangeMin:{DamangeMin} Defence:{Defense} ");
         }
     }
 }

@@ -13,7 +13,7 @@ namespace StrategyUnits
         public int DamangeMin { get; set; }
         Random random = new Random();
 
-        public MiliteryUnit(int health, string? name, int _damangemax, int _damangemin) : base(health, name)
+        public MiliteryUnit(int health, string? name, int _damangemax, int _damangemin, int defense) : base(health, name)
         {
             DamangeMax = _damangemax;
             DamangeMin = _damangemin;

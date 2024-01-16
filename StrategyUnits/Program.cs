@@ -24,5 +24,6 @@ altar.RestoreEnergy(bishop1);
 bishop1.ShowInfo();
 palladin.SaintRow(bishop1);
 palladin.ShowInfo();
+bishop1.ShowInfo();
 
 
