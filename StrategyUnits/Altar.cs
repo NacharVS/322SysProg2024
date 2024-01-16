@@ -17,8 +17,8 @@ namespace StrategyUnits
         {
             if (energy > 0)
             {
-                int energyCount = Math.Min(bishop.MaxEnergy - bishop.energy, energy);
-                bishop.energy += energyCount;
+                int energyCount = Math.Min(bishop.MaxMana - bishop.mana, energy);
+                bishop.mana += energyCount;
                 energy -= energyCount;
             }
         }

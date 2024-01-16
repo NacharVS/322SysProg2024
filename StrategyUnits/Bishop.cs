@@ -7,67 +7,34 @@ using System.Xml.Linq;
 
 namespace StrategyUnits
 {
-    internal class Bishop : Unit
+    internal class Bishop : MagicUnit 
     {
         private int _heal;
-        private int _energy;
-        
-        public int MaxEnergy
-        {
-            get;
-            private set;
-        }
-        
-        public int energy
-        {
-
-            get
-            {
-                return _energy;
-            }
-            set
-            {
-                if (value < 0)
-                {
-                    _energy = 0;
-                }
-                else
-                {
-                    if (value > MaxEnergy)
-                        _energy = MaxEnergy;
-                    else
-                        _energy = value;
-                }
-            }
-        }
-       
         public int Heal
         {
             get { return _heal; }
             set { _heal = value; }
         }
 
-        public Bishop() : base(32, "Bishop")
+        public Bishop() : base(32, "Bishop",10,3,7)
         {
             _heal = 7;
-            _energy = 60; 
-            MaxEnergy = energy;
         }
 
         public void InflictHeal (Unit unit)
         {
          
-            while(unit.Health < MaxEnergy  & _energy>0)
+            while(unit.Health < unit.MaxHealth  & mana>=2)
             {
-             unit.Health = 1;
-            energy -= 2;
+             unit.Health += 1;
+            mana -= 2;
             }
         
         }
         
         public override void ShowInfo()
         {
-            Console.WriteLine($"Unit: {Name} Health: { Health} MaxHealth: {MaxHealth} Energy:{energy} MaxEnergy:{MaxEnergy} ");
+            Console.WriteLine($"Unit: {Name} Health: { Health} MaxHealth: {MaxHealth} Energy:{mana} MaxEnergy:{MaxMana} ");
         }
     }
 }

@@ -9,20 +9,26 @@ namespace StrategyUnits
 {
     internal class MiliteryUnit : Unit
     {
-        public int DemengeMax { get; set; }
-        private int DemengeMin { get; set; }
+        public int DamangeMax { get; set; }
+        public int DamangeMin { get; set; }
         Random random = new Random();
 
-        public MiliteryUnit(int health, string? name, int _demengemax, int _demengemin) : base(health, name)
+        public MiliteryUnit(int health, string? name, int _damangemax, int _damangemin) : base(health, name)
         {
-            DemengeMax = _demengemax;
-            DemengeMin = _demengemin;
+            DamangeMax = _damangemax;
+            DamangeMin = _damangemin;
         }
-        private int damenge;
-        public int Demenge
+        private int damange;
+        public void Damage(Unit unit)
         {
-           
+            int countdamange = random.Next(DamangeMin, DamangeMax);
+            countdamange -= unit.Defense;
+          unit.Health-= Math.Max(0, countdamange);
         }
-      
+
+        public override void ShowInfo()
+        {
+            Console.WriteLine($"Unit: {Name} Health: {Health} MaxHealth: {MaxHealth} DamangeMax:{DamangeMax} DamangeMin:{DamangeMin} Defence:{Defense}");
+        }
     }
 }
