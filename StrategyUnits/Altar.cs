@@ -26,7 +26,7 @@ namespace StrategyUnits
         }
         public void RecoverOfEnergy(Bishop bishop)
         {
-            bishop.energy +=5;
+            bishop.Energy +=5;
             _reserveofenergy -= 5;
         }
     }
