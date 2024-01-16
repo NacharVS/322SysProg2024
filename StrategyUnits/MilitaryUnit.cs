@@ -10,30 +10,19 @@ namespace StrategyUnits
     {
         private int _damage;
         private int _damageMax;
+        private int _damageMin;
+        private Random random = new Random();
 
-        public int Damage
+        public int RandomDamage()
         {
-            get { return _damage; } // Отображает при вызове
-            set  // Происходит при каком-то изменении
-            {
-                if (value < 0)
-                {
-                    _damage = 0;
-                }
-                else if (_damageMax < value)
-                {
-                    _damage = _damageMax;
-                }
-                else
-                {
-                    _damage = value;
-                }
-            }
+            return random.Next(_damageMin, _damageMax);
         }
 
-        public Defence()
+        public void InflictDamage(Unit unit)
         {
-
+            _damage = RandomDamage();
+            unit._health -= _damage;
         }
+
     }
 }

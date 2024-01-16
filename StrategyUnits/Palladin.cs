@@ -9,6 +9,7 @@ namespace StrategyUnits
     internal class Palladin: MagicUnit
     {
         private int _attacca;
+        private int _Magicattacca;
 
         public int Attacca
         {
@@ -16,14 +17,27 @@ namespace StrategyUnits
             set { _attacca = value; }
         }
 
+        public int MagicAttacca
+        {
+            get { return _Magicattacca; }
+            set { _Magicattacca = value; }
+        }
+
         public Palladin() : base(60, "Palladin")
         {
             _attacca = 8;
+            _Magicattacca = 8;
         }
 
-        public MagicAttacca (Unit unit)
+        public void PalladinAttacca (Unit unit)
         {
             unit.Health -= _attacca;
         }
+
+        public void PalladinMagicAttacca(Unit unit)
+        {
+            unit.Health -= _attacca;
+        }
+
     }
 }
