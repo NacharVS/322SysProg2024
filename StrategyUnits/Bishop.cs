@@ -24,12 +24,10 @@ namespace StrategyUnits
             set { _energyCost = value; }
         }
 
-        public Bishop() : base(20, "Bishop", 10, 0)
+        public Bishop() : base(20, "Bishop", 10, 0, 60)
         {
             _hill = 1;
             _energyCost = 2;
-            _energy = 60;
-            MaxEnergy= _energy;
         }
 
         public void InFlickHill(Unit unit)
