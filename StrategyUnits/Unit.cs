@@ -4,15 +4,16 @@
     {
         private int _health;
         private string? _name;
-        public int _MaxHealth;
 
+        public int _MaxHealth;
+        public int Defence { get; set; }
         public int MaxHealth { get; private set;  }
 
-        public Unit(int health, int maxhealth, string? name)
+        public Unit(int health,int defence,  string? name)
         {
             _health = health;
             _name = name;
-            _MaxHealth = maxhealth;
+            Defence = defence;
         }
 
         public string Name
@@ -21,7 +22,7 @@
             set { _name = value; }
         }
 
-        public string Defence { get; set; }
+       
 
         public int maxhealth
         {

@@ -11,7 +11,7 @@ namespace StrategyUnits
         public int MaxDamage { get; set; }
         public int MinDamage { get; set; }
 
-        public MilitaryUnit(int health, int maxhealth, string? name, int maxdamage, int mindamage) : base(health, maxhealth, name)
+        public MilitaryUnit(int health, int defence, string? name, int maxdamage, int mindamage) : base(health , defence, name)
         {
             MaxDamage = maxdamage ;
            MinDamage= mindamage; 
@@ -20,7 +20,8 @@ namespace StrategyUnits
         private Random random = new Random();
         public void InflictDamage(Unit unit)
         {
-            unit.Health -= random.Next(MinDamage,MaxDamage);
+            unit.Health -= random.Next(MinDamage,MaxDamage) - unit.Defence;
+          
         }
 
 
