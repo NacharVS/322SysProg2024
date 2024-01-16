@@ -7,14 +7,13 @@ using System.Xml.Linq;
 
 namespace StrategyUnits
 {
-    internal class Bishop : Unit
+    internal class Bishop : MagicUnit
     {
         private int _recovery;
-        private int _energy;
 
         public int Recovery { get { return _recovery; } set { _recovery = value; } }
-        public int Energy { get => _energy; set { _energy = value; } }
-        public Bishop() : base(200, "Bishop", true) { _recovery = 1; _energy = 60; }
+        
+        public Bishop() : base(200, "Bishop", true, 100,3, 1) { _recovery = 1;}
         public void GetHealth(Unit unit, Bishop bishopunit)
         {   
             while (unit.Health!= unit.MaxHealth && bishopunit.Energy>=2)
@@ -24,13 +23,6 @@ namespace StrategyUnits
             }
         }
 
-        public override void ShowInfo()
-        {
-            if(Life)
-            {
-                Console.WriteLine($"Unit: {Name} Health: {Health} Energy: {Energy}");
-            }
-            else base.ShowInfo();
-        }
+
     }
 }

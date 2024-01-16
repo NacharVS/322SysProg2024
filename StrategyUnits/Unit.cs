@@ -5,16 +5,23 @@
         private int _curenthealth;
         private string? _name;
         private bool _life;
+        private int _defence;
         public int MaxHealth { get; private set; }
 
-        public Unit(int health, string? name, bool life)
+        public Unit(int health, string? name, bool life, int defence)
         {
             _life = life = true;
             _curenthealth = health;
             _name = name;
             MaxHealth = _curenthealth;
+            _defence = defence;
         }
 
+        public int Defence 
+        {
+            get {  return _defence; }
+            set { _defence = value; }
+        }
         public string Name
         {
             get { return _name; }
