@@ -17,7 +17,7 @@ namespace StrategyUnits
             private set;
         }
         
-        public int energy
+        public int mana
         {
 
             get
@@ -50,22 +50,22 @@ namespace StrategyUnits
         {
             _heal = 7;
             _energy = 60; 
-            MaxEnergy = energy;
+            MaxEnergy = mana;
         }
 
         public void InflictHeal (Unit unit)
         {
          
-            while(unit.Health < MaxEnergy  & _energy > 0)
+            while(unit.Health < MaxEnergy  & mana >= 2)
             {
           unit.Health += 1;
-            energy -= 2;
+            mana -= 2;
             }
         }
         
         public override void ShowInfo()
         {
-            Console.WriteLine($"Unit: {Name} Health: { Health} MaxHealth: {MaxHealth} Energy:{energy} MaxEnergy:{MaxEnergy} ");
+            Console.WriteLine($"Unit: {Name} Health: { Health} MaxHealth: {MaxHealth} Energy:{mana} MaxEnergy:{MaxEnergy} ");
         }
     }
 }

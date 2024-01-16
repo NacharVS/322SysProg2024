@@ -20,10 +20,10 @@ namespace StrategyUnits
         }
         public void BishopAltar(Bishop bishop)
         {
-            while (Reservs > 0 && bishop.energy < 61)
+            while (Reservs > 0 && bishop.mana < 61)
             {
 
-                bishop.energy++;
+                bishop.mana++;
                 Reservs--;
             }
 

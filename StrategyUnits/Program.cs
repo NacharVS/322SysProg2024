@@ -5,6 +5,7 @@ Footman footman2 = new Footman();
 Peasant ps1 = new Peasant();
 Bishop bishop1 = new Bishop();
 Bishop bishop2 = new Bishop();
+Paladin paladin = new Paladin();
 
 ps1.ShowInfo();
 footman2.ShowInfo();
@@ -23,3 +24,5 @@ bishop1.InflictHeal(footman2);
 bishop1.ShowInfo();
 altar.BishopAltar(bishop1);
 bishop1.ShowInfo();
+paladin.SaintRow(bishop1);
+paladin.ShowInfo();
