@@ -5,6 +5,7 @@
         private int _health;
         private string? _name;
         public int _MaxHealth;
+
         public int MaxHealth { get; private set;  }
 
         public Unit(int health, int maxhealth, string? name)
@@ -19,6 +20,9 @@
             get { return _name; }
             set { _name = value; }
         }
+
+        public string Defence { get; set; }
+
         public int maxhealth
         {
             get { return _MaxHealth; }
@@ -50,6 +54,7 @@
                 }
             }
         }
+        public int RemovedHealth { get => MaxHealth - Health; }
 
         public void Move()
         {

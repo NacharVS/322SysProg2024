@@ -1,43 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-
-namespace StrategyUnits
+﻿namespace StrategyUnits
 {
-    internal class Bishop : Unit
+    internal class Bishop : MagicUnit
     {
 
         private int _healing;
-        private int _energy;
+
         public int healing
         {
             get { return _healing; }
             set { _healing = value; }
         }
 
-        public int energy
-        {
-            get { return _energy; }
-            set { _energy = value; }
-        }
-        public Bishop() : base(45, 50, "Bishop")
+        public Bishop() : base(45, 50, "Bishop", 3,1, 60)
         {
             _healing = 1;
-            _energy = 60;
         }
         public void Healinghealth(Unit unit)
         {
-            unit.Health += _healing;
-            _energy -= 2;
-
+            int lives = Math.Min(unit.RemovedHealth, Energy / 2);
+            unit.Health +=lives ;
+            Energy -= lives *2 ;
         }
 
         public void ShowEnergy()
         {
-            Console.WriteLine($"Energy: {_energy} ");
+            Console.WriteLine($"Energy: {Energy} ");
         }
     }
 }
