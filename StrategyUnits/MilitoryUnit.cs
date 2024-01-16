@@ -14,31 +14,38 @@ namespace StrategyUnits
             get { return _damage; }
             set { _damage = value; }
         }
-        private int _defence;
-        public int Defence
+
+        
+        public MilitoryUnit(int health, string? name, int defence, int damage) : base(health, name, defence)
         {
-            get { return _defence; }
-            set { _defence = value; }
+            _damage = damage;
         }
-        public int _block;
-        public virtual int Block
+
+        public void InflictDamage(Unit unit)
         {
-            get { return _block; }
-            set
+            if (Dead)
             {
-                if (Damage > Defence)
+                Console.WriteLine("Атака не может быть проведена - атакующий персонаж мертв");
+            }
+            else if (unit.Dead)
+            {
+                Console.WriteLine("Атака не может быть проведена - персонаж, которого атакуют, мертв");
+            }
+            else
+            {
+                if (unit.Defence >= Damage)
                 {
-                    _block = Damage - Defence;
+                    Console.WriteLine("Противник заблокировал атаку");
                 }
                 else
                 {
-                    _block = 0;
+                    unit.Health -= (Damage - unit.Defence);
                 }
             }
         }
-        public MilitoryUnit(int health, string? name) : base(health, name)
+        public override void ShowInfo()
         {
-
+            Console.WriteLine($"Unit: {Name} Health: {Health}/{MaxHealth} Defece: {Defence} Damage: {Damage}");
         }
     }
 }

@@ -24,7 +24,7 @@ namespace StrategyUnits
             set { _energyCost = value; }
         }
 
-        public Bishop() : base(20, "Bishop")
+        public Bishop() : base(20, "Bishop", 10, 0)
         {
             _hill = 1;
             _energyCost = 2;
@@ -47,14 +47,11 @@ namespace StrategyUnits
                 while (unit.Health < unit.MaxHealth)
                 {
                     if (Energy <= 0) { break; }
-                    unit.Health += _hill;
-                    Energy -= _energyCost;
+                    unit.Health += Hill;
+                    Energy -= EnergyCost;
                 }
             }
         }
-        public override void ShowInfo()
-        {
-            Console.WriteLine($"{Name} Hill: {Hill} Energy: {Energy}/{MaxEnergy} Health: {Health}/{MaxHealth}");
-        }
+        
     }
 }

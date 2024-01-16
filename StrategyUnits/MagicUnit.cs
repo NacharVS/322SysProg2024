@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class MagicUnit : Unit
+    internal class MagicUnit : MilitoryUnit
     {
         public int _energy;
         public int MaxEnergy { get; set; }
@@ -18,7 +18,7 @@ namespace StrategyUnits
             }
         }
 
-        public MagicUnit(int health, string? name) : base (health, name)
+        public MagicUnit(int health, string? name, int defence, int damage) : base (health, name, defence, damage)
         {
             
         }
@@ -43,6 +43,10 @@ namespace StrategyUnits
                     _energy = value;
                 }
             }
+        }
+        public override void ShowInfo()
+        {
+            Console.WriteLine($"Unit: {Name} Health: {Health}/{MaxHealth} Energy: {Energy}/{MaxEnergy} Defece: {Defence} Damage: {Damage}");
         }
     }
 }

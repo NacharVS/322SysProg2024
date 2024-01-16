@@ -4,14 +4,16 @@
     {
         private int _health;
         private string? _name;
+        public int Defence { get; set; }
         public bool Dead = false;
         public int MaxHealth { get; private set; }
 
-        public Unit(int health, string? name)
+        public Unit(int health, string? name, int defence)
         {
             _health = health;
             _name = name;
             MaxHealth = health;
+            Defence = defence;
         }
 
         public string Name
@@ -52,7 +54,7 @@
 
         public virtual void ShowInfo()
         {
-            Console.WriteLine($"Unit: {_name} Health: {_health}/{MaxHealth}");
+            Console.WriteLine($"Unit: {_name} Health: {_health}/{MaxHealth} Defence: {Defence}");
         }
     }
 }
