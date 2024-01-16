@@ -18,7 +18,7 @@ namespace StrategyUnits
             }
         }
 
-        public MagicUnit(int health, string? name, int defence, int damage, int energy) : base (health, name, defence, damage)
+        public MagicUnit(int health, string? name, int defence, int minDamage, int maxDamage, int energy) : base (health, name, defence, minDamage, maxDamage)
         {
             _energy = energy;
             MaxEnergy = Energy;
@@ -47,7 +47,7 @@ namespace StrategyUnits
         }
         public override void ShowInfo()
         {
-            Console.WriteLine($"Unit: {Name} Health: {Health}/{MaxHealth} Energy: {Energy}/{MaxEnergy} Defece: {Defence} Damage: {Damage}");
+            Console.WriteLine($"Unit: {Name} Health: {Health}/{MaxHealth} Energy: {Energy}/{MaxEnergy} Defece: {Defence} Damage: {MinDamage}-{MaxDamage}");
         }
     }
 }

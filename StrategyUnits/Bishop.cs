@@ -24,7 +24,7 @@ namespace StrategyUnits
             set { _energyCost = value; }
         }
 
-        public Bishop() : base(20, "Bishop", 10, 0, 60)
+        public Bishop() : base(20, "Bishop", 10, 1, 3, 60)
         {
             _hill = 1;
             _energyCost = 2;

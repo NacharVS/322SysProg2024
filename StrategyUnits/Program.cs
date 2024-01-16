@@ -47,6 +47,15 @@ Console.WriteLine();
 
 footman2.InflictDamage(ps1);
 paladin.SacredBlow(footman);
+paladin.InflictDamage(bishop);
+ps1.ShowInfo();
+footman2.ShowInfo();
+footman.ShowInfo();
+bishop.ShowInfo();
+paladin.ShowInfo();
+church.ShowInfo();
+Console.WriteLine();
+
 church.EnergyRegen(bishop);
 church.EnergyRegen(paladin);
 ps1.ShowInfo();
