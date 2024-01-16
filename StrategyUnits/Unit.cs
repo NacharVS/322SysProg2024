@@ -4,10 +4,12 @@
     {
         private int _curenthealth;
         private string? _name;
+        private bool _life;
         public int MaxHealth { get; private set; }
 
-        public Unit(int health, string? name)
+        public Unit(int health, string? name, bool life)
         {
+            _life = life = true;
             _curenthealth = health;
             _name = name;
             MaxHealth = _curenthealth;
@@ -18,15 +20,19 @@
             get { return _name; }
             set { _name = value; }
         }
-
+        public bool Life
+        {
+            get=> _life; set => _life = value;
+        }
         public int Health
         {
             get => _curenthealth;
             set
             {
-                if (value < 0)
+                if (value <= 0)
                 {
                     _curenthealth = 0;
+                    _life = false;
                 }
                 else
                 {
@@ -50,7 +56,13 @@
 
         public virtual void ShowInfo()
         {
-            Console.WriteLine($"Unit: {_name} Health: {_curenthealth}");
+            if(_life == true)
+            {
+                Console.WriteLine($"Unit: {_name} Health: {_curenthealth}");
+            }
+            else { Console.WriteLine($"Unit: {_name} Dead"); }
+
+
         }
     }
 }
