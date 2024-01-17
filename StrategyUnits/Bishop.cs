@@ -28,7 +28,7 @@
                 }
                 else
                 {
-                    Console.WriteLine("Недостаточно энергии");
+                    Console.WriteLine("Not enough energy!");
                 }
         }
         

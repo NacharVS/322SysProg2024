@@ -76,15 +76,12 @@ namespace StrategyUnits
      
         public void GetDamage(int damage)
         {
-            if (IsAlive)
                 if (Defense < damage)
                 {
                 Health -= damage - Defense;
                 }
                 else
                 Console.WriteLine("Damage is fully absorbed by unit defense!");
-            else
-                Console.WriteLine("Attacked unit is dead");
         }
         public void GetHeal(int healAmount)
         {

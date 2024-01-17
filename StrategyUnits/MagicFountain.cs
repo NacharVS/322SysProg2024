@@ -19,13 +19,14 @@ namespace StrategyUnits
         {
             if (EnergyCapacity > 0)
             {
-                int energy = Math.Min(EnergyCapacity, magicUnit.RemovedEnergy);
+                int energy = Math.Min(EnergyCapacity*10, magicUnit.RemovedEnergy);
                 magicUnit.Energy += energy;
-                EnergyCapacity -= energy;
+                EnergyCapacity -= Convert.ToInt32(Math.Ceiling(energy/10d));
+                Console.WriteLine($"Fountain is restored {magicUnit.Name} {energy} energy.");
             }
             else
             {
-                Console.WriteLine("Фонтан иссяк");
+                Console.WriteLine("Fountain is empty!");
             }
         }
     }
