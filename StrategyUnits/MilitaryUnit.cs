@@ -27,13 +27,17 @@ namespace StrategyUnits
             }
             else
             {
-                Console.WriteLine($"{Name} is dead");
+                Console.WriteLine($"{Name} is dead!");
             }
             
         }
         public int RandomDamage()
         {
             return random.Next(MinDamage, MaxDamage);
+        }
+        public override void ShowInfo(string additionalText = "")
+        {
+            base.ShowInfo($"Damage: {MinDamage}-{MaxDamage}. " + additionalText);
         }
     }
 }

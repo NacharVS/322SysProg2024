@@ -20,7 +20,7 @@ namespace StrategyUnits
             }
         else
             {
-                Console.WriteLine($"У {Name} недостаточно энергии для заклинания ");
+                Console.WriteLine($"{Name} don't have enough energy to cast this spell! ");
             }
         }
         
