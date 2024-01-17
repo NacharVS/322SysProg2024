@@ -23,28 +23,36 @@
             set { _name = value; }
         }
 
-        public int Health 
-        { 
+        public int Health
+        {
             get
             {
                 return _currenthealth;
             }
             set
             {
-                if(value<0)
+                if (value < 0)
                 {
                     _currenthealth = 0;
                 }
                 else
                 {
                     if (value > MaxHealth)
+                    {
                         _currenthealth = MaxHealth;
+                    }
                     else
+                    {
+                        if (value > _currenthealth)
+                            HealthIncreasedEvent?.Invoke(value);
+                        else if (value < _currenthealth)
+                            HealthDecreasedEvent?.Invoke(value);
                         _currenthealth = value;
+                    }
                 }
-               
             }
         }
+      
         public int Defense { get; set; }
         
         public void Move()
