@@ -17,8 +17,8 @@
             _name = name;
             MaxHealth = health;
             Defence = defence;
-            HealthIncreasedEvent += OnHealthIncrease;
-            HealthDecreasedEvent += OnHealthDecrease;
+            HealthIncreasedEvent += (int health) => Console.WriteLine($"У {Name} здоровье увеличилось до {health}");
+            HealthDecreasedEvent += (int health) => Console.WriteLine($"У {Name} здоровье уменьшилось до {health}");
         }
 
         public string Name
@@ -86,16 +86,6 @@
         {
             if (healAmount > 0)
                 Health += healAmount;
-        }
-
-        public void OnHealthIncrease(int health) 
-        {
-            Console.WriteLine($"У {Name} здоровье увеличилось до {health}");
-        }
-        
-        public void OnHealthDecrease(int health) 
-        {
-            Console.WriteLine($"У {Name} здоровье уменьшилось до {health}");
         }
 
         public event HealthChangedDelegate HealthIncreasedEvent;
