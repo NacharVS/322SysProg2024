@@ -23,7 +23,7 @@ namespace StrategyUnits
             {
                 int damage = RandomDamage();
                 unit.GetDamage(damage);
-                Console.WriteLine($"{Name} ударил {unit.Name} на {damage} урона, защита юнита: {unit.Defense}.");
+                Console.WriteLine($"{Name} attacked {unit.Name} for {damage} damage, unit defense: {unit.Defense}.");
             }
             else
             {

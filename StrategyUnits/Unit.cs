@@ -5,6 +5,7 @@ namespace StrategyUnits
 {
     internal class Unit
     {
+        public delegate void HealthChangedDelegate(int health);
         private Random random = new Random();
         private int _currentHealth;
         private string? _name;
@@ -17,6 +18,8 @@ namespace StrategyUnits
             _currentHealth = health;
             _name = name;
             MaxHealth = health;
+            HealthDecreasedEvent += Hurt1;
+            HealthIncreasedEvent += Heal1;
         }
 
         public string Name
@@ -45,6 +48,10 @@ namespace StrategyUnits
                     }
                     else
                     {
+                        if(value >_currentHealth)
+                            HealthIncreasedEvent?.Invoke(value);
+                        else if (value < _currentHealth)
+                            HealthDecreasedEvent?.Invoke(value);
                         _currentHealth = value;
                     }
                 }
@@ -66,16 +73,35 @@ namespace StrategyUnits
         {
             Console.WriteLine($"Unit: {_name} Health: {_currentHealth}/{MaxHealth} " + text);
         }
+     
         public void GetDamage(int damage)
         {
             if (IsAlive)
+                if (Defense < damage)
+                {
                 Health -= damage - Defense;
+                }
+                else
+                Console.WriteLine("Damage is fully absorbed by unit defense!");
             else
                 Console.WriteLine("Attacked unit is dead");
         }
         public void GetHeal(int healAmount)
         {
-            Health += healAmount;
+            Health += healAmount;            
+        }
+        public event HealthChangedDelegate HealthIncreasedEvent;
+
+        public event HealthChangedDelegate HealthDecreasedEvent;
+
+        public static void Hurt1(int number)
+        {
+            Console.WriteLine($"Health has decreased. Current health: {number}");
+        }
+
+        public static void Heal1(int number)
+        {
+            Console.WriteLine($"Health has increased. Current health: {number} ");
         }
     }
 }
