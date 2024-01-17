@@ -1,23 +1,22 @@
 ﻿namespace StrategyUnits
 {
-    internal class Footman : Unit
+    internal class Footman : MilitaryUnit
     {
-        private int _damage;
-
-        public int Damage
-        {
-            get { return _damage; }
-            set { _damage = value; }
-        }
+        private int damage;
+        
 
         public Footman() : base(60, "Footman")
         {
-            _damage = 7;
+            DamageMin = 1;
+            DamageMax = 10;
+            Defence = 6;
+            Random random = new Random();
+            damage = random.Next(DamageMin, DamageMax);
         }
 
-        public void InflictDamage(Unit unit)
+        public override void ShowInfo()
         {
-            unit.Health -= _damage;
+            Console.WriteLine($"{Name} damage: {damage}. {Health}/{MaxHealth}");
         }
 
     }

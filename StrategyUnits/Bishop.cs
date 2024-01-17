@@ -12,9 +12,9 @@ namespace StrategyUnits
         
         public Bishop() : base(25, "Колдун")
         {
-            HealPoints = 1;
             EnergyPoints = 60;
             energyLimit = 100;
+            Defence = 2;
         }
 
         public void Heal(Unit unit)
@@ -29,7 +29,7 @@ namespace StrategyUnits
             {
                 while(EnergyPoints > 0)
                 {
-                    unit.Health += HealPoints;
+                    unit.Health += 1;
                     EnergyPoints -= 2;
                 }
             }
@@ -37,7 +37,7 @@ namespace StrategyUnits
             {
                 while (unit.Health < unit.MaxHealth)
                 {
-                    unit.Health += HealPoints;
+                    unit.Health += 1;
                         EnergyPoints -= 2;
 
                     }

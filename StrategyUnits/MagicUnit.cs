@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class MagicUnit : Unit
+    internal class MagicUnit : MilitaryUnit
     {
         private int _healPoints;
         private int _energyPoints;
