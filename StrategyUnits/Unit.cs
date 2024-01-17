@@ -2,10 +2,12 @@
 {
     internal class Unit
     {
+        public delegate void HealthChangedDelegate (int health);
+
         private int _health;
         private string? _name;
 
-        public int MaxHeath { get; private set; }
+        public int MaxHealth { get; private set; }
         public bool IsAlive { get => _health > 0; }
         public int Defence { get; set; }
 
@@ -13,8 +15,10 @@
         {
             _health = health;
             _name = name;
-            MaxHeath = health;
+            MaxHealth = health;
             Defence = defence;
+            HealthIncreasedEvent += OnHealthIncrease;
+            HealthDecreasedEvent += OnHealthDecrease;
         }
 
         public string Name
@@ -34,12 +38,16 @@
                 }
                 else
                 {
-                    if(value > MaxHeath)
+                    if(value > MaxHealth)
                     {
-                        _health = MaxHeath;
+                        _health = MaxHealth;
                     }
                     else
                     {
+                        if(value > _health)
+                            HealthIncreasedEvent?.Invoke(value);
+                        else if (value < _health)
+                            HealthDecreasedEvent?.Invoke(value);
                         _health = value;
                     }
                 }
@@ -48,7 +56,7 @@
 
         public int RemovedHealth
         {
-            get => MaxHeath - Health;
+            get => MaxHealth - Health;
         }
 
         public void Move()
@@ -65,17 +73,32 @@
 
         public virtual void ShowInfo(string additionalText = "")
         {
-            Console.WriteLine($"Unit: {_name} Health: {_health}/{MaxHeath}. Защита {Defence}. {additionalText}");
+            Console.WriteLine($"Unit: {_name} Health: {_health}/{MaxHealth}. Защита {Defence}. {additionalText}");
         }
 
         public void GetDamage(int damage)
         {
-            Health -= Math.Max(0, damage - Defence);
+            if (Defence > damage)
+                Health -= damage - Defence;
         }
 
         public void GetHeal(int healAmount)
         {
-            Health += healAmount;
+            if (healAmount > 0)
+                Health += healAmount;
         }
+
+        public void OnHealthIncrease(int health) 
+        {
+            Console.WriteLine($"У {Name} здоровье увеличилось до {health}");
+        }
+        
+        public void OnHealthDecrease(int health) 
+        {
+            Console.WriteLine($"У {Name} здоровье уменьшилось до {health}");
+        }
+
+        public event HealthChangedDelegate HealthIncreasedEvent;
+        public event HealthChangedDelegate HealthDecreasedEvent;
     }
 }

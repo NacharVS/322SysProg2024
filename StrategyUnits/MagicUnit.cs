@@ -21,9 +21,9 @@ namespace StrategyUnits
                 }
                 else
                 {
-                    if (value > MaxHeath)
+                    if (value > MaxMana)
                     {
-                        _mana = MaxHeath;
+                        _mana = MaxMana;
                     }
                     else
                     {
