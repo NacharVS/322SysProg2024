@@ -54,8 +54,18 @@
         }
 
         public int Defense { get; set; }
-        
+        public int TakeDamage(int damage) 
+        {
+        Health-= damage - Defence ;
+            if (damage > 0)
+            {
+                this.Health -= damage;
+                if
+                {
 
-        
+                }
+            }
+        }
+
     }
 }
