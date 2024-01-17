@@ -18,7 +18,7 @@
             _MaxEnergy = _energy;
         }
        
-
+        //reerrererer
         public string Name
         {
             get { return _name; }
