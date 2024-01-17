@@ -14,6 +14,16 @@ bishop.ShowInfo();
 paladin.ShowInfo();
 church.ShowInfo();
 Console.WriteLine();
+ps1.HealthDecreasedEvent += DropHealth;
+ps1.HealthIncreasedEvent += AddHealth;
+footman2.HealthDecreasedEvent += DropHealth;
+footman2.HealthIncreasedEvent += AddHealth;
+footman.HealthDecreasedEvent += DropHealth;
+footman.HealthIncreasedEvent += AddHealth;
+bishop.HealthDecreasedEvent += DropHealth;
+bishop.HealthIncreasedEvent += AddHealth;
+paladin.HealthDecreasedEvent += DropHealth;
+paladin.HealthIncreasedEvent += AddHealth;
 
 footman.InflictDamage(ps1);
 footman2.InflictDamage(paladin);
@@ -65,3 +75,13 @@ bishop.ShowInfo();
 paladin.ShowInfo();
 church.ShowInfo();
 Console.WriteLine();
+
+static void AddHealth(int MethHealth)
+{
+    Console.WriteLine($"Персонажа исцелили, текущее здоровье равно {MethHealth}");
+}
+
+static void DropHealth(int MethHealth)
+{
+    Console.WriteLine($"Персонаж получил урон, текущее здоровье равно {MethHealth}");
+}
