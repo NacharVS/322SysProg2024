@@ -27,3 +27,7 @@ palladin.ShowInfo();
 bishop1.ShowInfo();
 
 
+
+
+
+

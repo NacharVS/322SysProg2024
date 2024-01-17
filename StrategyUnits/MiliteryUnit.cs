@@ -19,12 +19,13 @@ namespace StrategyUnits
             DamangeMin = _damangemin;
         }
         private int damange;
-        public void Damage(Unit unit)
+        public void InflictDamage(Unit unit)
         {
             int countdamange = random.Next(DamangeMin, DamangeMax);
             countdamange -= unit.Defense;
           unit.Health-= Math.Max(0, countdamange);
         }
+      
 
         public override void ShowInfo()
         {

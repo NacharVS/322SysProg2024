@@ -2,6 +2,8 @@
 {
     internal class Unit
     {
+        public delegate void HealthChangedDelegate(int health);
+
         private int _currenthealth;
         private string? _name;
         
@@ -40,6 +42,7 @@
                     else
                         _currenthealth = value;
                 }
+               
             }
         }
         public int Defense { get; set; }
@@ -48,10 +51,27 @@
         {
             Console.WriteLine("Is moving");
         }
+        public void TakeDamage(int damage)
+        {
+            Health -= damage - Defense;
+            if (damage > 0)
+            {
+                this.Health -= damage;
+                if (this.Health < 0)
+                {
+                    this.Health = 0;
+                }
+            }
+        }
+       
        
         public virtual void ShowInfo()
         {
             Console.WriteLine($"Unit: {_name} Health: {_currenthealth} MaxHealth: {MaxHealth}");
         }
+        public event HealthChangedDelegate HealthIncreasedEvent;
+
+        public event HealthChangedDelegate HealthDecreasedEvent;
     }
+    
 }

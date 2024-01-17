@@ -21,8 +21,6 @@ namespace StrategyUnits
                 int energyCount = Math.Min(magicUnit.MaxMana - magicUnit.mana, energy);
                 magicUnit.mana += energyCount * 10;
                 energy -= energyCount;
-
-
             }
         }
     }
