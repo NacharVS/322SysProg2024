@@ -1,7 +1,10 @@
-﻿namespace StrategyUnits
+﻿using System.Diagnostics.Tracing;
+
+namespace StrategyUnits
 {
     internal class Unit
     {
+        public delegate void HealthChangedDelegate(int health);
         private int _curenthealth;
         private string? _name;
         private bool _life;
@@ -36,6 +39,12 @@
             get => _curenthealth;
             set
             {
+                if (_curenthealth < value)
+                {
+                    HealthIncreasedEvent?.Invoke(_curenthealth);
+                    
+                }
+                else { HealthDecreasedEvent?.Invoke(_curenthealth); }
                 if (value <= 0)
                 {
                     _curenthealth = 0;
@@ -71,5 +80,8 @@
 
 
         }
+        public event HealthChangedDelegate HealthIncreasedEvent;
+
+        public event HealthChangedDelegate HealthDecreasedEvent;
     }
 }

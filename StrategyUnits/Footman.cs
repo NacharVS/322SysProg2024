@@ -1,6 +1,6 @@
 ﻿namespace StrategyUnits
 {
-    internal class Footman : Unit
+    internal class Footman : MilitaryUnit
     {
         private int _damage;
 
@@ -10,7 +10,7 @@
             set { _damage = value; }
         }
 
-        public Footman() : base(60, "Footman", true,100)
+        public Footman() : base(60, "Footman", true,100, 4,10)
         {
             _damage = 7;
         }
