@@ -9,25 +9,10 @@ namespace StrategyUnits
 {
     internal class Bishop : MagicUnit
     {
-        private int _hill;
-        private int _energyCost;
-
-        public int Hill
-        {
-            get { return _hill; }
-            set { _hill = value; }
-        }
-
-        public int EnergyCost
-        {
-            get { return _energyCost; }
-            set { _energyCost = value; }
-        }
-
+        public int EnergyCost;
         public Bishop() : base(20, "Bishop", 10, 1, 3, 60)
         {
-            _hill = 1;
-            _energyCost = 2;
+            
         }
 
         public void InFlickHill(Unit unit)
@@ -42,11 +27,17 @@ namespace StrategyUnits
             }
             else
             {
-                while (unit.Health < unit.MaxHealth)
+                if (unit.MaxHealth-unit.Health <= Energy / 2)
                 {
-                    if (Energy <= 0) { break; }
-                    unit.Health += Hill;
-                    Energy -= EnergyCost;
+                    EnergyCost = unit.MaxHealth - unit.Health;
+                    unit.Health += EnergyCost;
+                    Energy -= EnergyCost*2;
+                }
+                else
+                {
+                    EnergyCost = Energy / 2;
+                    unit.Health += EnergyCost;
+                    Energy -= EnergyCost*2;
                 }
             }
         }
