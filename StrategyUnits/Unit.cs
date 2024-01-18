@@ -6,19 +6,29 @@
         private string? _name;
         public int _MaxHealth { get; private set; }
         private int _energy;
+        private int _defence;
+        private bool _life;
         public int _MaxEnergy { get; private set; }
-        private int _bool;
 
-        public Unit(int health, string? name, int energy)
+        public Unit(int health, string? name, int energy, bool life, int defence)
         {
+            _life = life = true;
             _health = health;
             _name = name;
             _MaxHealth = _health;
             _energy = energy;
             _MaxEnergy = _energy;
+            _defence = defence;
         }
-       
-
+        public bool Life
+        {
+            get => _life; set => _life = value;
+        }
+        public int Defence
+        {
+            get { return _defence; }
+            set { _defence = value; }
+        }
         public string Name
         {
             get { return _name; }
@@ -82,13 +92,15 @@
             Console.WriteLine("Is moving");
         }
 
-        public void ShowInfo()
+        public virtual void ShowInfo()
         {
-            Console.WriteLine($"Unit: {_name} Health: {_health}");
-        }
-        public void ShowInfoBishop() 
-        {
-            Console.WriteLine($"Unit: {_name} Health: {_health} Energy {_energy}");
+            if (_life == true)
+            {
+                Console.WriteLine($"Unit: {_name} Health: {_health}");
+            }
+            else { Console.WriteLine($"Unit: {_name} Dead"); }
+
+
         }
     }
 }
