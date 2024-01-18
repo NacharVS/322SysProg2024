@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace StrategyUnits
 {
     
-    internal class Bishop : Unit
+    internal class Bishop : MagicUnit
     {
         private int _heal;
         private int _ener;
