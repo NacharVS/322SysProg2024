@@ -5,19 +5,16 @@
         private int _health;
         private string? _name;
         public int _MaxHealth { get; private set; }
-        private int _energy;
         private int _defence;
         private bool _life;
         public int _MaxEnergy { get; private set; }
 
-        public Unit(int health, string? name, int energy, bool life, int defence)
+        public Unit(int health, string? name, bool life, int defence)
         {
             _life = life = true;
             _health = health;
             _name = name;
             _MaxHealth = _health;
-            _energy = energy;
-            _MaxEnergy = _energy;
             _defence = defence;
         }
         public bool Life
@@ -57,31 +54,6 @@
                     else
                     {
                         _health = value;
-                    }
-                }
-            }
-        }
-        public int Energy
-        {
-            get
-            {
-                return _energy;
-            }
-            set
-            {
-                if (value < 0)
-                {
-                    _energy = 0;
-                }
-                else
-                {
-                    if (value > _MaxEnergy)
-                    {
-                        _energy = _MaxEnergy;
-                    }
-                    else
-                    {
-                        _energy = value;
                     }
                 }
             }

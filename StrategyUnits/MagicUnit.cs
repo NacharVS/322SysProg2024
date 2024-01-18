@@ -12,7 +12,7 @@ namespace StrategyUnits
         public int Energy { get => _energy; set { _energy = value; } }
         public MagicUnit(int health, string? name, bool life, int defence, int maxddamage, int mindamage) : base(health, name, life, defence, maxddamage, mindamage)
         {
-            _energy = 60;
+            _energy = 100;
         }
         public override void ShowInfo()
         {
