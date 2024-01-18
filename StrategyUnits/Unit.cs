@@ -5,6 +5,14 @@
         private int Currenthealth;
         private string? _name;
         private bool alive = true;
+        private int _defence;
+        public delegate void HealthDelegate(int Health);
+
+        public event HealthDelegate OnHealthIncreased;
+        public event HealthDelegate OnHealthDecreased;
+        public event HealthDelegate OnHealthLoss;
+        public event HealthDelegate OnHealthWin;
+
         public bool Alive
         {
             get { return alive; }
@@ -51,15 +59,39 @@
                 }
             }
         }
+        public int Defence
+        {
+            get { return _defence; }
+            set { _defence = value; }
+        }
 
         public void Move()
         {
             Console.WriteLine("Is moving");
         }
 
-        public void ShowInfo()
+        public virtual void ShowInfo()
         {
             Console.WriteLine($"Unit: {_name} Health: {Currenthealth}");
         }
+        public void GetsDamage(int Damage)
+        {
+            if (Damage <= Defence)
+            {
+                Defence -= Damage;
+            }
+            else
+            {
+                Health -= Damage - Defence;
+                Defence = 0;
+                if (Currenthealth <= 0)
+                {
+                    Currenthealth = 0;
+                }
+            }
+            OnHealthWin?.Invoke(Currenthealth);
+        }
+        
+     
     }
 }

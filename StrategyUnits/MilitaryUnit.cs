@@ -12,6 +12,10 @@ namespace StrategyUnits
         private int _damageMAX;
         private int _defence;
 
+        public MilitaryUnit(int health, string? name) : base(health, name)
+        {
+        }
+
         public int DamageMinimum
         {
             get { return _damageMIN; }
@@ -23,19 +27,14 @@ namespace StrategyUnits
             set { _damageMAX = value; }
         }
 
-        public int Defence
-        {
-            get { return _defence; }
-            set { _defence = value; }
-        }
 
-        public void InflictedDamage
-        {
-            
-        }
-        public MilitaryUnit(int health, string? name) : base(health, name)
-        {
 
+        public virtual void InflictedDamage(Unit unit)
+        {
+            //    Random random = new Random();
+            //    unit.Health -= random.Next(_damageMIN, _damageMAX);
+            unit.GetsDamage(DamageMaximum);
         }
     }
 }
+
