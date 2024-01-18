@@ -1,6 +1,6 @@
 ﻿namespace StrategyUnits
 {
-    internal class Footman : Unit
+    internal class Footman : MilitaryUnit
     {
         private int _damage;
 

@@ -24,7 +24,7 @@ namespace StrategyUnits
             }
             set { _ener = value; }
         }
-        public Bishop() : base(200, "Bishop", 100)
+        public Bishop() : base(200, "Bishop", true, 100, 3, 1)
         {
             _heal = 1;
             _ener = 2;

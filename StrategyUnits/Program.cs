@@ -11,6 +11,6 @@ footman.InflictDamage(ps1);
 ps1.ShowInfo();
 bishop1.InflictHeal(ps1,bishop1);
 ps1.ShowInfo();
-bishop1.ShowInfoBishop();
+bishop1.ShowInfo();
 altar1.GetIncreased(bishop1);
-bishop1.ShowInfoBishop();
+bishop1.ShowInfo();
