@@ -16,7 +16,7 @@ namespace StrategyUnits
             get { return _heal; }
             set { _heal = value; }
         }
-        public Bishop() : base(25, 60, 60, "Bishop")
+        public Bishop() : base(25, 60, 60, "Bishop",4)
         {
             _heal = 7;
             Energy = 40;

@@ -8,17 +8,26 @@ namespace StrategyUnits
         private string? _name;
         private int _energy;
         public int _altar = 5000;
-        public int _maxmana;
+        public int _maxenergy;
 
         public int MaxHealth { get; private set; }
-
-        public Unit(int health, int mana, int maxmana, string? name)
+        
+        public Unit(int health, int mana, int maxmana, string? name,int defence)
         {
             _currenthealth = health;
             _name = name;
             MaxHealth = health;
             _energy = mana;
-            _maxmana = maxmana;
+            _maxenergy = maxmana;
+            _defence = defence;
+        }
+
+        public int _defence;
+        public Unit(int health, int defence, string? name)
+        {
+            _currenthealth = health;
+            _name = name;
+            _defence = defence;
         }
 
         public string Name
@@ -28,8 +37,8 @@ namespace StrategyUnits
         }
         public int MaxMana
         {
-            get { return _maxmana; }
-            set { _maxmana = value; }
+            get { return _maxenergy; }
+            set { _maxenergy = value; }
         }
 
         public int Health
