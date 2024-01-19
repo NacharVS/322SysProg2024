@@ -17,7 +17,7 @@
         
         public Berserker CreateBerserker()
         {
-            return new Berserker(100, 10, 15, 0, "Berserker");
+            return new Berserker(30, 10, 15, 0, "Berserker");
         }
     }
 }

@@ -3,11 +3,22 @@
 MagicFountain fountain= new MagicFountain();
 Barracks barracks = new Barracks();
 Hut hut = new Hut();
-Footman footman = barracks.CreateFootman();
-Peasant ps1 = hut.CreatePeasant();
-Bishop bishop1 = fountain.CreateBishop();
+Zealot zealot = fountain.CreateZealot();
+Paladin paladin = fountain.CreatePaladin();
+Berserker berserker = barracks.CreateBerserker();
 
-footman.ShowInfo();
-footman.InflictDamage(footman);
-bishop1.HealUnit(footman);
-
+zealot.ShowInfo();
+paladin.ShowInfo();
+paladin.SaintTouch(zealot);
+paladin.SaintTouch(zealot);
+paladin.SaintTouch(zealot);
+paladin.SaintTouch(zealot);
+paladin.SaintTouch(zealot);
+zealot.ShowInfo();
+zealot.Prayer();
+zealot.ShowInfo();
+berserker.ShowInfo();
+paladin.InflictDamage(berserker);
+paladin.InflictDamage(berserker);
+paladin.InflictDamage(berserker);
+berserker.ShowInfo();

@@ -35,7 +35,7 @@ namespace StrategyUnits
         }
         public Paladin CreatePaladin()
         {
-            return new Paladin(50, 5, 10, 5, 20, "Paladin");
+            return new Paladin(50, 5, 10, 5, 70, "Paladin");
         }
         public Zealot CreateZealot()
         {

@@ -15,6 +15,7 @@ namespace StrategyUnits
 
         public void Frenzy()
         {
+            Console.WriteLine($"{Name} is using Frenzy!");
             double damage = CountDamage();
             if (Health <= MaxHealth * 0.3)
             {
@@ -31,7 +32,7 @@ namespace StrategyUnits
         public override void GetHeal(double healAmount)
         {
             if (LowHP)
-                Console.WriteLine("Я конченный бегите");
+                Console.WriteLine($"{Name} is in Frenzy!");
             else
             base.GetHeal(healAmount);
         }
