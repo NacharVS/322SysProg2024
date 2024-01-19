@@ -25,7 +25,7 @@ namespace StrategyUnits
 
         public Berserker CreateBerserker()
         {
-            return new Berserker(100, "Berserker", 1, 1, 0);
+            return new Berserker(100, "Berserker", 5, 8, 0);
         }
     }
 }

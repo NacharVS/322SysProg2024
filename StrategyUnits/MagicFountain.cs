@@ -37,7 +37,12 @@ namespace StrategyUnits
 
         public Paladin CreatePalladin()
         {
-            return new Paladin(50, "Паладин", 4, 9, 2, 10);
+            return new Paladin(100, "Паладин", 4, 9, 2, 10);
+        }
+
+        public Zelot CreateZelot()
+        {
+            return new Zelot(100, "Фанатик", 3, 6, 1, 10);
         }
     }
 }

@@ -30,7 +30,7 @@ namespace StrategyUnits
             }
             else
             {
-                Console.WriteLine("У ");
+                Console.WriteLine($"У {Name} недостаточно маны для заклинания Prayer");
             }
         }
     }

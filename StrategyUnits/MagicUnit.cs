@@ -42,5 +42,10 @@ namespace StrategyUnits
             _mana = energy;
             MaxMana = Mana;
         }
+
+        public override void ShowInfo(string additionalText = "")
+        {
+            base.ShowInfo($"Энергия: {Mana}/{MaxMana}. {additionalText}");
+        }
     }
 }

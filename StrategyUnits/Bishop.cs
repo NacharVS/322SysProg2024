@@ -38,10 +38,5 @@ namespace StrategyUnits
                 Console.WriteLine($"У {Name} нет энергии для лечения {unit.Name}");
             }
         }
-
-        public override void ShowInfo (string additionalText = "") 
-        {
-            base.ShowInfo($"Энергия: {Mana}/{MaxMana}. {additionalText}");
-        }
     }
 }
