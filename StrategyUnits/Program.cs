@@ -1,10 +1,24 @@
 ﻿using StrategyUnits;
 
-Footman footman = new Footman();
-Peasant ps1 = new Peasant();
-Bishop bishop1 = new Bishop();
+MagicFountain fountain= new MagicFountain();
+Barracks barracks = new Barracks();
+Hut hut = new Hut();
+Zealot zealot = fountain.CreateZealot();
+Paladin paladin = fountain.CreatePaladin();
+Berserker berserker = barracks.CreateBerserker();
 
-footman.ShowInfo();
-footman.InflictDamage(footman);
-bishop1.HealUnit(footman);
-
+zealot.ShowInfo();
+paladin.ShowInfo();
+paladin.SaintTouch(zealot);
+paladin.SaintTouch(zealot);
+paladin.SaintTouch(zealot);
+paladin.SaintTouch(zealot);
+paladin.SaintTouch(zealot);
+zealot.ShowInfo();
+zealot.Prayer();
+zealot.ShowInfo();
+berserker.ShowInfo();
+paladin.InflictDamage(berserker);
+paladin.InflictDamage(berserker);
+paladin.InflictDamage(berserker);
+berserker.ShowInfo();
