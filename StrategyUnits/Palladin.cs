@@ -9,20 +9,38 @@ namespace StrategyUnits
     internal class Palladin : MagicUnit
     {
         Random random = new Random(); 
-        public Palladin() : base(80, "Palladin", 4, 6, 5, 100)
+
+
+        public Palladin(int health, string name, int minDamage, int maxDamage, int defence, int energy) : base(health, name, minDamage, maxDamage, defence, energy)
         {
         }
 
-        private int _demage;
         public void MagicDemage( Unit unit)
         {
-           _demage = random.Next(10, 20);
-            if(_demage * 3 > Energy)
+            if(120 > Energy)
             {
-                unit.Health -=  * 3; 
+                Console.WriteLine("No Mana");
             }
-           Energy -= _demage *20;
-            
+            else
+            {
+                unit.Health -= 40;
+                Energy -= 120;
+            } 
+        }
+        public void Prayer()
+        {
+            if(Energy > 10)
+            {
+                while(Energy < 10)
+                {
+                    Health += 20;
+                    Energy -= 10;
+                }
+            }
+            else
+            {
+                Console.WriteLine("No Heal");
+            }
         }
     }
 }

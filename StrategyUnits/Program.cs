@@ -1,7 +1,8 @@
 ﻿using StrategyUnits;
 
-Footman footman = new Footman();
-Footman footman2 = new Footman();
+barrack barrack = new barrack();
+Footman footman = barrack.GetFootman(); 
+Footman footman2 = barrack.CreateOfficer();
 Peasant ps1 = new Peasant();
 Peasant ps2 = new Peasant();
 Bishop bishop = new Bishop();

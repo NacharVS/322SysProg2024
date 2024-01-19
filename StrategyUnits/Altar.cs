@@ -12,7 +12,7 @@ namespace StrategyUnits
         public void GetEnergy(MagicUnit magicUnit)//алтарь
         {
 
-            while(magicUnit.Energy < magicUnit.MaxEnergy && _mana <0)
+            while(magicUnit.Energy < magicUnit.MaxEnergy || _mana <0)
             {
                 magicUnit.Energy++;
                 _mana -= 10 ;

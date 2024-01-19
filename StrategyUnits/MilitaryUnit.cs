@@ -21,11 +21,21 @@ namespace StrategyUnits
         public int MinDamage { get { return _minDamage; } }
         public int MaxDamage { get { return _maxDamage; } }
         private int demage;
-        public void InflictDamage(Unit unit)
+        public void InflictDamage(Unit unit , int percent)
         {
             if (unit.Alive != false)
             {
-                demage = unit.Defence - random.Next(_maxDamage - 1, _maxDamage);
+                demage = unit.Defence - (random.Next(_maxDamage - 1, _maxDamage) * percent / 100) ;
+                Console.WriteLine($"Demage {demage} hp to {unit.Name}");
+            }
+
+
+        }
+        public void InflictDamage(Unit unit )
+        {
+            if (unit.Alive != false)
+            {
+                demage = unit.Defence - random.Next(_maxDamage - 1, _maxDamage) ;
                 Console.WriteLine($"Demage {demage} hp to {unit.Name}");
             }
 

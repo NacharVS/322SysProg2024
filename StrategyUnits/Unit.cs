@@ -9,6 +9,7 @@ namespace StrategyUnits
         private int _defence;
         private int _maxHealth {get; set;}
         private bool _alive = true;
+        private delegate void CangeUnit(int health); 
 
         public bool Alive { get { return _alive; } }
         public int MaxHealth
@@ -30,8 +31,9 @@ namespace StrategyUnits
             set { _name = value; }
         }
         public int Defence
-        {
+        { 
             get { return _defence; }
+            set { _defence = value; }
         }
 
         public int Health 
