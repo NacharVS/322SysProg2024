@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace StrategyUnits
 {
     internal class Palladin : MagicUnit
     {
-        Random random = new Random(); 
 
 
         public Palladin(int health, string name, int minDamage, int maxDamage, int defence, int energy) : base(health, name, minDamage, maxDamage, defence, energy)
@@ -25,6 +25,7 @@ namespace StrategyUnits
             {
                 unit.Health -= 40;
                 Energy -= 120;
+                Console.WriteLine($"Demage {40} hp to {unit.Name}");
             } 
         }
         public void Prayer()
