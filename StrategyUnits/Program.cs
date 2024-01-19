@@ -1,17 +1,16 @@
 ﻿using StrategyUnits;
 
-Footman footman = new Footman();
-Peasant ps1 = new Peasant();
-Footman footman2 = new Footman();
-footman2.HealthChangedEvent += Method1;
-ps1.HealthChangedEvent += Method1;
-ps1.ShowInfo();
-footman.InflictDamage(ps1);
-footman.InflictDamage(footman2);
-footman.InflictDamage(footman2);
-footman.InflictDamage(footman2);
+Barracs barracs = new Barracs();
+Footman footman = barracs.CreateOfficer();
 
+Footman footman2 = barracs.CreateFootman();
+
+footman.InflictDamage(footman2);
 footman2.ShowInfo();
+footman2.InflictDamage(footman);
+
+
+footman.ShowInfo();
 
 static void Method1(int number)
 {

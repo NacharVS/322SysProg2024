@@ -4,6 +4,11 @@
     {
         private int _damage;
 
+        public Footman(int health, string? name, int damage) : base(health, name)
+        {
+            _damage = damage;
+        }
+
         public int Damage
         {
             get { return _damage; }
@@ -14,6 +19,8 @@
         {
             _damage = 7;
         }
+
+
 
         public void InflictDamage(Unit unit)
         {
