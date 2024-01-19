@@ -17,8 +17,8 @@
             _name = name;
             MaxHealth = health;
             Defence = defence;
-            HealthIncreasedEvent += (int health) => Console.WriteLine($"У {Name} здоровье увеличилось до {health}");
-            HealthDecreasedEvent += (int health) => Console.WriteLine($"У {Name} здоровье уменьшилось до {health}");
+            HealthIncreasedEvent += health => Console.WriteLine($"У {Name} здоровье увеличилось до {health}");
+            HealthDecreasedEvent += health => Console.WriteLine($"У {Name} здоровье уменьшилось до {health}");
         }
 
         public string Name
@@ -78,7 +78,7 @@
 
         public void GetDamage(int damage)
         {
-            if (Defence > damage)
+            if (damage > Defence)
                 Health -= damage - Defence;
         }
 
