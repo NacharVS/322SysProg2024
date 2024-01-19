@@ -82,7 +82,7 @@
                 Health -= damage - Defence;
         }
 
-        public void GetHeal(double healAmount)
+        public virtual void GetHeal(double healAmount)
         {
             if (healAmount > 0)
                 Health += healAmount;

@@ -20,5 +20,18 @@ namespace StrategyUnits
                 Mana -= 3;
             }
         }
+
+        public void Prayer()
+        {
+            if(Mana >= 10) 
+            {
+                Mana -= 10;
+                GetHeal(20);
+            }
+            else
+            {
+                Console.WriteLine("У ");
+            }
+        }
     }
 }

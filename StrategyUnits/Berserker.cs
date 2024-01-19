@@ -12,17 +12,28 @@ namespace StrategyUnits
         {
         }
 
-        public bool Frenzy() 
+        private bool IsFrenzy;
+
+        public void Frenzy() 
         {
-            return Health <= MaxHealth * 0.3;
+            if(Health <= MaxHealth * 0.3)
+            {
+                IsFrenzy = true;
+            }
         }
 
         public override double CountDamage()
         {
             double damage = base.CountDamage();
-            if (Frenzy())
+            if (IsFrenzy)
                 damage *= 3;
             return damage;
+        }
+
+        public override void GetHeal(double healAmount)
+        {
+            if(!IsFrenzy)
+                base.GetHeal(healAmount);
         }
     }
 }

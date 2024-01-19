@@ -18,5 +18,8 @@ footman2.InflictDamage(berserker);
 footman2.InflictDamage(berserker);
 footman2.InflictDamage(berserker);
 footman2.InflictDamage(berserker);
+berserker.Frenzy();
 berserker.InflictDamage(ps1);
+bishop1.Heal(berserker);
+berserker.ShowInfo();
 ps1.ShowInfo();
