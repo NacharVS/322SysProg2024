@@ -11,7 +11,7 @@ namespace StrategyUnits
         public int _MP;
         public int _MaxMP;
 
-        public MagicUnit() 
+        public MagicUnit(int health, string? name, int _DamageMax, int _DamageMin) : base(health, name, _DamageMax, _DamageMin)
         {
             _MP = 60;
         }

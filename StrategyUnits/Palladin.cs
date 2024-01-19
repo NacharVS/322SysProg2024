@@ -23,7 +23,7 @@ namespace StrategyUnits
             set { _Magicattacca = value; }
         }
 
-        public Palladin() : base(60, "Palladin")
+        public Palladin() : base(60, "Palladin", 20, 10)
         {
             _attacca = 8;
             _Magicattacca = 8;
