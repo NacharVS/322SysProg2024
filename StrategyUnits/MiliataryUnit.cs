@@ -23,9 +23,9 @@ namespace StrategyUnits
         {
             if (IsAlive)
             {
-                int damage = RandomDamage();
-                unit.GetDamage(damage);
+                double damage = CountDamage();
                 Console.WriteLine($"{Name} нанес {unit.Name} {damage} урона.(Зашита {unit.Defence})");
+                unit.GetDamage(damage);
             }
             else
             {
@@ -33,7 +33,7 @@ namespace StrategyUnits
             }
         }
 
-        public int RandomDamage()
+        public virtual double CountDamage()
         {
             return random.Next(MinDamage, MaxDamage);
         }

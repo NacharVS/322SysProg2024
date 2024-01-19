@@ -2,9 +2,9 @@
 {
     internal class Unit
     {
-        public delegate void HealthChangedDelegate (int health);
+        public delegate void HealthChangedDelegate (double health);
 
-        private int _health;
+        private double _health;
         private string? _name;
 
         public int MaxHealth { get; private set; }
@@ -27,10 +27,10 @@
             set { _name = value; }
         }
 
-        private int Health 
+        public double Health 
         { 
             get => _health; 
-            set
+            private set
             {
                 if(value < 0) 
                 {
@@ -54,7 +54,7 @@
             } 
         }
 
-        public int RemovedHealth
+        public double RemovedHealth
         {
             get => MaxHealth - Health;
         }
@@ -76,13 +76,13 @@
             Console.WriteLine($"Unit: {_name} Health: {_health}/{MaxHealth}. Защита {Defence}. {additionalText}");
         }
 
-        public void GetDamage(int damage)
+        public void GetDamage(double damage)
         {
             if (damage > Defence)
                 Health -= damage - Defence;
         }
 
-        public void GetHeal(int healAmount)
+        public void GetHeal(double healAmount)
         {
             if (healAmount > 0)
                 Health += healAmount;

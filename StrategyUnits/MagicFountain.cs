@@ -29,5 +29,15 @@ namespace StrategyUnits
                 Console.WriteLine("В фонтане нет энергии");
             }
         }
+
+        public Bishop CreateBishop()
+        {
+            return new Bishop(50, "Bishop", 1, 3, 0, 12);
+        }
+
+        public Paladin CreatePalladin()
+        {
+            return new Paladin(50, "Паладин", 4, 9, 2, 10);
+        }
     }
 }

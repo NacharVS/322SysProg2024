@@ -8,7 +8,7 @@ namespace StrategyUnits
 {
     internal class Paladin : MagicUnit
     {
-        public Paladin() : base(50, "Паладин", 4, 9, 2, 10)
+        public Paladin(int health, string? name, int minDamage, int maxDamage, int defence, int energy) : base(health, name, minDamage, maxDamage, defence, energy)
         {
         }
 
@@ -16,7 +16,7 @@ namespace StrategyUnits
         {
             if (Mana >= 3)
             {
-                unit.GetDamage(RandomDamage() * 2);
+                unit.GetDamage(CountDamage() * 2);
                 Mana -= 3;
             }
         }

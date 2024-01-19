@@ -8,8 +8,7 @@ namespace StrategyUnits
 {
     internal class Bishop : MagicUnit
     {
-
-        public Bishop() : base(50, "Bishop", 1, 3, 0, 12)
+        public Bishop(int health, string? name, int minDamage, int maxDamage, int defence, int energy) : base(health, name, minDamage, maxDamage, defence, energy)
         {
         }
 
@@ -29,9 +28,9 @@ namespace StrategyUnits
 
             if (Mana >= 2)
             {
-                int lives = Math.Min(unit.RemovedHealth, Mana / 2);
+                double lives = Math.Min(unit.RemovedHealth, Mana / 2);
                 unit.GetHeal(lives);
-                Mana -= lives * 2;
+                Mana -= Convert.ToInt32(Math.Ceiling(lives * 2));
                 Console.WriteLine($"{Name} восстановил {unit.Name} {lives} жизней.");
             }
             else
