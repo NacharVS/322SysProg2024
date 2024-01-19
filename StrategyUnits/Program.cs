@@ -1,8 +1,11 @@
 ﻿using StrategyUnits;
 
-Footman footman = new Footman();
-Peasant ps1 = new Peasant();
-Bishop bishop1 = new Bishop();
+MagicFountain fountain= new MagicFountain();
+Barracks barracks = new Barracks();
+Hut hut = new Hut();
+Footman footman = barracks.CreateFootman();
+Peasant ps1 = hut.CreatePeasant();
+Bishop bishop1 = fountain.CreateBishop();
 
 footman.ShowInfo();
 footman.InflictDamage(footman);

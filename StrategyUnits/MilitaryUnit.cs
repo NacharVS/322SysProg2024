@@ -8,8 +8,8 @@ namespace StrategyUnits
 {
     internal class MilitaryUnit : Unit
     {
-        private int MinDamage;
-        private int MaxDamage;
+        protected int MinDamage;
+        protected int MaxDamage;
         private Random random = new Random();
 
         public MilitaryUnit(int health,int mindamage, int maxdamage,int defense, string? name) : base(health, defense ,name)
@@ -21,7 +21,7 @@ namespace StrategyUnits
         {
             if (IsAlive)
             {
-                int damage = RandomDamage();
+                double damage = CountDamage();
                 unit.GetDamage(damage);
                 Console.WriteLine($"{Name} attacked {unit.Name} for {damage} damage, unit defense: {unit.Defense}.");
             }
@@ -31,8 +31,9 @@ namespace StrategyUnits
             }
             
         }
-        public int RandomDamage()
+        public virtual double CountDamage()
         {
+            
             return random.Next(MinDamage, MaxDamage);
         }
         public override void ShowInfo(string additionalText = "")

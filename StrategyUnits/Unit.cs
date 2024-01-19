@@ -5,9 +5,8 @@ namespace StrategyUnits
 {
     internal class Unit
     {
-        public delegate void HealthChangedDelegate(int health);
-        private Random random = new Random();
-        private int _currentHealth;
+        public delegate void HealthChangedDelegate(double health);
+        private double _currentHealth;
         private string? _name;
         public int Defense { get; set ; }
         public int MaxHealth { get; private set; }
@@ -29,14 +28,15 @@ namespace StrategyUnits
         }
         
 
-        private int Health 
+        public double Health 
         { 
             get
             {
                 return _currentHealth;
             }
-            set 
+           private set 
             { 
+                
                 if(value < 0)
                 {
                     _currentHealth = 0;
@@ -57,7 +57,7 @@ namespace StrategyUnits
                 }
             }
         }
-        public int RemovedHealth
+        public double RemovedHealth
         {
             get => MaxHealth-Health;
         }
@@ -71,10 +71,10 @@ namespace StrategyUnits
 
         public virtual void ShowInfo(string text = "")
         {
-            Console.WriteLine($"Unit: {_name} Health: {_currentHealth}/{MaxHealth} " + text);
+            Console.WriteLine($"Unit: {_name} Health: {_currentHealth}/{MaxHealth}. Defense:{Defense} " + text);
         }
      
-        public void GetDamage(int damage)
+        public void GetDamage(double damage)
         {
                 if (Defense < damage)
                 {
@@ -83,20 +83,21 @@ namespace StrategyUnits
                 else
                 Console.WriteLine("Damage is fully absorbed by unit defense!");
         }
-        public void GetHeal(int healAmount)
+        public virtual void GetHeal(double healAmount)
         {
+            if(healAmount>0)
             Health += healAmount;            
         }
         public event HealthChangedDelegate HealthIncreasedEvent;
 
         public event HealthChangedDelegate HealthDecreasedEvent;
 
-        public static void Hurt1(int number)
+        public static void Hurt1(double number)
         {
             Console.WriteLine($"Health has decreased. Current health: {number}");
         }
 
-        public static void Heal1(int number)
+        public static void Heal1(double number)
         {
             Console.WriteLine($"Health has increased. Current health: {number} ");
         }

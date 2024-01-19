@@ -29,5 +29,17 @@ namespace StrategyUnits
                 Console.WriteLine("Fountain is empty!");
             }
         }
+        public Bishop CreateBishop()
+        {
+            return new Bishop(60, 0, 0, 0, 60, "Bishop");
+        }
+        public Paladin CreatePaladin()
+        {
+            return new Paladin(50, 5, 10, 5, 20, "Paladin");
+        }
+        public Zealot CreateZealot()
+        {
+            return new Zealot(50, 10, 15, 5, 20, "Zealot");
+        }
     }
 }
