@@ -1,4 +1,12 @@
 ﻿using StrategyUnits;
+Barrac barrac = new Barrac();
+Footman footman = barrac.CreateOfficer();
+
+Footman footman2 = barrac.CreateFootman();
+
+footman.InflictDamage(footman2);
+footman2.ShowInfo();
+footman2.InflictDamage(footman);
 
 Footman footman = new Footman();
 Footman footman2 = new Footman();
