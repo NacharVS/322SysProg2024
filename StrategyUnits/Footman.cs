@@ -19,6 +19,10 @@
         {
             unit.Health -= _damage;
         }
+        public void Rage(Footman footman1)
+        {
+            if(footman1.MaxHealth *0.5 < footman1.Health) footman1
+        }
 
     }
 }
