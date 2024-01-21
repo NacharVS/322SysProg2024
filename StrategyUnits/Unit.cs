@@ -41,10 +41,10 @@ namespace StrategyUnits
             {
                 if (_curenthealth < value)
                 {
-                    HealthIncreasedEvent?.Invoke(_curenthealth);
+                    HealthIncreasedEvent?.Invoke(value);
                     
                 }
-                else { HealthDecreasedEvent?.Invoke(_curenthealth); }
+                else { HealthDecreasedEvent?.Invoke(value); }
                 if (value <= 0)
                 {
                     _curenthealth = 0;
