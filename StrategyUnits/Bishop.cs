@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StrategyUnits;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,26 +11,36 @@ namespace StrategyUnits
     internal class Bishop : MagicUnit 
     {
         private int _heal;
-        public int Heal
+        public void Heal(Unit unit)
         {
-            get { return _heal; }
-            set { _heal = value; }
+             if (!IsAlive)
+            {
+                base.ShowInfo("умер");
+                return;
+            }
+
+            if (!unit.IsAlive)
+            {
+                Console.WriteLine($"{Name} не может лечить {unit.Name}, т.к. {unit.Name} мертв.");
+                return;
+            }
+
+            if (mana >= 2)
+                          {
+                 double lives = Math.Min(unit.RemovedHealth, mana / 2);
+                 unit.GetHeal(lives);
+                 mana -= Convert.ToInt32(Math.Ceiling(lives * 2));
+                 Console.WriteLine($"{Name} восстановил {unit.Name} {lives} жизней.");
+            }
+            else
+            {
+                 Console.WriteLine($"У {Name} нет энергии для лечения {unit.Name}");
+            }
         }
 
-        public Bishop() : base(32, "Bishop",10,3,7, 5)
+        public Bishop(int health, string? name, int minDamage, int maxDamage, int defence, int energy) : base(health, name, minDamage, maxDamage, defence, energy)
         {
             _heal = 7;
-        }
-
-        public void InflictHeal (Unit unit)
-        {
-         
-            while(unit.Health < unit.MaxHealth  & mana>=2)
-            {
-             unit.Health += 1;
-            mana -= 2;
-            }
-        
         }
     }
 }

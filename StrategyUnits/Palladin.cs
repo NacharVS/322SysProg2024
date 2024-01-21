@@ -8,7 +8,7 @@ namespace StrategyUnits
 {
     internal class Palladin : MagicUnit
     {
-        public Palladin() : base(30,"Palladin",10,4,8,5)
+        public Palladin(int health, string? name, int minDamage, int maxDamage, int defence, int energy) : base(health, name, minDamage, maxDamage, defence, energy)
         {
             
         }
@@ -18,6 +18,18 @@ namespace StrategyUnits
             {
                 unit.Health -= 2;
                 mana += 2;    
+            }
+        }
+        public void Prayer()
+        {
+            if (mana >= 10)
+            {
+                mana -= 10;
+                GetHeal(20);
+            }
+            else
+            {
+                Console.WriteLine($"У {Name} недостаточно маны для заклинания Prayer");
             }
         }
     }

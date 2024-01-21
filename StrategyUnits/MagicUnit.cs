@@ -43,9 +43,10 @@ namespace StrategyUnits
                 }
             }
         }
+        public int RemovedMana { get => MaxMana - mana; }
         public override void ShowInfo()
         {
-            Console.WriteLine($"Unit: {Name} Health: {Health} MaxHealth: {MaxHealth} Energy:{mana} MaxEnergy:{MaxMana} DamangeMax:{DamangeMax} DamangeMin:{DamangeMin} Defence:{Defense} ");
+            Console.WriteLine($"Unit: {Name} Health: {Health} MaxHealth: {MaxHealth} Energy:{mana} MaxEnergy:{MaxMana} DamangeMax:{DamangeMax} DamangeMin:{DamangeMin} Defence:{Defence} ");
         }
     }
 }

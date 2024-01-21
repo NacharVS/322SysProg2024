@@ -2,18 +2,23 @@
 {
     internal class Unit
     {
-        public delegate void HealthChangedDelegate(int health);
+        public delegate void HealthChangedDelegate(double health);
 
         private int _currenthealth;
         private string? _name;
         
         public int MaxHealth { get; private set; }
+        public bool IsAlive { get => _currenthealth > 0; }
+        
 
         public Unit(int health, string? name) 
         {
             _currenthealth = health;
             _name = name;
             MaxHealth = health;
+           
+            HealthIncreasedEvent += health => Console.WriteLine($"У {Name} здоровье увеличилось до {health}");
+            HealthDecreasedEvent += health => Console.WriteLine($"У {Name} здоровье уменьшилось до {health}");
 
         }
 
@@ -53,29 +58,38 @@
             }
         }
       
-        public int Defense { get; set; }
-        
+        public int Defence { get; set; }
+        public double RemovedHealth
+        {
+            get => MaxHealth - Health;
+        }
         public void Move()
         {
-            Console.WriteLine("Is moving");
-        }
-        public void TakeDamage(int damage)
-        {
-            Health -= damage - Defense;
-            if (damage > 0)
+            if (IsAlive)
             {
-                this.Health -= damage;
-                if (this.Health < 0)
-                {
-                    this.Health = 0;
-                }
+                Console.WriteLine("Is moving");
+            }
+            else
+            {
+                Console.WriteLine($"{Name} умер");
             }
         }
-       
-       
+        public void GetDamage(int damage)
+        {
+            if (damage > Defence)
+                Health -= damage - Defence;
+        }
+
+        public virtual void GetHeal(int healAmount)
+        {
+            if (healAmount > 0)
+                Health += healAmount;
+        }
+
+
         public virtual void ShowInfo()
         {
-            Console.WriteLine($"Unit: {_name} Health: {_currenthealth} MaxHealth: {MaxHealth}");
+            Console.WriteLine($"Unit: {_name} Health: {_currenthealth} MaxHealth: {MaxHealth} Defence:{Defence}");
         }
         public event HealthChangedDelegate HealthIncreasedEvent;
 
