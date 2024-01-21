@@ -19,6 +19,9 @@
         {
             unit.Health -= _damage;
         }
-
+        public override void ShowInfo()
+        {
+            Console.WriteLine($"{Name} damage: {_damage}. {Health}/{MaxHealth}");
+        }
     }
 }
