@@ -38,5 +38,21 @@ namespace StrategyUnits
                 Energy -= EnergyCost;
             }
         }
+        public void Prayer()
+        {
+            if (Health == MaxHealth)
+            {
+                Console.WriteLine("У персонажа максимальное здоровье, навык не сработал");
+            }
+            else if (Energy < 10)
+            {
+                Console.WriteLine("У персонажа недостаточно энергии, невозможно использовать этот навык");
+            }
+            else
+            {
+                Health += 20;
+                Energy -= 10;
+            }
+        }
     }
 }
