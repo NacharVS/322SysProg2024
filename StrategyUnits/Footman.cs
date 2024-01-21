@@ -12,9 +12,9 @@ namespace StrategyUnits
             set { _damageFootman = value; }
         }
 
-        public Footman() : base(60, "Footman", 12, 9, 50)
+        public Footman(int health, string? name, int minDamage, int maxDamage, int defence) : base(60, "Footman", 12, 9, 50)
         {
-            _damageFootman = 7;
+      
         }
 
         public void InflictDamage(Unit unit)
@@ -24,11 +24,11 @@ namespace StrategyUnits
 
 
 
-        public void PageFootman(MilitaryUnit militaryUnit)
+        public void PageFootman(Unit unit)
         {
-            if(militaryUnit.Health < militaryUnit.Max_healt/2)
+            if(unit.Health < unit.Max_healt/2)
             {
-                double _damage = militaryUnit.RandomDamage() * 1.5;
+                unit.TakeDamage((int)(RandomDamage() * 1.5));
 
             }
         }

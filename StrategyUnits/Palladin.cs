@@ -23,7 +23,7 @@ namespace StrategyUnits
             set { _Magicattacca = value; }
         }
 
-        public Palladin() : base(60, "Palladin", 20, 10)
+        public Palladin(int health, string name, int damagemax, int damagemin, int defence, int energy) : base(60, "Palladin",15, 20, 10)
         {
             _attacca = 8;
             _Magicattacca = 8;
@@ -38,6 +38,8 @@ namespace StrategyUnits
         {
             unit.Health -= _attacca;
         }
+
+
 
     }
 }

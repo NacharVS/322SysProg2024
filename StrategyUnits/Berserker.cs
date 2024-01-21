@@ -6,9 +6,12 @@
         {
         }
 
-        public void Frenzy()
+        public void Frenzy(Unit unit)
         {
-            if()
+            if(unit.Health < unit.Max_healt * 1.3)
+            {
+                unit.TakeDamage((int)(RandomDamage() * 1));
+            }
         }
     }
 }

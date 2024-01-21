@@ -11,15 +11,14 @@ namespace StrategyUnits
         private int _energy;
         private int _energyMax;
 
+        public Altar(int health, string? name, int Defense, int _DamageMax, int _DamageMin) : base(health, name, Defense, _DamageMax, _DamageMin)
+        {
+        }
+
         public int Energy
         {
             get { return _energy; }
             set { _energy = value; }
-        }
-
-        public Altar() 
-        {
-            _energy = 1;
         }
 
         public void RestoreMp(MagicUnit magicUnit)

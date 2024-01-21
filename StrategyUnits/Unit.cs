@@ -48,9 +48,38 @@
            
         }
 
+        public void GetDamage(int damage)
+        {
+            if (Defense < damage)
+            {
+                Health -= damage - Defense;
+            }
+            else
+                Console.WriteLine("Защита активирована");
+        }
+
+        public void TakeDamage(int Damage)
+        {
+            
+            if (Damage <= Defense)
+            {
+                Defense -= Damage;
+            }
+            else
+            { 
+                Health -= Damage - Defense;
+                Defense = 0;
+                if (Health <= 0)
+                {
+                    Console.WriteLine("Юнит погиб");
+                }
+            }
+        }
+
+
         public void Move()
         {
-            Console.WriteLine("Is moving");
+            Console.WriteLine("Двигается");
         }
 
         public virtual void ShowInfo()

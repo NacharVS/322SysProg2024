@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class Bishop: Unit
+    internal class Bishop: MilitaryUnit
     {
         private int _healing;
 
@@ -16,7 +16,7 @@ namespace StrategyUnits
             set { _healing = value; }
         }
 
-        public Bishop() : base(60, "Bishop")
+        public Bishop(int health, string? name, int defense, int _DamageMax, int _DamageMin) : base(60, "Bishop", 30, 60, 20)
         {
             _healing = 60;
         }
