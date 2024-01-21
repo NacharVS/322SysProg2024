@@ -4,22 +4,21 @@ namespace StrategyUnits
 {
     internal class Footman : MilitaryUnit
     {
-        private int _Damage;
+        //private int _Damage;
 
-        public Footman() : base(60, "Footman")
+        public Footman(int health, string? name, int minDamage, int maxDamage, int defence) : base(health, name,  minDamage,  maxDamage, defence)
         {
-            DamageMinimum = 1;
-            DamageMaximum = 8;
-            Random random = new Random();
-            _Damage = random.Next(DamageMinimum, DamageMaximum);
-            Defence = 6;
-            
         }
-
-        public override void ShowInfo()
+        public void Rage(Unit unit) //Ярость
         {
-            Console.WriteLine($"{Name} damage: {_Damage}. {Health}/{MaxHealth}");
+            int damage = AmountDamage();
+            if (Health < 0.5 * MaxHealth)
+            {
+                damage = (int)(1.5 * damage);
+                Console.WriteLine($"{Name} в ярости! Урон увеличен на 50%!");
+            }
+            unit.GetDamage(damage);
+            Console.WriteLine($"{Name} нанес урон( {damage}) игроку: {unit.Name}" );
         }
-
     }
 }

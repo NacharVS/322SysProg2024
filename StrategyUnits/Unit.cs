@@ -5,13 +5,11 @@
         private int Currenthealth;
         private string? _name;
         private bool alive = true;
-        private int _defence;
+       public int Defence {  get; set; }
         public delegate void HealthDelegate(int Health);
-
         public event HealthDelegate OnHealthIncreased;
         public event HealthDelegate OnHealthDecreased;
-        public event HealthDelegate OnHealthLoss;
-        public event HealthDelegate OnHealthWin;
+        
 
         public bool Alive
         {
@@ -19,11 +17,14 @@
         }
         public int MaxHealth { get; private set; }
 
-        public Unit(int health, string? name)
+        public Unit(int health, string? name, int defence)
         {
             Currenthealth = health;
             _name = name;
             MaxHealth = health;
+            Defence = defence;
+            OnHealthIncreased += Health => Console.WriteLine($"У {Name} здоровье теперь больше( {Health})");
+            OnHealthIncreased += Health => Console.WriteLine($"У {Name} здоровье теперь меньше( {Health})");
         }
 
         public string Name
@@ -59,11 +60,7 @@
                 }
             }
         }
-        public int Defence
-        {
-            get { return _defence; }
-            set { _defence = value; }
-        }
+        
 
         public void Move()
         {
@@ -74,24 +71,39 @@
         {
             Console.WriteLine($"Unit: {_name} Health: {Currenthealth}");
         }
-        public void GetsDamage(int Damage)
+        public void GetDamage(int damage)
         {
-            if (Damage <= Defence)
+            if (damage > Defence)
             {
-                Defence -= Damage;
+                int reflectedDamage = damage - Defence;
+                Health -= reflectedDamage;
+                Console.WriteLine($"{Name} отразил {reflectedDamage} урона с помощью защиты!");
             }
-            else
-            {
-                Health -= Damage - Defence;
-                Defence = 0;
-                if (Currenthealth <= 0)
-                {
-                    Currenthealth = 0;
-                }
-            }
-            OnHealthWin?.Invoke(Currenthealth);
         }
-        
-     
+
+
+        public virtual void GetHeal(int CountHeal)
+        {
+            if (CountHeal > 0)
+                Health += CountHeal;
+        }
+
     }
 }
+        //public void GetsDamage(int Damage)
+        //{
+        //    if (Damage <= Defence)
+        //    {
+        //        Defence -= Damage;
+        //    }
+        //    else
+        //    {
+        //        Health -= Damage - Defence;
+        //        Defence = 0;
+        //        if (Currenthealth <= 0)
+        //        {
+        //            Currenthealth = 0;
+        //        }
+        //    }
+        //    OnHealthWin?.Invoke(Currenthealth);
+        //}

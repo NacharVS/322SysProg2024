@@ -27,18 +27,23 @@ namespace StrategyUnits
         }
         public void refill(MagicUnit magicUnit)
         {
-            if(!magicUnit.Alive)
+            if (!magicUnit.Alive)
             {
                 Console.WriteLine("Персонаж умер. Действие отменено.");
             }
             else
             {
+                int energyNeeded = (magicUnit.MaxMana - magicUnit.Mana) / 10;
 
-            while(energyReserve > 0 && magicUnit.EnergyPoints < magicUnit.energyLimit)
-            {
-                   magicUnit.EnergyPoints++;
-                energyReserve--;
-            }
+                if (energyReserve >= energyNeeded)
+                {
+                    magicUnit.Mana += energyNeeded * 10;
+                    energyReserve -= energyNeeded;
+                }
+                else
+                {
+                    Console.WriteLine("Недостаточно энергии для восстановления маны.");
+                }
             }
         }
     }

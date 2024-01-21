@@ -8,15 +8,11 @@ namespace StrategyUnits
 {
     internal class Bishop : MagicUnit
     {
-        
-        
-        public Bishop() : base(25, "Колдун")
+        public Bishop(int health, string? name, int minDamage, int maxDamage, int defence) : base(health, name, minDamage, maxDamage, defence)
         {
-            HealPoints = 1;
-            EnergyPoints = 60;
-            energyLimit = 100;
         }
 
+        public delegate void HealDelegate(int Mana, int health, string BishopName, string UnitName);   
         public void Heal(Unit unit)
         {
             if (unit.Alive is false)
@@ -25,25 +21,16 @@ namespace StrategyUnits
             }
             else
             {
-                if(EnergyPoints / 2 < unit.MaxHealth - unit.Health)
+                while (Mana >=2 && unit.Health != unit.MaxHealth)
             {
-                while(EnergyPoints > 0)
-                {
-                    unit.Health += HealPoints;
-                    EnergyPoints -= 2;
-                }
+                    unit.Health += 1;
+                    Mana -= 2;
             }
-            else
-            {
-                while (unit.Health < unit.MaxHealth)
-                {
-                    unit.Health += HealPoints;
-                        EnergyPoints -= 2;
-
-                    }
-                }
+                HealEvent?.Invoke(Mana, unit.Health, Name, unit.Name);
+           
             }
             
         }
+        public event HealDelegate HealEvent;
     }
 }
