@@ -56,7 +56,7 @@
             Bishop anotherBishop = new Bishop(200, "AnotherBishop", 12, 25, 20);
             anotherBishop.HealEvent += (mana, health, bishopName, unitName) =>
             {
-                Console.WriteLine($"{bishopName} healed {unitName} for {mana} mana. New health: {health}");
+                Console.WriteLine($"{bishopName} вылечил {unitName} на {mana} маны. Теперь здоровье: {health}");
             };
             anotherBishop.Heal(footman);
 
@@ -76,6 +76,24 @@ footmans.Rage(enemyBer);
 
 // Выводим информацию о юните после Rage
 enemyBer.ShowInfo();
+//это делегаты!
+
+Footman myFootman = new Footman(120, "MyFootman", 10, 20, 15);
+Palladin myPalladin = new Palladin(150, "MyPalladin", 15, 25, 20);
+
+myFootman.OnHealthIncreased += (health) => Console.WriteLine($"Здоровье Footman увеличено до {health}.");
+myFootman.OnHealthDecreased += (health) => Console.WriteLine($"Здоровье Footman уменьшено до {health}.");
+
+myPalladin.OnHealthIncreased += (health) => Console.WriteLine($"Здоровье Palladin увеличено до {health}.");
+myPalladin.OnHealthDecreased += (health) => Console.WriteLine($"Здоровье Palladin уменьшено до {health}.");
+
+myFootman.ShowInfo();
+myPalladin.ShowInfo();
+
+myFootman.Rage(myPalladin);
+
+myFootman.ShowInfo();
+myPalladin.ShowInfo();
 
 //Barracs barracs = new Barracs();
 //Footman footman = barracs.CreateOfficer();
