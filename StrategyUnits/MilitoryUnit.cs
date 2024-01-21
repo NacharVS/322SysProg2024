@@ -37,14 +37,7 @@ namespace StrategyUnits
             }
             else
             {
-                if (unit.Defence >= damage)
-                {
-                    Console.WriteLine("Противник заблокировал атаку");
-                }
-                else
-                {
-                    unit.Health -= (damage - unit.Defence);
-                }
+                unit.TakingDamage(damage);
             }
         }
         public override void ShowInfo()

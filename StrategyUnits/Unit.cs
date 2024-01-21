@@ -61,6 +61,18 @@
             }
         }
 
+        public void TakingDamage(int damage)
+        {
+            if (Defence >= damage)
+            {
+                Console.WriteLine("Противник заблокировал атаку");
+            }
+            else
+            {
+                Health -= (damage - Defence);
+            }
+        }
+
         public void Move()
         {
             Console.WriteLine("Is moving");
