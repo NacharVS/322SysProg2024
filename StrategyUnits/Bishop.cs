@@ -19,17 +19,11 @@ namespace StrategyUnits
 
         public void Heal(Unit unit)
         {
-            if (unit.Alive is false)
-            {
-                Console.WriteLine(unit.Name + " умер.");
-            }
-            else
-            {
-                if(EnergyPoints / 2 < unit.MaxHealth - unit.Health)
+            if(EnergyPoints / 2 < unit.MaxHealth - unit.Health)
             {
                 while(EnergyPoints > 0)
                 {
-                    unit.Health += 1;
+                    unit.GetHeal(1);
                     EnergyPoints -= 2;
                 }
             }
@@ -37,13 +31,10 @@ namespace StrategyUnits
             {
                 while (unit.Health < unit.MaxHealth)
                 {
-                    unit.Health += 1;
-                        EnergyPoints -= 2;
-
-                    }
+                    unit.GetHeal(1);
+                    EnergyPoints -= 2;
                 }
             }
-            
         }
     }
 }

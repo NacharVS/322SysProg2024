@@ -25,5 +25,13 @@ namespace StrategyUnits
             DamageMin = 1;
             DamageMax = 8;
         }
+        public void Prayer()
+        {
+            if(EnergyPoints > 10)
+            {
+                EnergyPoints -= 10;
+                Health += 20;
+            }
+        }
     }
 }

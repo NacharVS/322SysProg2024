@@ -4,13 +4,13 @@ namespace StrategyUnits
 {
     internal class Unit
     {
-        private int Currenthealth;
+        private double Currenthealth;
         private string _name;
         private bool alive = true;
-        private int _defence;
-        public delegate void HealthChangeDelegate(int Health);
+        private double _defence;
+        public delegate void HealthChangeDelegate(double Health);
 
-        public int Defence
+        public double Defence
         {
             get { return _defence; }
             set { _defence = value; }
@@ -21,8 +21,13 @@ namespace StrategyUnits
         }
         public int MaxHealth { get; private set; }
         
-        public void TakeDamage(int Damage)
+        public void TakeDamage(double Damage)
         {
+            if (!Alive)
+            {
+                Console.WriteLine("Действие не выполнено, юнит погиб");
+                return;
+            }
             if(Damage <= Defence)
             {
                 HealthVSDefenceWin?.Invoke(Currenthealth);
@@ -56,7 +61,7 @@ namespace StrategyUnits
             set { _name = value; }
         }
 
-        public int Health 
+        public double Health 
         { 
             get => Currenthealth; 
             set
@@ -95,7 +100,13 @@ namespace StrategyUnits
                 }
             }
         }
-
+        public virtual void GetHeal(double CountHP)
+        {
+            if (Alive)
+            {
+                Health += CountHP;
+            }
+        }
         public void Move()
         {
             Console.WriteLine("Is moving");

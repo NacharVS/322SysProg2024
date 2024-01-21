@@ -36,7 +36,7 @@ namespace StrategyUnits
 
             while(energyReserve > 0 && magicUnit.EnergyPoints < magicUnit.energyLimit)
             {
-                   magicUnit.EnergyPoints += 10;
+                magicUnit.EnergyPoints += 10;
                 energyReserve--;
             }
             }
