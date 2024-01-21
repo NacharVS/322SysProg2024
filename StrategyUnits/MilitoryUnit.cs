@@ -15,8 +15,8 @@ namespace StrategyUnits
 
         public MilitoryUnit(int health, string? name, int defence, int minDamage, int maxDamage) : base(health, name, defence)
         {
-            MaxDamage= maxDamage;
-            MinDamage= minDamage;
+            MaxDamage = maxDamage;
+            MinDamage = minDamage;
         }
 
         public int RandomDamage

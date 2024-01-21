@@ -31,6 +31,7 @@ footman.InflictDamage(footman2);
 footman.InflictDamage(footman2);
 footman.InflictDamage(footman2);
 footman.InflictDamage(footman2);
+footman2.Rage(footman);
 footman.InflictDamage(footman2);
 footman.InflictDamage(footman2);
 footman.InflictDamage(footman2);
