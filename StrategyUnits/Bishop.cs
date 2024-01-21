@@ -16,6 +16,12 @@ namespace StrategyUnits
             energyLimit = 100;
             Defence = 2;
         }
+        public Bishop(int health, string name, int defence, int energy) : base(health, name)
+        {
+            Defence = defence;
+            EnergyPoints = energy;
+            energyLimit = energy;
+        }
 
         public void Heal(Unit unit)
         {

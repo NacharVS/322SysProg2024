@@ -18,6 +18,7 @@ namespace StrategyUnits
             Name = name;
             Defence = defence;
         }
+
         public void Frenzy()
         {
             if(Health < Health * 0.3)

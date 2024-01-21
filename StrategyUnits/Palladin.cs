@@ -16,6 +16,14 @@ namespace StrategyUnits
             energyLimit = 100;
             Defence = 4;
         }
+        public Palladin(int health, string name, int damagemin, int damagemax, int defence, int energy) : base(health, name)
+        {
+            DamageMin = damagemin;
+            DamageMax = damagemax;
+            Defence = defence;
+            EnergyPoints = energy;
+            energyLimit = energy;
+        }
         public void SaintSword(Unit unit)
         {
             DamageMin = 10;

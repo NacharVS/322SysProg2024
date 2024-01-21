@@ -24,5 +24,10 @@ namespace StrategyUnits
         {
             return new Berserker(100, "Berserker", 5, 8, 0);
         }
+        public Palladin CreatePalladin()
+        {
+            return new Palladin(75, "Palladin", 0, 10, 0, 100);
+        }
+
     }
 }
