@@ -1,7 +1,19 @@
 ﻿using StrategyUnits;
 
+void DecreaseHP(int hp)
+{
+    Console.WriteLine($"lost {hp} hp");
+}
+
+void IncreaseHP(int hp)
+{
+    Console.WriteLine($" take {hp} hp");
+}
+
+
+
 barrack barrack = new barrack();
-Footman footman = barrack.GetFootman(); 
+Footman footman = barrack.GetFootman();
 Footman footman2 = barrack.CreateOfficer();
 Palladin pl = barrack.CreateDwarf();
 Peasant ps1 = new Peasant();
@@ -15,6 +27,14 @@ ps2.ShowInfo();
 bishop.ShowInfo();
 footman.ShowInfo();
 footman2.ShowInfo();
+
+footman.HealthDecreasedEvent += DecreaseHP;
+footman2.HealthDecreasedEvent += DecreaseHP;
+pl.HealthDecreasedEvent += DecreaseHP;
+footman.HealthIncreasedEvent += IncreaseHP;
+footman2.HealthIncreasedEvent += IncreaseHP;
+pl.HealthIncreasedEvent += IncreaseHP;
+
 
 pl.MagicDemage(footman2);
 

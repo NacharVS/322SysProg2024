@@ -12,14 +12,17 @@ namespace StrategyUnits
         {
         }
 
+        private bool IsCrazy => Health < MaxHealth * 0.3;
+
+        private int Percent => IsCrazy ? 500 : 100;
+
         public void Frenzy(Unit unit)
         {
-            if (Health < MaxHealth * 0.30)
-            {
-                InflictDamage(unit, 500);
-            }
-
+            InflictDamage(unit, Percent);
         }
 
+
+
+        
     }
 }

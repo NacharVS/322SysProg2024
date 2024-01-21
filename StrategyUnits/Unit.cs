@@ -7,17 +7,21 @@ namespace StrategyUnits
         private int _health;
         private string? _name;
         private int _defence;
-        private int _maxHealth {get; set;}
-        private bool _alive = true;
-        private delegate void CangeUnit(int health); 
+        private int _maxHealth { get; set; }
+        public delegate void ChangeUnitHP(int health);
 
-        public bool Alive { get { return _alive; } }
+        public event ChangeUnitHP HealthIncreasedEvent;
+        public event ChangeUnitHP HealthDecreasedEvent;
+
+
+        public bool Alive = true;
+
         public int MaxHealth
         {
-            get { return _maxHealth; } 
+            get { return _maxHealth; }
 
         }
-        public Unit(int health, string? name , int defence)
+        public Unit(int health, string? name, int defence)
         {
             _health = health;
             _name = name;
@@ -31,34 +35,45 @@ namespace StrategyUnits
             set { _name = value; }
         }
         public int Defence
-        { 
+        {
             get { return _defence; }
             set { _defence = value; }
         }
 
-        public int Health 
-        { 
+        public int Health
+        {
             get => _health;
-            set { 
-            if(value <0)
+            set
+            {
+                if (value < 0)
                 {
-                    _health=0;
-                    _alive = false;
-                    Console.WriteLine("RIP...");
-                }
-                else
-                {
-                    if(value > _maxHealth)
+                    if (_health <= value)
                     {
-                        _health=_maxHealth;
+                        _health = 0;
+                        Alive = false;
+                        Console.WriteLine("RIP...");
                     }
                     else
                     {
-                        _health=value;
+                        _health -= value;
                     }
+                    HealthDecreasedEvent.Invoke(value);
+                }
+                else
+                {
+                    if (value > _maxHealth)
+                    {
+                        _health = _maxHealth;
+                    }
+                    else
+                    {
+                        _health += value;
+                    }
+                    HealthIncreasedEvent.Invoke(value);
                 }
             }
         }
+
 
         public void Move()
         {
@@ -67,8 +82,8 @@ namespace StrategyUnits
 
         public virtual void ShowInfo()
         {
-            
-            Console.WriteLine($"Unit: {_name} Health: {_health} Alive: {_alive} ");
+
+            Console.WriteLine($"Unit: {_name} Health: {_health} Alive: {Alive} ");
         }
     }
 }
