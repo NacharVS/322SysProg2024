@@ -11,13 +11,14 @@
 
         public int MaxHealth { get; private set; }
 
-        public Unit(int health, int maxhealth, int mana, int MaxMana, string? name)
+        public Unit(int health, int maxhealth, int mana, int MaxMana, string? name, int defense)
         {
             _currenthealth = health;
             _name = name;
             _MaxHealth = maxhealth;
             _mana = mana;
             _MaxMana = MaxMana;
+            Defense = defense;
         }
 
         public string Name
@@ -102,6 +103,13 @@
         {
             Mana += Amount;
             _fountain -= Amount;
+        }
+        public int Defense;
+        public Unit(int health, int defence, string? name)
+        {
+            _currenthealth = health;
+            _name = name;
+            Defense = defence;
         }
     }
 }

@@ -18,7 +18,7 @@ namespace StrategyUnits
         }
 
 
-        public Bishop() : base(25, 30, 40, 40, "Bishop")
+        public Bishop() : base(25, 30, 40, 40, "Bishop",3)
         {
             _heal = 1;
         }
