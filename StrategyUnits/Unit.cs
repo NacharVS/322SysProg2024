@@ -60,12 +60,22 @@
             if (damage > 0)
             {
                 this.Health -= damage;
-                if
+                if (this.Health < 0)
                 {
-
+                    this.Health = 0;
                 }
             }
         }
 
+        public virtual void ShowInfo()
+        {
+            Console.WriteLine($"Unit: {_name} Health: {_currenthealth} MaxHealth: {MaxHealth}");
+        }
+        public event HealthChangedDelegate HealthIncreasedEvent;
+
+        public event HealthChangedDelegate HealthDecreasedEvent;
     }
+
 }
+    
+
