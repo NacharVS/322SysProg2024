@@ -1,11 +1,11 @@
 ﻿using StrategyUnits;
 
-Footman footman = new Footman();
-Footman footman2 = new Footman();
+Footman footman = new Footman(60, "Footman", 5, 14, 19);
+Footman footman2 = new Footman(60, "Footman", 5, 14, 19);
 Peasant ps1 = new Peasant();
 Bishop bishop = new Bishop();
 Church church = new Church();
-Paladin paladin = new Paladin();
+Paladin paladin = new Paladin(40, "Paladin", 7, 9, 13, 40);
 
 ps1.ShowInfo();
 footman2.ShowInfo();

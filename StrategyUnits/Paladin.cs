@@ -15,7 +15,7 @@ namespace StrategyUnits
             set { _energyCost = value; }
         }
 
-        public Paladin() : base(40, "Paladin", 7, 9, 13, 40)
+        public Paladin(int health, string? name, int defence, int minDamage, int maxDamage, int energy) : base(40, "Paladin", 7, 9, 13, 40)
         {
 
         }

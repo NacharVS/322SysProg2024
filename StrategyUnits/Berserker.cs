@@ -8,6 +8,11 @@ namespace StrategyUnits
 {
     internal class Berserker : Footman
     {
+        public Berserker(int health, string? name, int defence, int minDamage, int maxDamage) : base(70, "Berserker", 3, 10, 14)
+        {
+
+        }
+
         public void Frenzy(Unit unit)
         {
             int damage = RandomDamage;
