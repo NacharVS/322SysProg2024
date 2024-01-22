@@ -6,6 +6,7 @@
         private string? _name;
         
         public int MaxHealth { get; private set; }
+        public delegate void HealthChangedDelegate(double health);
 
         public Unit(int health, string? name) 
         {
@@ -54,11 +55,11 @@
         }
 
         public int Defense { get; set; }
-        public int TakeDamage(int damage) 
+        public void TakeDamage(int damage) 
         {
-        Health-= damage - Defence ;
+            Health-= damage - Defense ;
             if (damage > 0)
-            {
+            {   
                 this.Health -= damage;
                 if (this.Health < 0)
                 {
@@ -66,11 +67,7 @@
                 }
             }
         }
-
-        public virtual void ShowInfo()
-        {
-            Console.WriteLine($"Unit: {_name} Health: {_currenthealth} MaxHealth: {MaxHealth}");
-        }
+        
         public event HealthChangedDelegate HealthIncreasedEvent;
 
         public event HealthChangedDelegate HealthDecreasedEvent;

@@ -14,6 +14,10 @@
         {
             _damage = 7;
         }
+        public Footman(int health, string name, int damage) : base(health,name)
+        {
+            _damage = 7;
+        }
 
         public void InflictDamage(Unit unit)
         {

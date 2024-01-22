@@ -8,8 +8,8 @@ footman.InflictDamage(footman2);
 footman2.ShowInfo();
 footman2.InflictDamage(footman);
 
-Footman footman = new Footman();
-Footman footman2 = new Footman();
+Footman footman4 = new Footman();
+Footman footman3 = new Footman();
 Peasant ps1 = new Peasant();
 Bishop bishop1 = new Bishop();
 Bishop bishop2 = new Bishop();
