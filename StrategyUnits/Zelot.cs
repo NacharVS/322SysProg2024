@@ -18,12 +18,12 @@ namespace StrategyUnits
         {
             if (health <= MaxHealth * 0.3 && !ArmorOfFaith)
             {
-                ArmorOfFaith = true;
+              
                 Defence += Defence;
             }
             else if (health > MaxHealth * 0.3 && ArmorOfFaith)
             {
-                ArmorOfFaith = false;
+               
                 Defence -= Defence / 2;
             }
 
