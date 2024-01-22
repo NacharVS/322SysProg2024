@@ -1,23 +1,32 @@
 ﻿namespace StrategyUnits
 {
+ 
     internal class Unit
     {
         private int _currenthealth;
         private string? _name;
-        public int _MaxHealth;
-        public int _mana;
-        public int _MaxMana;
-        public int _fountain = 5000;
+        private int _energy;
+        public int _altar = 5000;
+        public int _maxenergy;
 
         public int MaxHealth { get; private set; }
 
-        public Unit(int health, int maxhealth, int mana, int MaxMana, string? name)
+        public Unit(int health, int mana, int maxmana, string? name, int defence)
         {
             _currenthealth = health;
             _name = name;
-            _MaxHealth = maxhealth;
-            _mana = mana;
-            _MaxMana = MaxMana;
+            MaxHealth = health;
+            _energy = mana;
+            _maxenergy = maxmana;
+            _defence = defence;
+        }
+
+        public int _defence;
+        public Unit(int health, int defence, string? name)
+        {
+            _currenthealth = health;
+            _name = name;
+            _defence = defence;
         }
 
         public string Name
@@ -25,17 +34,12 @@
             get { return _name; }
             set { _name = value; }
         }
-        public int maxhealth
-        {
-            get { return _MaxHealth; }
-            set { _MaxHealth = value; }
-        }
-
         public int MaxMana
         {
-            get { return _MaxMana; }
-            set { _MaxMana = value; }
+            get { return _maxenergy; }
+            set { _maxenergy = value; }
         }
+
         public int Health
         {
             get
@@ -50,58 +54,30 @@
                 }
                 else
                 {
-                    if (value > maxhealth)
-                    {
-                        _currenthealth = maxhealth;
-                    }
+                    if (_currenthealth > MaxHealth)
+                        _currenthealth = MaxHealth;
                     else
-                    {
                         _currenthealth = value;
-                    }
                 }
+                _currenthealth = value;
             }
         }
 
-        public int Mana
-        {
-            get
-            {
-                return _mana;
-            }
-            set
-            {
-                if (value < 0)
-                {
-                    _mana = 0;
-                }
-                else
-                {
-                    if (value > MaxMana)
-                    {
-                        _mana = _MaxMana;
-                    }
-                    else
-                    {
-                        _mana = value;
-                    }
-                }
-            }
-        }
 
         public void Move()
         {
             Console.WriteLine("Is moving");
         }
 
-        public void ShowInfo()
+        public virtual void ShowInfo()
         {
-            Console.WriteLine($"Unit: {_name} Health: {_currenthealth} Mana: {Mana} fountain: {_fountain}");
+            Console.WriteLine($"Unit: {_name} Health: {_currenthealth} MaxHealth {MaxHealth} Mana: {_energy} altar: {_altar}");
         }
 
-        public void Fountain(int Amount)
+     public void Fountain(int Amount)
         {
-            Mana += Amount;
-            _fountain -= Amount;
+            _energy += Amount;
+            _altar -= Amount;
         }
     }
 }
