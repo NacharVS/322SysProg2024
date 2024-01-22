@@ -15,7 +15,8 @@ namespace StrategyUnits
         {
              if (!IsAlive)
             {
-                base.ShowInfo("умер");
+                base.ShowInfo();
+                Console.WriteLine("умер");
                 return;
             }
 
@@ -28,13 +29,13 @@ namespace StrategyUnits
             if (mana >= 2)
                           {
                  double lives = Math.Min(unit.RemovedHealth, mana / 2);
-                 unit.GetHeal(lives);
+                 unit.GetHeal((int)lives);
                  mana -= Convert.ToInt32(Math.Ceiling(lives * 2));
                  Console.WriteLine($"{Name} восстановил {unit.Name} {lives} жизней.");
             }
             else
             {
-                 Console.WriteLine($"У {Name} нет энергии для лечения {unit.Name}");
+                 Console.WriteLine($"{Name} нет энергии для лечения {unit.Name}");
             }
         }
 

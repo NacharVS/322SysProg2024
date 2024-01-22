@@ -18,7 +18,7 @@ namespace StrategyUnits
             DamangeMax = _damangemax;
             DamangeMin = _damangemin;
         }
-        private int damange;
+     
         public void InflictDamage(Unit unit)
         {
             if(IsAlive)

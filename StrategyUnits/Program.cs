@@ -1,12 +1,12 @@
 ﻿using StrategyUnits;
 
-Footman footman = new Footman();
-Footman footman2 = new Footman();
-Peasant ps1 = new Peasant();
-Bishop bishop1 = new Bishop();
-Bishop bishop2 = new Bishop();
+Footman footman = new Footman(100,"dsfsdf",23,45,100);
+Footman footman2 = new Footman(100, "dsfsdf", 23, 45, 100);
+Peasant ps1 = new Peasant(100, "dsfsdf", 23);
+Bishop bishop1 = new Bishop(100, "dsfsdf", 23, 45, 100,200);
+Bishop bishop2 = new Bishop(100, "dsfsdf", 23, 45, 100,200);
 Altar altar = new Altar(30);
-Palladin palladin = new Palladin();
+Palladin palladin = new Palladin(100, "dsfsdf", 23, 45, 100,200);
 
 ps1.ShowInfo();
 footman2.ShowInfo();
