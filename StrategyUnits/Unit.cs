@@ -10,7 +10,7 @@ namespace StrategyUnits
         public int _altar = 5000;
         public int _maxenergy;
 
-        public int MaxHealth { get; private set; }
+        public int MaxHealth { get;  set; }
         
         public Unit(int health, int mana, int maxmana, string? name,int defence)
         {

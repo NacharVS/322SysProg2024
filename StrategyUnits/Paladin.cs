@@ -27,13 +27,27 @@ namespace StrategyUnits
                     Health = MaxHealth;
                 }
                 Energy -= 10;
-                Console.WriteLine("Prayer activated, health increased to " + Health + ", mana decreased to " + Energy);
+                Console.WriteLine("Prayer activated");
             }
             else
             {
-                Console.WriteLine("Not enough mana to perform Prayer");
+                Console.WriteLine("Not enough mana");
             }
         }
+
+        public void SaintHeal()
+        {
+            if (Energy>=25)
+            {
+                _defence += 3;
+                Energy -= 25;
+            }
+            else
+            {
+                Console.WriteLine("Not enough");
+            }
+        }
+
         public void InflictHeal(Unit unit)
         {
             while (unit.Health < unit.MaxHealth)

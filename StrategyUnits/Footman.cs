@@ -42,7 +42,7 @@
                 _damage += _damage / 2; 
             }
 
-            Console.WriteLine("Rage activated, damage increased to " + _damage);
+            Console.WriteLine("Rage activated");
         }
     }
 }
