@@ -8,7 +8,7 @@
         private string? _name;
         
         public int MaxHealth { get; private set; }
-        public bool IsAlive { get => _currenthealth > 0; }
+        public bool IsAlive  => _currenthealth > 0; 
         
 
         public Unit(int health, string? name) 

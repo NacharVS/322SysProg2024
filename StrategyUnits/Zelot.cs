@@ -16,12 +16,12 @@ namespace StrategyUnits
 
         private void CheckArmorOfFaith(double health)
         {
-            if (health <= MaxHealth * 0.3 && !ArmorOfFaith)
+            if (health <= MaxHealth * 0.3)
             {
               
                 Defence += Defence;
             }
-            else if (health > MaxHealth * 0.3 && ArmorOfFaith)
+            else if (health > MaxHealth * 0.3)
             {
                
                 Defence -= Defence / 2;
@@ -29,7 +29,6 @@ namespace StrategyUnits
 
         }
 
-        private bool ArmorOfFaith;
     }
 }
 
