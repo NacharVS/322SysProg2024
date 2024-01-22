@@ -26,11 +26,11 @@ namespace StrategyUnits
             int damage = 20;
             if (Dead)
             {
-                Console.WriteLine("Атака не может быть проведена - атакующий персонаж мертв");
+                Console.WriteLine($"Атака не может быть проведена - атакующий персонаж, {Name}, мертв");
             }
             else if (unit.Dead)
             {
-                Console.WriteLine("Атака не может быть проведена - персонаж, которого атакуют, мертв");
+                Console.WriteLine($"Атака не может быть проведена - персонаж, {unit.Name}, которого атакуют, мертв");
             }
             else
             {
@@ -42,17 +42,17 @@ namespace StrategyUnits
         {
             if (Dead)
             {
-                Console.WriteLine("Способность нельзя использовать - персонаж мертв");
+                Console.WriteLine($"Способность нельзя использовать - персонаж, {Name}, мертв");
             }
             else
             {
                 if (Health == MaxHealth)
                 {
-                    Console.WriteLine("У персонажа максимальное здоровье - навык не сработал");
+                    Console.WriteLine($"У персонажа, {Name}, максимальное здоровье - навык не сработал");
                 }
                 else if (Energy < 10)
                 {
-                    Console.WriteLine("У персонажа недостаточно энергии - невозможно использовать этот навык");
+                    Console.WriteLine($"У персонажа, {Name}, недостаточно энергии - невозможно использовать этот навык");
                 }
                 else
                 {

@@ -77,7 +77,7 @@
         {
             if (Dead)
             {
-                Console.WriteLine("Персонаж не может двигаться - он мертв");
+                Console.WriteLine($"Персонаж, {Name}, не может двигаться - он мертв");
             }
             else
             {

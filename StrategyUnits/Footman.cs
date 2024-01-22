@@ -13,11 +13,11 @@
             int damage = RandomDamage;
             if (Dead)
             {
-                Console.WriteLine("Атака не может быть проведена - атакующий персонаж мертв");
+                Console.WriteLine($"Атака не может быть проведена - атакующий персонаж, {Name}, мертв");
             }
             else if (unit.Dead)
             {
-                Console.WriteLine("Атака не может быть проведена - персонаж, которого атакуют, мертв");
+                Console.WriteLine($"Атака не может быть проведена - персонаж, {unit.Name}, которого атакуют, мертв");
             }
             else
             {

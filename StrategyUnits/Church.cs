@@ -44,7 +44,7 @@ namespace StrategyUnits
         {
             if (magicUnit.Dead)
             {
-                Console.WriteLine("Церковь не может восстановить энергию - персонаж мертв");
+                Console.WriteLine($"Церковь не может восстановить энергию - персонаж, {magicUnit.Name}, мертв");
             }
             else
             {
