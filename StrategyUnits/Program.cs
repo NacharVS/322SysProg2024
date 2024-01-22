@@ -4,6 +4,8 @@ Footman footman = new Footman();
 Footman footman2 = new Footman();
 Peasant ps1 = new Peasant();
 Bishop bishop1 = new Bishop();
+Paladin pl = new Paladin();
+
 
 ps1.ShowInfo();
 footman2.ShowInfo();

@@ -28,10 +28,13 @@ namespace StrategyUnits
         {
             get { return _maxenergy; }
         }
-        public override void ShowInfo()
+        public void InflictHeal(Unit unit)
         {
-
-            Console.WriteLine($" Health: {Health}   Min demage: {_mindamage} Max demage: {_maxdamage} Unit: {Name} Defence: {_defence} Energy: {_energy}");
+            while (unit.Health < unit.MaxHealth)
+            {
+                unit.Health++;
+                Altar(2);
+            }
         }
     }
 }

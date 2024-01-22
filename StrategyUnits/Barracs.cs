@@ -10,18 +10,30 @@ namespace StrategyUnits
     {
         public Footman CreateRecruit()
         {
-            return new Footman(60,15,15, "Recruit", 7);
+            return new Footman(60, 15, 15, "Recruit", 7);
         }
         public Footman CreateFootman()
         {
-            return new Footman(90,25,25, "Footman", 10);
+            return new Footman(90, 25, 25, "Footman", 10);
         }
 
         public Footman CreateOfficer()
         {
-            return new Footman(120,35,35, "Officer", 15);
+            return new Footman(120, 35, 35, "Officer", 15);
         }
-        
-     
+
+        public Paladin CreateArchon()
+        {
+            return new Paladin(100, 7, 9, "Archon", 5,110);
+        }
+        public Paladin CreateAncient()
+        {
+            return new Paladin(110, 12, 13, "Ancient", 8,120);
+        }
+
+        public Paladin CreateDivine()
+        {
+            return new Paladin(150, 17, 20, "Divine", 14,130);
+        }
     }
 }

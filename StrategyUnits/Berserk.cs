@@ -6,16 +6,19 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class Berserk:MilitaryUnit
+    internal class Berserk : MilitaryUnit
     {
-        public Berserk(): base(120,7,8,"Berserk",8)
+        public Berserk(int health, int mindamage, int maxdamage, string? name, int defence) : base(health, mindamage, maxdamage, name, defence)
         {
-
         }
-        public void Frenzy(Unit unit)
+        private bool berserkmode;
+        public void Frenzy()
         {
-            
+            if (Health < 0.3 * MaxHealth)
+            {
+                berserkmode = true;
+                Console.WriteLine("Berserk is franzy");
+            }
         }
-
     }
 }

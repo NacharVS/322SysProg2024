@@ -64,6 +64,7 @@ namespace StrategyUnits
             }
         }
 
+      
         public void Move()
         {
             Console.WriteLine("Is moving");
