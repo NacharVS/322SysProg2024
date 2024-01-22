@@ -6,9 +6,8 @@
         private string? _name;
         private bool alive = true;
        public int Defence {  get; set; }
-        public delegate void HealthDelegate(int Health);
-        public event HealthDelegate OnHealthIncreased;
-        public event HealthDelegate OnHealthDecreased;
+        
+        
         
 
         public bool Alive
@@ -75,11 +74,16 @@
 
         public void GetDamage(int damage)
         {
-            if (damage > Defence)
+            if (damage <= Defence)
             {
                 int reflectedDamage = damage - Defence;
+                Defence -= damage;
                 Health -= reflectedDamage;
                 Console.WriteLine($"{Name} отразил {reflectedDamage} урона с помощью защиты!");
+            }
+            else 
+            {
+                Defence -= damage;
             }
         }
 
@@ -88,6 +92,9 @@
             if (CountHeal > 0)
                 Health += CountHeal;
         }
+        public delegate void HealthDelegate(int Health);
+        public event HealthDelegate OnHealthIncreased;
+        public event HealthDelegate OnHealthDecreased;
     }
 }
 //public void GetsDamage(int Damage)

@@ -11,12 +11,12 @@ namespace StrategyUnits
     {
         private int _energyReserve;
         private int _energyCapacity;
-        public int energyReserve
+        public int EnergyReserve
         {
             get { return _energyReserve; }
             set { _energyReserve = value; }
         }
-        public int energyCapacity
+        public int EnergyCapacity
         {
             get { return _energyCapacity; }
         }
@@ -33,12 +33,12 @@ namespace StrategyUnits
             }
             else
             {
-                int energyNeeded = (magicUnit.MaxMana - magicUnit.Mana) / 10;
+                int energyNeeded = (magicUnit.MaxEnergy - magicUnit.Energy) / 10;
 
-                if (energyReserve >= energyNeeded)
+                if (EnergyReserve >= energyNeeded)
                 {
-                    magicUnit.Mana += energyNeeded * 10;
-                    energyReserve -= energyNeeded;
+                    magicUnit.Energy += energyNeeded * 10;
+                    EnergyReserve -= energyNeeded;
                 }
                 else
                 {

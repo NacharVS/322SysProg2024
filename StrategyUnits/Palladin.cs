@@ -14,22 +14,22 @@ namespace StrategyUnits
         }
 
       
-        public void MagicKick(Unit unit)
+        public void SaintKick(Unit unit)
         {
            
-           if (Mana >= 3)
+           if (Energy >= 3)
             {
-                Mana -= 3;
+                Energy -= 3;
                 unit.GetDamage(AmountDamage() * 2);
                 
             }
         }
         public void Prayer()
         {
-            if (Mana >= 10)
+            if (Energy >= 10)
             {
                 GetHeal(20);
-                Mana -= 10;
+                Energy -= 10;
                 
             }
         }

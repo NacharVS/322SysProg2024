@@ -21,12 +21,12 @@ namespace StrategyUnits
             }
             else
             {
-                while (Mana >=2 && unit.Health != unit.MaxHealth)
+                while (Energy >=2 && unit.Health != unit.MaxHealth)
             {
                     unit.Health += 1;
-                    Mana -= 2;
+                    Energy -= 2;
             }
-                HealEvent?.Invoke(Mana, unit.Health, Name, unit.Name);
+                HealEvent?.Invoke(Energy, unit.Health, Name, unit.Name);
            
             }
             

@@ -25,5 +25,21 @@ namespace StrategyUnits
         {
             return new Berserk(300, "Berserk", 5, 9, 1);
         }
+        public Bishop CreateBishop()
+        {
+            return new Bishop(50, "Bishop", 1, 1, 3);
+        }
+        public Palladin CreatePalladin()
+        {
+            return new Palladin(40, "Palladin", 1, 9, 5);
+        }
+        public Peasant CreatePeasant() 
+        {
+            return new Peasant(10, "Peasant", 0);
+        }
+        public Zeclot CreateZeclot()
+        {
+            return new Zeclot(30, "Zeclot", 1, 7, 7);
+        }
     }
 }

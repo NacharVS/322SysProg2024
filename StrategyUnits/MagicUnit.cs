@@ -11,30 +11,30 @@ namespace StrategyUnits
         //private int _healPoints;
         //private int _energyPoints;
         //private int _energyLimit;
-        private int _manas;
-        private int _maxMana;
+        private int _energy;
+        private int _maxEnergy;
 
         public MagicUnit(int health, string? name, int minDamage, int maxDamage, int defence) : base(health, name, minDamage, maxDamage, defence)
         {
-            _manas = 10;
-            _maxMana = 100;
+            _energy = 10;
+            _maxEnergy = 100;
         }
 
-        public int Mana
+        public int Energy
         {
-            get { return _manas; }
-            set { _manas = value; }
+            get { return _energy; }
+            set { _energy = value; }
         }
-    public int MaxMana
+    public int MaxEnergy
         {
-            get { return _maxMana; }
+            get { return _maxEnergy; }
         }
 
        
     public override void ShowInfo()
     {
         Console.WriteLine($"Герой : {Name} имеет {Health} единиц здоровья. " +
-            $"У него осталось {Mana} единиц маны и из защиты есть {Defence} единиц. ");
+            $"У него осталось {Energy} единиц маны и из защиты есть {Defence} единиц. ");
     }
   }
 }
