@@ -13,7 +13,7 @@ namespace StrategyUnits
         {
             if (Dead)
             {
-                Console.WriteLine("Невозможно выполнить это действие, персонаж мертв");
+                Console.WriteLine("Невозможно выполнить это действие - персонаж мертв");
             }
             else
             {

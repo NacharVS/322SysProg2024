@@ -40,19 +40,27 @@ namespace StrategyUnits
         }
         public void Prayer()
         {
-            if (Health == MaxHealth)
+            if (Dead)
             {
-                Console.WriteLine("У персонажа максимальное здоровье, навык не сработал");
-            }
-            else if (Energy < 10)
-            {
-                Console.WriteLine("У персонажа недостаточно энергии, невозможно использовать этот навык");
+                Console.WriteLine("Способность нельзя использовать - персонаж мертв");
             }
             else
             {
-                Health += 20;
-                Energy -= 10;
+                if (Health == MaxHealth)
+                {
+                    Console.WriteLine("У персонажа максимальное здоровье - навык не сработал");
+                }
+                else if (Energy < 10)
+                {
+                    Console.WriteLine("У персонажа недостаточно энергии - невозможно использовать этот навык");
+                }
+                else
+                {
+                    Health += 20;
+                    Energy -= 10;
+                }
             }
+            
         }
     }
 }

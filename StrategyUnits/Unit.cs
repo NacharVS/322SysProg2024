@@ -75,7 +75,15 @@
 
         public void Move()
         {
-            Console.WriteLine("Is moving");
+            if (Dead)
+            {
+                Console.WriteLine("Персонаж не может двигаться - он мертв");
+            }
+            else
+            {
+                Console.WriteLine("Is moving");
+            }
+            
         }
 
         public virtual void ShowInfo()
