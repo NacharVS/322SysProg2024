@@ -8,21 +8,21 @@ namespace StrategyUnits
 {
     internal class MilitoryUnit : Unit
     {
-        public int MaxDamage;
-        public int MinDamage;
+        private int _maxDamage;
+        private int _minDamage;
+
+        public int MaxDamage { get; set; }
+        public int MinDamage { get; set; }
 
         private Random random = new Random();
 
         public MilitoryUnit(int health, string? name, int defence, int minDamage, int maxDamage) : base(health, name, defence)
         {
-            MaxDamage = maxDamage;
-            MinDamage = minDamage;
+            _maxDamage = maxDamage;
+            _minDamage = minDamage;
         }
 
-        public int RandomDamage
-        {
-            get { return random.Next(MinDamage, MaxDamage);}
-        }
+        public int RandomDamage => random.Next(_minDamage, _maxDamage);
 
         public void InflictDamage(Unit unit)
         {
@@ -42,7 +42,7 @@ namespace StrategyUnits
         }
         public override void ShowInfo()
         {
-            Console.WriteLine($"Unit: {Name} Health: {Health}/{MaxHealth} Defece: {Defence} Damage: {MinDamage}-{MaxDamage}");
+            Console.WriteLine($"Unit: {Name} Health: {Health}/{MaxHealth} Defece: {Defence} Damage: {_minDamage}-{_maxDamage}");
         }
     }
 }

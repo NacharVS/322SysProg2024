@@ -8,6 +8,10 @@ namespace StrategyUnits
 {
     internal class Zealot : Paladin
     {
+        public Zealot(int health, string? name, int defence, int minDamage, int maxDamage, int energy) : base(health, name, defence, minDamage, maxDamage, energy)
+        {
+
+        }
         public bool CheackArmor = false;
         public void ArmorOfFaith()
         {
@@ -24,8 +28,8 @@ namespace StrategyUnits
                 }
                 else if (Health > (double)MaxHealth / 100 * 30 && CheackArmor)
                 {
-                    Defence -= Defence;
                     CheackArmor = false;
+                    Defence -= Defence;
                 }
             }
         }

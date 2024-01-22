@@ -8,10 +8,11 @@ namespace StrategyUnits
 {
     internal class Berserker : Footman
     {
-        public Berserker(int health, string? name, int defence, int minDamage, int maxDamage) : base(70, "Berserker", 3, 10, 14)
+        private bool _frenzy = false;
+        public Berserker(int health, string? name, int defence, int minDamage, int maxDamage) : base(health, name, defence, minDamage, maxDamage)
         {
-
         }
+
 
         public void Frenzy(Unit unit)
         {
@@ -26,12 +27,14 @@ namespace StrategyUnits
             }
             else
             {
-                if (Health < (double)MaxHealth/100*30)
+                if (Health < (double)MaxHealth/100*30 && !_frenzy)
                 {
+                    _frenzy = true;
                     unit.TakingDamage(damage + damage*5);
                 }
-                else
+                else if (Health >= (double)MaxHealth / 100 * 30 && _frenzy)
                 {
+                    _frenzy = false;
                     unit.TakingDamage(damage);
                 }
 

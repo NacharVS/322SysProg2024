@@ -2,12 +2,31 @@
 {
     internal class Footman : MilitoryUnit
     {
-
-        public Footman(int health, string? name, int defence, int minDamage, int maxDamage) : base(60, "Footman", 5, 14, 19)
+        private int _health;
+        private bool _Rage = false;
+        public Footman(int health, string? name, int defence, int minDamage, int maxDamage) : base(health, name, defence, minDamage, maxDamage)
         {
-            
+            _health = health;
         }
-
+        public int Health
+        {
+            get { return _health; }
+            set
+            {
+                if (Health < MaxHealth / 2 && !_Rage)
+                {
+                    _Rage = true;
+                    MaxDamage += MaxDamage / 2;
+                    MinDamage += MinDamage / 2;
+                }
+                else if (Health >= MaxHealth / 2 && _Rage)
+                {
+                    _Rage = false;
+                    MaxDamage -= MaxDamage / 2;
+                    MinDamage -= MinDamage / 2;
+                }
+            }
+        }
         public void Rage(Unit unit)
         {
             int damage = RandomDamage;
@@ -21,15 +40,26 @@
             }
             else
             {
-                if (Health < MaxHealth / 2)
+                //if (Health < MaxHealth / 2)
+                //{
+                //    unit.TakingDamage(damage+damage/2);
+                //}
+                //else
+                //{
+                //    unit.TakingDamage(damage);
+                //}
+                if (Health <= MaxHealth / 2 && !_Rage)
                 {
-                    unit.TakingDamage(damage+damage/2);
+                    _Rage = true;
+                    MaxDamage += MaxDamage / 2;
+                    MinDamage += MinDamage / 2;
                 }
-                else
+                else if (Health > MaxHealth / 2 && _Rage)
                 {
-                    unit.TakingDamage(damage);
+                    _Rage = false;
+                    MaxDamage -= MaxDamage / 2;
+                    MinDamage -= MinDamage / 2;
                 }
-                
             }
         }
     }
