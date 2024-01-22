@@ -11,12 +11,12 @@ namespace StrategyUnits
         public Berserk(int health, string? name, int minDamage, int maxDamage, int defence) : base(health, name, minDamage, maxDamage, defence)
         {
         }
-        public void Frenzy()
+        public void Frenzy(Unit unit)
         {
             int damage = AmountDamage();
             if (Health <= MaxHealth * 0.3)
             {
-                damage *= 3;
+                damage *=3;
             }
         }
         public override void GetHeal(int CountHeal)
