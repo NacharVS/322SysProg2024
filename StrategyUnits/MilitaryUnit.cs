@@ -22,10 +22,10 @@ namespace StrategyUnits
         public void InflictDamage(Unit unit)
         {
            
-            {
-                double damage = CountDamage() - unit.Defence;
+            
+                double damage = CountDamage();
                 unit.GetDamage(damage);
-            }
+            
 
         }
 

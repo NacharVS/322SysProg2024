@@ -8,9 +8,12 @@ namespace StrategyUnits
 {
     internal class Zealot:Paladin
     {
-        public Zealot(int health, string? name, int minDamage, int maxDamage, int defence, int energy) : base(health, name, minDamage, maxDamage, defence, energy)
-        {
 
+
+        public Zealot(int health, int defence, string? name, int maxdamage, int mindamage, int energy) : base(health, defence, name, maxdamage, mindamage, energy)
+        {
+            HealthIncreasedEvent += CheckArmorOfFaith;
+            HealthDecreasedEvent += CheckArmorOfFaith;
         }
 
         private void CheckArmorOfFaith(double health)

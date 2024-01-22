@@ -17,9 +17,9 @@
         }
         public void Healinghealth(Unit unit)
         {
-            int lives = Math.Min(unit.RemovedHealth, Energy / 2);
-            unit.Health +=lives ;
-            Energy -= lives *2 ;
+            double lives = Math.Min(unit.RemovedHealth, Energy / 2);
+            unit.GetHeal(lives) ;
+            Energy -= Convert.ToInt32(Math.Ceiling(lives *2)) ;
         }
 
         public void ShowEnergy()

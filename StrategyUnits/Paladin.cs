@@ -12,7 +12,7 @@ namespace StrategyUnits
         {
             if (Energy >= 20)
             {
-                unit.Health -= 20;
+                unit.GetDamage(20);
                 Energy -= 20;
 
             }

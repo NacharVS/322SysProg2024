@@ -9,7 +9,7 @@ namespace StrategyUnits
 {
     internal class MagicUnit : MilitaryUnit
     {
-        private int _energy;
+        public int _energy;
 
         public int RemovedEnergy { get => MaxEnergy - Energy; }
         public int MaxEnergy;
@@ -19,14 +19,10 @@ namespace StrategyUnits
             get { return _energy; }
             set { _energy = value; }
         }
-        public MagicUnit(int health, int maxhealth, string? name, int maxdamage, int mindamage, int energy, int defence) : base(health, maxhealth, name, maxdamage, mindamage)
+        public MagicUnit(int health, int defence,  string? name, int maxdamage, int mindamage, int energy) : base(health, defence, name, maxdamage, mindamage)
         {
             Energy = energy;
             MaxEnergy = Energy;
-        }
-
-        public MagicUnit(int health, int defence, string? name, int maxdamage, int mindamage, int v) : base(health, defence, name, maxdamage, mindamage)
-        {
         }
     }
 }

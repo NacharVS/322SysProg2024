@@ -2,18 +2,24 @@
 {
     internal class Unit
     {
+
+        public delegate void HealthChangedDelegate(double health);
         private double _health;
         private string? _name;
 
         public int _MaxHealth;
         public int Defence { get; set; }
-        public int MaxHealth { get; private set;  }
+        public int MaxHealth { get; private set; }
+        
 
         public Unit(int health,int defence,  string? name)
         {
             _health = health;
             _name = name;
             Defence = defence;
+            HealthIncreasedEvent += HealthIncreased;
+            HealthDecreasedEvent += HealthDecreased;
+            MaxHealth = health;
         }
 
         public string Name
@@ -24,11 +30,6 @@
 
        
 
-        public int maxhealth
-        {
-            get { return _MaxHealth; }
-            set { _MaxHealth = value; }
-        }
 
         public double Health
         {
@@ -36,7 +37,7 @@
             {
                 return _health;
             }
-            set
+            private set
             {
                 if (value < 0)
                 {
@@ -44,12 +45,17 @@
                 }
                 else
                 {
-                    if (value > maxhealth)
+                    if (value > MaxHealth)
                     {
-                        _health = maxhealth;
+                        _health = MaxHealth;
+                   
                     }
                     else
                     {
+                        if (value > _health)
+                            HealthIncreasedEvent?.Invoke(value);
+                        else if (value < _health)
+                            HealthDecreasedEvent?.Invoke(value);
                         _health = value;
                     }
                 }
@@ -68,6 +74,10 @@
                 Health += healAmount;
         }
 
+        public event HealthChangedDelegate HealthIncreasedEvent;
+
+        public event HealthChangedDelegate HealthDecreasedEvent;
+
         public void Move()
         {
             Console.WriteLine("Is moving");
@@ -76,6 +86,15 @@
         public void ShowInfo()
         {
             Console.WriteLine($"Unit: {_name} Health: {_health}");
+        }
+        public static void HealthDecreased(double number)
+        {
+            Console.WriteLine($"Health has decreased. Current health: {number}");
+        }
+
+        public static void HealthIncreased(double number)
+        {
+            Console.WriteLine($"Health has increased. Current health: {number} ");
         }
     }
 }

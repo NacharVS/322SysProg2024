@@ -8,12 +8,13 @@ namespace StrategyUnits
 {
     internal class Berserker : Footman
     {
-        public Berserker ()
-        {
 
-        }
 
         private bool IsFrenzy;
+
+        public Berserker(int health, int defence, string? name, int maxdamage, int mindamage) : base(health, defence, name, maxdamage, mindamage)
+        {
+        }
 
         public void Frenzy()
         {

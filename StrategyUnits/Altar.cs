@@ -24,9 +24,9 @@ namespace StrategyUnits
         {
             Console.WriteLine($"Reserve of energy: {_reserveofenergy} ");
         }
-        public void RecoverOfEnergy(Bishop bishop)
+        public void RecoverOfEnergy(MagicUnit magicUnit)
         {
-            bishop.Energy +=5;
+            magicUnit.Energy +=5;
             _reserveofenergy -= 5;
         }
     }
