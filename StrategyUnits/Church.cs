@@ -11,22 +11,23 @@ namespace StrategyUnits
     {
         public int energyReserve;
         public int Restoration;
-        public int EnergyReserve
+        public int energyChurch;
+        public int EnergyChurch
         {
-            get { return energyReserve; }
+            get { return energyChurch; }
             set
             {
                 if (value < 0)
                 {
-                    energyReserve = 0;
+                    energyChurch = 0;
                 }
                 else if (MaxEnergyReserve < value)
                 {
-                    energyReserve = MaxEnergyReserve;
+                    energyChurch = MaxEnergyReserve;
                 }
                 else
                 {
-                    energyReserve = value;
+                    energyChurch = value;
                 }
             }
         }
@@ -34,8 +35,9 @@ namespace StrategyUnits
 
         public Church()
         {
-            energyReserve = 600;
-            MaxEnergyReserve = energyReserve;
+            energyChurch = 50;
+            MaxEnergyReserve = energyChurch;
+            energyReserve = 10;
         }
 
         public void EnergyRegen(MagicUnit magicUnit)
@@ -46,25 +48,29 @@ namespace StrategyUnits
             }
             else
             {
-                if (EnergyReserve > 0)
+                if (EnergyChurch > 0)
                 {
-                    if (magicUnit.EnergySpent >= EnergyReserve)
+                    if (magicUnit.EnergySpent >= EnergyChurch * energyReserve)
                     {
-                        magicUnit.Energy += EnergyReserve;
-                        EnergyReserve = 0;
+                        magicUnit.Energy += EnergyChurch * energyReserve;
+                        EnergyChurch = 0;
                     }
                     else
                     {
-                        Restoration = magicUnit.EnergySpent;
-                        magicUnit.Energy += Restoration;
-                        EnergyReserve -= Restoration;
+                        Restoration = 1;
+                        while (Restoration * energyReserve < magicUnit.EnergySpent)
+                        {
+                            Restoration++;
+                        }
+                        magicUnit.Energy += Restoration*energyReserve;
+                        EnergyChurch -= Restoration;
                     }
                 }
             }
         }
         public void ShowInfo()
         {
-            Console.WriteLine($"Church Energy reserve: {EnergyReserve}/{MaxEnergyReserve}");
+            Console.WriteLine($"Church Energy reserve: {EnergyChurch}/{MaxEnergyReserve}");
         }
     }
 }
