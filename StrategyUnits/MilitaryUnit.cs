@@ -18,12 +18,21 @@ namespace StrategyUnits
         }
 
         private Random random = new Random();
+
         public void InflictDamage(Unit unit)
         {
-            unit.Health -= random.Next(MinDamage,MaxDamage) - unit.Defence;
-          
+           
+            {
+                double damage = CountDamage() - unit.Defence;
+                unit.GetDamage(damage);
+            }
+
         }
 
+        public virtual double CountDamage()
+        {
+            return random.Next(MinDamage, MaxDamage);
+        }
 
     }
 }

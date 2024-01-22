@@ -2,7 +2,7 @@
 {
     internal class Unit
     {
-        private int _health;
+        private double _health;
         private string? _name;
 
         public int _MaxHealth;
@@ -30,7 +30,7 @@
             set { _MaxHealth = value; }
         }
 
-        public int Health
+        public double Health
         {
             get
             {
@@ -55,7 +55,18 @@
                 }
             }
         }
-        public int RemovedHealth { get => MaxHealth - Health; }
+        public double RemovedHealth { get => MaxHealth - Health; }
+        public void GetDamage(double damage)
+        {
+            if (damage > Defence)
+                Health -= damage - Defence;
+        }
+
+        public virtual void GetHeal(double healAmount)
+        {
+            if (healAmount > 0)
+                Health += healAmount;
+        }
 
         public void Move()
         {

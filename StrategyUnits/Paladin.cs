@@ -14,7 +14,7 @@ namespace StrategyUnits
             {
                 unit.Health -= 20;
                 Energy -= 20;
-            
+
             }
             else
             {
@@ -22,8 +22,20 @@ namespace StrategyUnits
             }
 
         }
-        public Paladin(): base(45, 50, "Bishop", 3,1, 100)
+        public Paladin(int health, string? name, int minDamage, int maxDamage, int defence, int energy) : base(45, 50, "Bishop", 3, 1, 100)
         {
+        }
+        public void Prayer()
+        {
+            if (Energy >= 10)
+            {
+                Energy -= 10;
+                GetHeal(20);
+            }
+            else
+            {
+                Console.WriteLine("Недостаточно энергии");
+            }
         }
     }
 }
