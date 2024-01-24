@@ -6,14 +6,22 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class Zealot:Paladin
+    internal class Zealot:Unit, IMilitaryUnit, IMagicUnit, IDefenced
     {
+        public int MinDamage { get; set; }
+        public int MaxDamage { get; set; }
 
+        public int Energy { get; set; }
+        public int MaxEnergy { get; set; }
+        private Random random = new Random();
 
-        public Zealot(int health, int defence, string? name, int maxdamage, int mindamage, int energy) : base(health, defence, name, maxdamage, mindamage, energy)
+        public Zealot(int health, int defence, string? name, int maxdamage, int mindamage, int energy) : base(health, defence, name)
         {
             HealthIncreasedEvent += CheckArmorOfFaith;
             HealthDecreasedEvent += CheckArmorOfFaith;
+            MinDamage = mindamage;
+            MaxDamage = maxdamage;
+            Energy = energy;
         }
 
         private void CheckArmorOfFaith(double health)
@@ -30,6 +38,23 @@ namespace StrategyUnits
             }
 
         }
+        public void InflictDamage(IHealController unit)
+        {
+            unit.GetDamage(CountDamage());
+        }
+
+        public double CountDamage()
+        {
+            return random.Next(MinDamage, MaxDamage);
+        }
+        public override void GetDamage(double damage)
+        {
+            if (damage - Defence > 0)
+            {
+                base.GetDamage(damage - Defence);
+            }
+        }
+
 
         private bool ArmorOfFaith;
     }

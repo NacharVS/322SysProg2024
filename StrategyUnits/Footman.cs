@@ -1,30 +1,40 @@
 ﻿namespace StrategyUnits
 {
-    internal class Footman : MilitaryUnit
+    internal class Footman : Unit, IMilitaryUnit, IDefenced, IRage
     {
         private int _damage;
 
+        public int MinDamage { get; set; }
+        public int MaxDamage { get; set; }
+        public int Defence { get; set; }
 
+        private Random random = new Random();
 
-        public Footman(int health, int defence, string? name, int maxdamage, int mindamage) : base(health, defence, name, maxdamage, mindamage)
+        public Footman(int health, int defence, string? name, int maxdamage, int mindamage) : base(health, defence, name)
         {
+            MaxDamage = maxdamage;
+            MinDamage = mindamage;
         }
 
-        private bool Rage()
+        public bool IsRage => Health <= MaxHealth * 0.5;
+        public double CountDamage()
         {
-            return Health <= MaxHealth * 0.5;
-        }
-
-        public override double CountDamage()
-        {
-            double damage = base.CountDamage();
-            if (Rage())
+            double damage = random.Next(MinDamage, MaxDamage);
+            if (IsRage)
             {
                 damage *= 1.5;
             }
             return damage;
         }
-    }
+        public void InflictDamage(IHealController unit)
+        {
+            unit.GetDamage(CountDamage());
+        }
 
+        public override void GetDamage(double damage)
+        {
+            base.GetDamage(damage);
+        }
+    }
 }
 

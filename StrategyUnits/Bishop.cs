@@ -1,15 +1,32 @@
 ﻿namespace StrategyUnits
 {
-    internal class Bishop : MagicUnit
+    internal class Bishop : Unit, IMilitaryUnit, IMagicUnit
     {
 
+        public int MinDamage { get; set; }
+        public int MaxDamage { get; set; }
+        
+        public int Energy { get; set; }
+        public int MaxEnergy { get; set; }
 
-
-        public Bishop(int health, int defence, string? name, int maxdamage, int mindamage, int energy) : base(health, defence, name, maxdamage, mindamage, energy)
+        private Random random = new Random();
+        public Bishop(int health, int defence, string? name, int maxdamage, int mindamage, int energy) : base(health, defence, name)
         {
+            MinDamage = mindamage;
+            MaxDamage = maxdamage;
+            Energy = energy;
+        }
+        public void InflictDamage(IHealController unit)
+        {
+        double damage = CountDamage();
+        unit.GetDamage(damage);
         }
 
-        public void Healinghealth(Unit unit)
+    public virtual double CountDamage()
+    {
+        return random.Next(MinDamage, MaxDamage);
+    }
+    public void Healinghealth(IHealController unit)
         {
             double lives = Math.Min(unit.RemovedHealth, Energy / 2);
             unit.GetHeal(lives) ;

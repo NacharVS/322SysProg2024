@@ -62,7 +62,7 @@
             }
         }
         public double RemovedHealth { get => MaxHealth - Health; }
-        public void GetDamage(double damage)
+        public virtual void GetDamage(double damage)
         {
             if (damage > Defence)
                 Health -= damage - Defence;
