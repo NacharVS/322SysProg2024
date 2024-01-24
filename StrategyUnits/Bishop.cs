@@ -3,18 +3,12 @@
     internal class Bishop : MagicUnit
     {
 
-        private int _healing;
 
-        public int healing
+
+        public Bishop(int health, int defence, string? name, int maxdamage, int mindamage, int energy) : base(health, defence, name, maxdamage, mindamage, energy)
         {
-            get { return _healing; }
-            set { _healing = value; }
         }
 
-        public Bishop() : base(45, 50, "Bishop", 3,1, 60)
-        {
-            _healing = 1;
-        }
         public void Healinghealth(Unit unit)
         {
             double lives = Math.Min(unit.RemovedHealth, Energy / 2);

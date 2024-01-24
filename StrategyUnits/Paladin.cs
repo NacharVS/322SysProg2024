@@ -22,9 +22,12 @@ namespace StrategyUnits
             }
 
         }
-        public Paladin(int health, string? name, int minDamage, int maxDamage, int defence, int energy) : base(45, 50, "Bishop", 3, 1, 100)
+
+
+        public Paladin(int health, int defence, string? name, int maxdamage, int mindamage, int energy) : base(health, defence, name, maxdamage, mindamage, energy)
         {
         }
+
         public void Prayer()
         {
             if (Energy >= 10)

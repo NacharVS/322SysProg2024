@@ -6,10 +6,11 @@
 
 
 
-        public Footman() : base(60, 0, "Footman", 7, 1)
+        public Footman(int health, int defence, string? name, int maxdamage, int mindamage) : base(health, defence, name, maxdamage, mindamage)
         {
         }
-         private bool Rage()
+
+        private bool Rage()
         {
             return Health <= MaxHealth * 0.5;
         }
