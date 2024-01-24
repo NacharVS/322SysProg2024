@@ -8,18 +8,24 @@ namespace StrategyUnits
 {
     internal class Barrac
     {
-        public Footman CreateRecruit()
+        public Footman CreateFootmanRecuit()
         {
-            return new Footman(60, "Recruit", 7);
-        }
-        public Footman CreateFootman()
-        {
-            return new Footman(90, "Footman", 10);
+            return new Footman(60, "FootmanRecuit", 2, 5, 0);
         }
 
-        public Footman CreateOfficer()
+        public Footman CreateFootman()
         {
-            return new Footman(120, "Officer", 15);
+            return new Footman(90, "Footman", 3, 7, 1);
+        }
+
+        public Footman CreateFootmanOfficer()
+        {
+            return new Footman(90, "FootmanOfficer", 15, 22, 2);
+        }
+
+        public Berserker CreateBerserker()
+        {
+            return new Berserker(100, "Berserker", 5, 8, 0);
         }
 
     }

@@ -1,6 +1,6 @@
 ﻿namespace StrategyUnits
 {
-    internal class Footman : Unit
+    internal class Footman : MilliteryUnit
     {
         private int _damage;
 
@@ -9,23 +9,29 @@
             get { return _damage; }
             set { _damage = value; }
         }
-
-        public Footman() : base(60,"Footman")
+        private bool Rage()
         {
-            _damage = 7;
+            return Health <= MaxHealth * 0.5;
         }
-        public Footman(int health, string name, int damage) : base(health,name)
+        public Footman(int health, string? name, int minDamage, int maxDamage, int defence) : base(health, name, minDamage, maxDamage, defence)
         {
-            _damage = 7;
+
         }
 
         public void InflictDamage(Unit unit)
         {
             unit.Health -= _damage;
         }
-        public override void ShowInfo()
+        public override double CountDamage()
         {
-            Console.WriteLine($"{Name} damage: {_damage}. {Health}/{MaxHealth}");
+            double damage = base.CountDamage();
+            if (Rage())
+            {
+                damage *= 1.5;
+            }
+            return damage;
         }
     }
 }
+
+

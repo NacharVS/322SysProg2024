@@ -2,17 +2,23 @@
 {
     internal class Unit
     {
-        private int _currenthealth;
-        private string? _name;
-        
-        public int MaxHealth { get; private set; }
         public delegate void HealthChangedDelegate(double health);
 
-        public Unit(int health, string? name) 
+        private int _currenthealth;
+        private string? _name;
+
+        public int MaxHealth { get; private set; }
+        public bool IsAlive => _currenthealth > 0;
+
+
+        public Unit(int health, string? name)
         {
             _currenthealth = health;
             _name = name;
             MaxHealth = health;
+
+            HealthIncreasedEvent += health => Console.WriteLine($"У {Name} здоровье увеличилось до {health}");
+            HealthDecreasedEvent += health => Console.WriteLine($"У {Name} здоровье уменьшилось до {health}");
 
         }
 
@@ -22,57 +28,77 @@
             set { _name = value; }
         }
 
-        public int Health 
-        { 
+        public int Health
+        {
             get
             {
                 return _currenthealth;
             }
             set
             {
-                if(value<0)
+                if (value < 0)
                 {
                     _currenthealth = 0;
                 }
                 else
                 {
                     if (value > MaxHealth)
+                    {
                         _currenthealth = MaxHealth;
+                    }
                     else
+                    {
+                        if (value > _currenthealth)
+                            HealthIncreasedEvent?.Invoke(value);
+                        else if (value < _currenthealth)
+                            HealthDecreasedEvent?.Invoke(value);
                         _currenthealth = value;
+                    }
                 }
             }
         }
 
+        public int Defence { get; set; }
+        public double RemovedHealth
+        {
+            get => MaxHealth - Health;
+        }
         public void Move()
         {
-            Console.WriteLine("Is moving");
+            if (IsAlive)
+            {
+                Console.WriteLine("Is moving");
+            }
+            else
+            {
+                Console.WriteLine($"{Name} умер");
+            }
         }
+        public void GetDamage(int damage)
+        {
+            if (damage > Defence)
+                Health -= damage - Defence;
+        }
+
+        public virtual void GetHeal(int healAmount)
+        {
+            if (healAmount > 0)
+                Health += healAmount;
+        }
+
 
         public virtual void ShowInfo()
         {
-            Console.WriteLine($"Unit: {_name} Health: {_currenthealth} MaxHealth: {MaxHealth}");
+            Console.WriteLine($"Unit: {_name} Health: {_currenthealth} MaxHealth: {MaxHealth} Defence:{Defence}");
         }
-
-        public int Defense { get; set; }
-        public void TakeDamage(int damage) 
-        {
-            Health-= damage - Defense ;
-            if (damage > 0)
-            {   
-                this.Health -= damage;
-                if (this.Health < 0)
-                {
-                    this.Health = 0;
-                }
-            }
-        }
-        
         public event HealthChangedDelegate HealthIncreasedEvent;
 
         public event HealthChangedDelegate HealthDecreasedEvent;
     }
 
 }
+    
+
+
     
 

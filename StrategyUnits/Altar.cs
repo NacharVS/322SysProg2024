@@ -8,26 +8,20 @@ namespace StrategyUnits
 {
     internal class Altar
     {
-        private int _reserv;
-        public int Reservs
+        public int energy { get; set; }
+        public Altar(int intialEnergy)
         {
-            get { return _reserv; }
-            set { _reserv = value; }
+            energy = intialEnergy;
+
         }
-        public Altar()
+        public void RestoreEnergy(MagicUnit magicUnit)
         {
-            _reserv = 5000;
-        }
-        public void BishopAltar(Bishop bishop)
-        {
-            while (Reservs > 0 && bishop.mana < 61)
+            if (energy > 0)
             {
-
-                bishop.mana++;
-                Reservs--;
+                int energyCount = Math.Min(magicUnit.MaxMana - magicUnit.mana, energy);
+                magicUnit.mana += energyCount * 10;
+                energy -= energyCount;
             }
-
-
         }
-    }
+    }  
 }

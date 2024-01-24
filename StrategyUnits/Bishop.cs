@@ -7,65 +7,41 @@ using System.Xml.Linq;
 
 namespace StrategyUnits
 {
-    internal class Bishop : Unit
+    internal class Bishop : MagicUnit
     {
         private int _heal;
-        private int _energy;
-        public int MaxEnergy
+        public void Heal(Unit unit)
         {
-            get;
-            private set;
-        }
-        
-        public int mana
-        {
-
-            get
+            if (!IsAlive)
             {
-                return _energy;
+                base.ShowInfo();
+                Console.WriteLine("умер");
+                return;
             }
-            set
+
+            if (!unit.IsAlive)
             {
-                if (value < 0)
-                {
-                    _energy = 0;
-                }
-                else
-                {
-                    if (value > MaxEnergy)
-                        _energy = MaxEnergy;
-                    else
-                        _energy = value;
-                }
+                Console.WriteLine($"{Name} не может лечить {unit.Name}, т.к. {unit.Name} мертв.");
+                return;
+            }
+
+            if (mana >= 2)
+            {
+                double lives = Math.Min(unit.RemovedHealth, mana / 2);
+                unit.GetHeal((int)lives);
+                mana -= Convert.ToInt32(Math.Ceiling(lives * 2));
+                Console.WriteLine($"{Name} восстановил {unit.Name} {lives} жизней.");
+            }
+            else
+            {
+                Console.WriteLine($"{Name} нет энергии для лечения {unit.Name}");
             }
         }
-       
-        public int Heal
-        {
-            get { return _heal; }
-            set { _heal = value; }
-        }
 
-        public Bishop() : base(30, "Bishop")
+        public Bishop(int health, string? name, int minDamage, int maxDamage, int defence, int energy) : base(health, name, minDamage, maxDamage, defence, energy)
         {
             _heal = 7;
-            _energy = 60; 
-            MaxEnergy = mana;
-        }
-
-        public void InflictHeal (Unit unit)
-        {
-         
-            while(unit.Health < MaxEnergy  & mana >= 2)
-            {
-          unit.Health += 1;
-            mana -= 2;
-            }
-        }
-        
-        public override void ShowInfo()
-        {
-            Console.WriteLine($"Unit: {Name} Health: { Health} MaxHealth: {MaxHealth} Energy:{mana} MaxEnergy:{MaxEnergy} ");
         }
     }
 }
+
