@@ -7,8 +7,7 @@ using System.Xml.Linq;
 
 namespace StrategyUnits
 {
-    internal class MagicUnit : MilliteryUnit
-    {
+    internal class MagicUnit : IBattleUnit
         private int _mana;
         public MagicUnit(int health, string? name, int _damangemax, int _damangemin, int mana, int defense) : base(health, name, _damangemax, _damangemin, defense)
         {
