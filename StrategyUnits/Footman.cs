@@ -16,7 +16,7 @@
             return Health <= MaxHealth * 0.5;
         }
 
-        public override double CountDamage()
+        public double CountDamage()
         {
             double damage = random.Next(MinDamage,MaxDamage);
             if (Rage())
