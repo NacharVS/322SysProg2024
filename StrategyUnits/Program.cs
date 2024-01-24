@@ -1,10 +1,12 @@
 ﻿using StrategyUnits;
 
+Barracs barracs = new Barracs();    
 Footman footman = new Footman();
 Footman footman2 = new Footman();
 Peasant ps1 = new Peasant();
 Bishop bishop1 = new Bishop();
 Paladin pl = new Paladin();
+Berserk berserk = barracs.GetLegendary();
 
 
 ps1.ShowInfo();
@@ -18,5 +20,7 @@ bishop1.InflictHeal(ps1);
 footman.ShowInfo();
 ps1.ShowInfo();
 bishop1.ShowInfo();
-
+berserk.Frenzy();
+pl.Prayer();
+pl.SaintHeal();
 

@@ -35,5 +35,9 @@ namespace StrategyUnits
         {
             return new Paladin(150, 17, 20, "Divine", 14,130);
         }
+        public Berserk GetLegendary()
+        {
+            return new Berserk(150, 15, 16, "Legendary", 4);
+        }
     }
 }

@@ -48,14 +48,7 @@ namespace StrategyUnits
             }
         }
 
-        public void InflictHeal(Unit unit)
-        {
-            while (unit.Health < unit.MaxHealth)
-            {
-                unit.Health++;
-                Altar(2);
-            }
-        }
+
         public override void ShowInfo()
         {
             Console.WriteLine($" Health: {Health}   Min demage: {_mindamage} Max demage: {_maxdamage} Unit: {Name} Defence: {_defence} Energy: {Energy} altar: {_altar}");
