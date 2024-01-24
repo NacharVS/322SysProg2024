@@ -3,19 +3,16 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace StrategyUnits
 {
-    internal class Unit
+    internal class Unit : IHealthController
     {
         public delegate void HealthChangedDelegate(double health);
         private double _currentHealth;
         private string? _name;
-        public int MaxHealth { get; private set; }
-        public bool IsAlive { get =>_currentHealth>0;}
         public Unit(int health,int defense ,string? name)
         {
-            Defense = defense;
             _currentHealth = health;
             _name = name;
-            MaxHealth = health;
+
             HealthDecreasedEvent += Hurt1;
             HealthIncreasedEvent += Heal1;
         }
@@ -60,6 +57,7 @@ namespace StrategyUnits
         {
             get => MaxHealth-Health;
         }
+
         public void Move()
         {
             if (IsAlive)
@@ -99,6 +97,16 @@ namespace StrategyUnits
         public static void Heal1(double number)
         {
             Console.WriteLine($"Health has increased. Current health: {number} ");
+        }
+
+        public void TakeDamage(int damage)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TakeHeal(int healAmount)
+        {
+            throw new NotImplementedException();
         }
     }
 }
