@@ -8,7 +8,6 @@ namespace StrategyUnits
         public delegate void HealthChangedDelegate(double health);
         private double _currentHealth;
         private string? _name;
-        public int Defense { get; set ; }
         public int MaxHealth { get; private set; }
         public bool IsAlive { get =>_currentHealth>0;}
         public Unit(int health,int defense ,string? name)

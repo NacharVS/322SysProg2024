@@ -8,7 +8,7 @@
         }
         public bool Rage()
         {
-            return (RemovedHealth >= MaxHealth * 0.5);
+            return (RemovedHealth <= MaxHealth * 0.5);
         }
         public override double CountDamage()
         {
