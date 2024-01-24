@@ -12,11 +12,10 @@
         public int MaxHealth { get; private set; }
         
 
-        public Unit(int health,int defence,  string? name)
+        public Unit(int health,  string? name)
         {
             _health = health;
             _name = name;
-            Defence = defence;
             HealthIncreasedEvent += HealthIncreased;
             HealthDecreasedEvent += HealthDecreased;
             MaxHealth = health;
@@ -62,7 +61,7 @@
             }
         }
         public double RemovedHealth { get => MaxHealth - Health; }
-        public void GetDamage(double damage)
+        public virtual void GetDamage(double damage)
         {
             if (damage > Defence)
                 Health -= damage - Defence;

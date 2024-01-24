@@ -6,7 +6,7 @@
         {
         }
 
-        public Peasant(int health, int defence, string? name) : base(health, defence, name)
+        public Peasant(int health, int defence, string? name) : base(health, name)
         {
         }
     }
