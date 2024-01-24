@@ -30,10 +30,10 @@ namespace StrategyUnits
             return damage;
         }
 
-        public override void GetHeal(double healAmount)
+        public override void TakeHeal(double healAmount)
         {
             if(!IsFrenzy)
-                base.GetHeal(healAmount);
+                base.TakeHeal(healAmount);
         }
     }
 }

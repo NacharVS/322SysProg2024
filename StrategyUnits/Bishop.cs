@@ -29,7 +29,7 @@ namespace StrategyUnits
             if (Mana >= 2)
             {
                 double lives = Math.Min(unit.RemovedHealth, Mana / 2);
-                unit.GetHeal(lives);
+                unit.TakeHeal(lives);
                 Mana -= Convert.ToInt32(Math.Ceiling(lives * 2));
                 Console.WriteLine($"{Name} восстановил {unit.Name} {lives} жизней.");
             }

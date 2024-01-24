@@ -1,8 +1,13 @@
 ﻿namespace StrategyUnits
 {
-    internal class Footman : MiliataryUnit
+    internal class Footman : Unit, IMilitary, IArmored 
     {
-        public Footman(int health, string? name, int minDamage, int maxDamage, int defence) : base(health, name, minDamage, maxDamage, defence)
+        public int MinDamage { get; set; }
+        public int MaxDamage { get; set; }
+
+        private Random random = new Random();
+
+        public Footman(int health, string? name, int minDamage, int maxDamage, int defence) : base(health, name)
         {
         }
 
@@ -13,12 +18,17 @@
 
         public override double CountDamage()
         {
-            double damage = base.CountDamage();
+            double damage = random.Next(MinDamage,MaxDamage);
             if (Rage())
             {
                 damage *= 1.5;
             }
             return damage;
+        }
+
+        public void Attack(IHealthController unit)
+        {
+            throw new NotImplementedException();
         }
     }
 }
