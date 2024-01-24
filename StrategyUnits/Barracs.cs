@@ -35,9 +35,13 @@ namespace StrategyUnits
         {
             return new Paladin(150, 17, 20, "Divine", 14,130);
         }
-        public Berserk GetLegendary()
+        public Berserk CreateLegendary()
         {
             return new Berserk(150, 15, 16, "Legendary", 4);
+        }
+        public Zelot CreateEpic()
+        {
+            return new Zelot(70, 12, 13, "Epic", 2,200);
         }
     }
 }

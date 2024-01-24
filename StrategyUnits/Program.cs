@@ -6,8 +6,8 @@ Footman footman2 = new Footman();
 Peasant ps1 = new Peasant();
 Bishop bishop1 = new Bishop();
 Paladin pl = new Paladin();
-Berserk berserk = barracs.GetLegendary();
-
+Berserk berserk = barracs.CreateLegendary();
+Zelot zel = barracs.CreateEpic();
 
 ps1.ShowInfo();
 footman2.ShowInfo();
@@ -23,4 +23,4 @@ bishop1.ShowInfo();
 berserk.Frenzy();
 pl.Prayer();
 pl.SaintHeal();
-
+zel.CheckArmorOfFaith();
