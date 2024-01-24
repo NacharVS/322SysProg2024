@@ -1,23 +1,10 @@
 ﻿using StrategyUnits;
 
-Barracs barracs = new Barracs();
-Footman footman = barracs.CreateOfficer();
+Grunt gg = new Grunt();
+Throll throll = new Throll();
 
-Footman footman2 = barracs.CreateFootman();
+gg.Attack(throll);
+throll.Attack(gg);
 
-footman.InflictDamage(footman2);
-footman2.ShowInfo();
-footman2.InflictDamage(footman);
-
-
-footman.ShowInfo();
-
-static void Method1(int number)
-{
-    Console.WriteLine($"Health has changed. Current {number}");
-}
-
-static void Method2(int number)
-{
-    Console.WriteLine($"Hqwertqwetrqwergfdfgsdfg. Current {number}");
-}
+Console.WriteLine(gg.Health);
+Console.WriteLine(throll.Health);
