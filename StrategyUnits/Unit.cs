@@ -1,6 +1,6 @@
 ﻿namespace StrategyUnits
 {
-    internal class Unit
+    internal class Unit : IHealthController
     {
         public delegate void HealthChangedDelegate(double health);
 
@@ -91,6 +91,17 @@
         {
             Console.WriteLine($"Unit: {_name} Health: {_currenthealth} MaxHealth: {MaxHealth} Defence:{Defence}");
         }
+
+        public void TakeDamage(int damage)
+        {
+            Health -= damage - Armor;
+        }
+
+        public void TakeHeal(int healAmount)
+        {
+            throw new NotImplementedException();
+        }
+
         public event HealthChangedDelegate HealthIncreasedEvent;
 
         public event HealthChangedDelegate HealthDecreasedEvent;
