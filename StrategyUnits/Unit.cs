@@ -1,28 +1,24 @@
 ﻿namespace StrategyUnits
 {
-    internal class Unit
+    internal class Unit : IHealthController
     {
         public delegate void HealthChangedDelegate(int health);
 
         private int _health;
-        private string? _name;
         public int Defence { get; set; }
-        public bool Dead = false;
+        public bool Dead { get; set; }
         public int MaxHealth { get; private set; }
-
+        public string? Name {  get; set; }
         public Unit(int health, string? name, int defence)
         {
             _health = health;
-            _name = name;
+            Name = name;
             MaxHealth = health;
             Defence = defence;
+            Dead = false;
         }
 
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
+        
 
         public int Health 
         {
@@ -61,17 +57,6 @@
             }
         }
 
-        public void TakingDamage(int damage)
-        {
-            if (Defence >= damage)
-            {
-                Console.WriteLine("Противник заблокировал атаку");
-            }
-            else
-            {
-                Health -= (damage - Defence);
-            }
-        }
 
         public void Move()
         {
@@ -86,9 +71,21 @@
             
         }
 
-        public virtual void ShowInfo()
+        public void TakeDamage(int damage)
         {
-            Console.WriteLine($"Unit: {_name} Health: {_health}/{MaxHealth} Defence: {Defence}");
+            if (Defence >= damage)
+            {
+                Console.WriteLine("Противник заблокировал атаку");
+            }
+            else
+            {
+                Health -= (damage - Defence);
+            }
+        }
+
+        public void TakeHeal(int healAmount)
+        {
+            throw new NotImplementedException();
         }
 
         public event HealthChangedDelegate HealthIncreasedEvent;

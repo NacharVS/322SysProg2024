@@ -30,12 +30,12 @@ namespace StrategyUnits
                 if (Health < (double)MaxHealth/100*30 && !_frenzy)
                 {
                     _frenzy = true;
-                    unit.TakingDamage(damage + damage*5);
+                    unit.TakeDamage(damage + damage*5);
                 }
                 else if (Health >= (double)MaxHealth / 100 * 30 && _frenzy)
                 {
                     _frenzy = false;
-                    unit.TakingDamage(damage);
+                    unit.TakeDamage(damage);
                 }
 
             }

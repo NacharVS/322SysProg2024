@@ -37,10 +37,10 @@ namespace StrategyUnits
             }
             else
             {
-                unit.TakingDamage(damage);
+                unit.TakeDamage(damage);
             }
         }
-        public override void ShowInfo()
+        public void ShowInfo()
         {
             Console.WriteLine($"Unit: {Name} Health: {Health}/{MaxHealth} Defece: {Defence} Damage: {_minDamage}-{_maxDamage}");
         }

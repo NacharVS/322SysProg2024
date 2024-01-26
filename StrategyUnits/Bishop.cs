@@ -15,7 +15,7 @@ namespace StrategyUnits
             
         }
 
-        public void InFlickHill(Unit unit)
+        public void InFlickHeal(Unit unit)
         {
             if (Dead)
             {
