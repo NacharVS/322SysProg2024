@@ -28,6 +28,10 @@ namespace StrategyUnits
         {
             return new Palladin(75, "Palladin", 0, 10, 0, 100);
         }
+        public Zelot CreateZelot()
+        {
+            return new Zelot(500, "Zelot", 10, 25, 10, 125);
+        }
 
     }
 }

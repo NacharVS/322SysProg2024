@@ -25,21 +25,14 @@ namespace StrategyUnits
             _energyReserve = 90;
             _energyCapacity = 350;
         }
-        public void refill(MagicUnit magicUnit)
+        public void refill(IMagicUnit unit)
         {
-            if(!magicUnit.Alive)
+            while(unit.EnergyPoints + 10 < unit.EnergyLimit && energyReserve > 0)
             {
-                Console.WriteLine("Персонаж умер. Действие отменено.");
+                unit.Refill(10);
+                energyReserve -= 1;
             }
-            else
-            {
 
-            while(energyReserve > 0 && magicUnit.EnergyPoints < magicUnit.energyLimit)
-            {
-                magicUnit.EnergyPoints += 10;
-                energyReserve--;
-            }
-            }
         }
     }
 }

@@ -1,78 +1,46 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace StrategyUnits
+﻿namespace StrategyUnits
 {
     internal class Unit
     {
         private double Currenthealth;
         private string _name;
         private bool alive = true;
-        private double _defence;
         public delegate void HealthChangeDelegate(double Health);
 
-        public double Defence
-        {
-            get { return _defence; }
-            set { _defence = value; }
-        }
         public bool Alive
         {
             get { return alive; }
         }
-        public int MaxHealth { get; private set; }
-        
-        public void TakeDamage(double Damage)
-        {
-            if (!Alive)
-            {
-                Console.WriteLine("Действие не выполнено, юнит погиб");
-                return;
-            }
-            if(Damage <= Defence)
-            {
-                HealthVSDefenceWin?.Invoke(Currenthealth);
-                Defence -= Damage;
-            }
-            else
-            {
-                HealthVSDefenceWin?.Invoke(Currenthealth);
-                Health -= Damage - Defence;
-                Defence = 0;
-                if (Currenthealth <= 0)
-                {
-                    Currenthealth = 0;
-                    alive = false;
-                    Console.WriteLine("Юнит погиб");
-                }
-            }
-        }
 
-        public Unit(int health, string name)
+        public double maxHealth { get; set; }
+
+        
+
+        public Unit(int _health, string name)
         {
-            Currenthealth = health;
+            Currenthealth = _health;
             _name = name;
-            MaxHealth = health;
-            Defence = _defence;
+            maxHealth = _health;
         }
 
         public string Name
         {
             get { return _name; }
-            set { _name = value; }
+            set { _name = value; }//event
         }
 
-        public double Health 
-        { 
-            get => Currenthealth; 
+        public double health
+        {
+            get => Currenthealth;
             set
             {
-                if(Currenthealth > value)
+                if (Currenthealth > value)
                 {
                     HealthDecreaseEvent?.Invoke(value);
                 }
                 else if (Currenthealth == value)
                 {
-                    
+
                 }
                 else
                 {
@@ -89,9 +57,9 @@ namespace StrategyUnits
                         Currenthealth = 0;
                         alive = false;
                     }
-                    else if (value >= MaxHealth)
+                    else if (value >= maxHealth)
                     {
-                        Currenthealth = MaxHealth;
+                        Currenthealth = maxHealth;
                     }
                     else
                     {
@@ -104,7 +72,7 @@ namespace StrategyUnits
         {
             if (Alive)
             {
-                Health += CountHP;
+                health += CountHP;
             }
         }
         public void Move()
@@ -118,7 +86,6 @@ namespace StrategyUnits
         }
         public event HealthChangeDelegate HealthIncreaseEvent;
         public event HealthChangeDelegate HealthDecreaseEvent;
-        public event HealthChangeDelegate HealthVSDefenceLose;
-        public event HealthChangeDelegate HealthVSDefenceWin;
+        
     }
 }

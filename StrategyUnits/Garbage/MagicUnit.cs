@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StrategyUnits
+namespace StrategyUnits.Garbage
 {
     internal class MagicUnit : MilitaryUnit
     {
@@ -13,7 +13,7 @@ namespace StrategyUnits
         private int _energyLimit;
         public int energyLimit
         {
-            get { return _energyLimit;}
+            get { return _energyLimit; }
             set { _energyLimit = value; }
         }
         public int EnergyPoints
@@ -26,9 +26,6 @@ namespace StrategyUnits
             get { return _healPoints; }
             set { _healPoints = value; }
         }
-        public MagicUnit(int health, string? name) : base(health, name)
-        {
 
-        }
     }
 }

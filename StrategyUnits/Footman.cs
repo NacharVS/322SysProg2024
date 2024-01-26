@@ -3,32 +3,68 @@ using System.Security.Cryptography;
 
 namespace StrategyUnits
 {
-    internal class Footman : MilitaryUnit
+    internal class Footman : Unit, IHealthControl, IArmoredUnit, IBattleUnit, IRage
     {
-        private int damage;
-        public Footman(int health, string? name, int damagemin, int damagemax, int defence) : base(health, name)
+        
+        Random random = new Random();
+        public int attack { get; set; }
+        public int DamageMin { get; set; }
+        public int DamageMax { get; set; }
+        public int Armor { get; set; }
+        
+
+        public bool IsRage { get; set; }
+
+        public Footman(int health, string name, int damagemin, int damagemax, int defence) : base(health, name)
         {
             DamageMin = damagemin;
             DamageMax = damagemax;
-            Defence = defence;
+            Armor = defence;
         }
 
         public Footman() : base(60, "Footman")
         {
             DamageMin = 1;
             DamageMax = 10;
-            Defence = 6;
+            Armor = 6;
             Random random = new Random();
-            damage = random.Next(DamageMin, DamageMax);
+            
         }
-        public void Rage(Unit unit)
+        public void Rage()
         {
-            unit.TakeDamage(CountDamage() * 1.5);
+            IsRage = true;
         }
+        
         public override void ShowInfo()
         {
-            Console.WriteLine($"{Name} damage: {damage}. {Health}/{MaxHealth}");
+            Console.WriteLine($"{Name} damage: {DamageMin}/{DamageMax}. {health}/{maxHealth}");
         }
 
+        public void InflictDamage(IHealthControl unit)
+        {
+            unit.TakeDamage(CountDamage());
+        }
+
+        public double CountDamage()
+        {
+            if (!IsRage)
+                return random.Next(DamageMin, DamageMax);
+            else
+                return random.Next(DamageMin, DamageMax);
+        }
+
+        public void TakeDamage(double Damage)
+        {
+            if (Armor > Damage)
+            {
+                Armor -= (int)Damage;
+            }
+            else
+            {
+                Damage -= Armor;
+                Armor = 0;
+                health -= Damage;
+            }
+        }
     }
 }

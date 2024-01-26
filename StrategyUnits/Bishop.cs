@@ -6,26 +6,30 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class Bishop : MagicUnit
+    internal class Bishop : Unit, IMagicUnit, IHealthControl, IArmoredUnit, IHealingSkill
     {
-        
-        
+        public int HealPoints { get; set; }
+        public int EnergyPoints { get; set; }
+        public int EnergyLimit { get; set; }
+        public int Armor { get; set; }
+
         public Bishop() : base(25, "Колдун")
         {
             EnergyPoints = 60;
-            energyLimit = 100;
-            Defence = 2;
+            EnergyLimit = 100;
+             Armor = 2;
         }
         public Bishop(int health, string name, int defence, int energy) : base(health, name)
         {
-            Defence = defence;
+            Armor = defence;
             EnergyPoints = energy;
-            energyLimit = energy;
+            EnergyLimit = energy;
         }
 
-        public void Heal(Unit unit)
+
+        public void Heal(IHealthControl unit)
         {
-            if(EnergyPoints / 2 < unit.MaxHealth - unit.Health)
+            if(EnergyPoints / 2 < unit.maxHealth - unit.health)
             {
                 while(EnergyPoints > 0)
                 {
@@ -35,11 +39,30 @@ namespace StrategyUnits
             }
             else
             {
-                while (unit.Health < unit.MaxHealth)
+                while (unit.health < unit.maxHealth)
                 {
                     unit.GetHeal(1);
                     EnergyPoints -= 2;
                 }
+            }
+        }
+
+        public void Refill(int EnergyAmount)
+        {
+            EnergyPoints += EnergyAmount;
+        }
+
+        public void TakeDamage(double Damage)
+        {
+            if (Armor > Damage)
+            {
+                Armor -= (int)Damage;
+            }
+            else
+            {
+                Damage -= Armor;
+                Armor = 0;
+                health -= Damage;
             }
         }
     }
