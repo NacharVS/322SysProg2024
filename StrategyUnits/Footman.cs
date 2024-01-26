@@ -1,24 +1,44 @@
 ﻿namespace StrategyUnits
 {
-    internal class Footman : MilitaryUnit
+    internal class Footman : Unit, IBattleUnit, IArmoredUnit, IRage
     {
-        public Footman(int health, int mindamage, int maxdamage, int defense, string? name) : base(health,mindamage,maxdamage, defense, name)
+        public int MinDamage { get; set; }
+        public int MaxDamage { get ; set; }
+        public int Armor { get; set; }
+        public bool IsRage => Health <= MaxHealth * 0.5;
+
+        private Random random = new Random();
+
+        public Footman(int health, string? name, int minDamage, int maxDamage, int armor) : base(health, name)
         {
-            
+            MinDamage = minDamage;
+            MaxDamage = maxDamage;
+            Armor = armor;
         }
-        public bool Rage()
-        {
-            return (RemovedHealth >= MaxHealth * 0.5);
-        }
-        public override double CountDamage()
+
+        public virtual double CountDamage()
         {
 
-            double damage = base.CountDamage();
-            if(Rage())
+            double damage = random.Next(MinDamage,MaxDamage);
+            if(IsRage)
             {
                 damage *= 1.5;
             }
                 return damage;
+        }
+
+        public void Attack(IHealthController unit)
+        {
+            unit.TakeDamage(CountDamage());
+        }
+        public override void TakeDamage(double damage)
+        {
+            if (Armor < damage)
+            {
+                Health -= damage - Armor;
+            }
+            else
+                Console.WriteLine("Damage is fully absorbed by unit defense!");
         }
     }
 }

@@ -1,22 +1,18 @@
-﻿using System;
-using System.Reflection.Metadata.Ecma335;
-
-namespace StrategyUnits
+﻿namespace StrategyUnits
 {
-    internal class Unit
+    internal abstract class Unit : IHealthController
     {
         public delegate void HealthChangedDelegate(double health);
         private double _currentHealth;
         private string? _name;
-        public int Defense { get; set ; }
-        public int MaxHealth { get; private set; }
-        public bool IsAlive { get =>_currentHealth>0;}
-        public Unit(int health,int defense ,string? name)
+        public int MaxHealth { get; set; }
+        public bool IsAlive => _currentHealth > 0;
+        public Unit(int health,string? name)
         {
-            Defense = defense;
             _currentHealth = health;
             _name = name;
             MaxHealth = health;
+
             HealthDecreasedEvent += Hurt1;
             HealthIncreasedEvent += Heal1;
         }
@@ -30,11 +26,9 @@ namespace StrategyUnits
 
         public double Health 
         { 
-            get
-            {
-                return _currentHealth;
-            }
-           private set 
+            get => _currentHealth;
+
+            set 
             { 
                 
                 if(value < 0)
@@ -59,8 +53,9 @@ namespace StrategyUnits
         }
         public double RemovedHealth
         {
-            get => MaxHealth-Health;
+            get => MaxHealth - Health;
         }
+
         public void Move()
         {
             if (IsAlive)
@@ -71,22 +66,24 @@ namespace StrategyUnits
 
         public virtual void ShowInfo(string text = "")
         {
-            Console.WriteLine($"Unit: {_name} Health: {_currentHealth}/{MaxHealth}. Defense:{Defense} " + text);
+            Console.WriteLine($"Unit: {_name} Health: {_currentHealth}/{MaxHealth}" + text);
         }
      
-        public void GetDamage(double damage)
+        public virtual void TakeDamage(double damage)
         {
-                if (Defense < damage)
-                {
-                Health -= damage - Defense;
-                }
-                else
-                Console.WriteLine("Damage is fully absorbed by unit defense!");
+            if (damage >0)
+            Health -= damage;
         }
-        public virtual void GetHeal(double healAmount)
+        public virtual void TakeHeal(double healAmount)
         {
-            if(healAmount>0)
-            Health += healAmount;            
+            if (healAmount > 0)
+            {
+              if(IsAlive)
+                Health += healAmount;
+              else
+                Console.WriteLine("Healing unit is DEAD");
+            }
+                            
         }
         public event HealthChangedDelegate HealthIncreasedEvent;
 

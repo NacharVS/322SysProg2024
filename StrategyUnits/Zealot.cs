@@ -1,32 +1,96 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StrategyUnits
+﻿namespace StrategyUnits
 {
-    internal class Zealot : Paladin
+    internal class Zealot : Unit, IArmoredUnit, IBattleUnit, IMagicUnit, IPaladin, IArmorOfFaith
     {
-        public Zealot(int health, int mindamage, int maxdamage, int defense, int energy, string? name) : base(health, mindamage, maxdamage, defense, energy, name)
+        public int Armor { get; set; }
+        public int MinDamage { get; set; }
+        public int MaxDamage { get; set; }
+        public int Energy
         {
-            HealthIncreasedEvent += LowHP;
-            HealthDecreasedEvent += LowHP;
+            get
+            {
+                return _energy;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    _energy = 0;
+                }
+                else
+                {
+                    if (value > MaxEnergy)
+                    {
+                        _energy = MaxEnergy;
+                    }
+                    else
+                    {
+                        _energy = value;
+                    }
+                }
+            }
         }
-        private void LowHP(double health)
+        private int _energy;
+        public int MaxEnergy { get; set; }
+        private Random random = new Random();
+        public Zealot(int health, string? name, int minDamage, int maxDamage, int energy, int armor) : base(health, name)
         {
-            if (health < MaxHealth *0.3 && !ArmorOfFaith)
+            MinDamage = minDamage;
+            MaxDamage = maxDamage;
+            Armor = armor;
+            MaxEnergy = energy;
+            Energy = energy;
+            HealthIncreasedEvent += ArmorOfFaith;
+            HealthDecreasedEvent += ArmorOfFaith;
+        }
+        private void ArmorOfFaith(double health)
+        {
+            if (health < MaxHealth *0.3 && !IsArmorOfFaith)
             {
-                ArmorOfFaith = true;
-                Defense += Defense;
+                IsArmorOfFaith = true;
+                Armor += Armor;
             }
-            else if (health > MaxHealth *0.3&& ArmorOfFaith)
+            else if (health > MaxHealth *0.3&& IsArmorOfFaith)
             {
-                ArmorOfFaith = false;
-                Defense -= Defense/2;
+                IsArmorOfFaith = false;
+                Armor -= Armor/2;
             }
+        }
+        public void Attack(IHealthController unit)
+        {
+            unit.TakeDamage(CountDamage());
+        }
+        public double CountDamage()
+        {
+            double damage = random.Next(MinDamage, MaxDamage);
+            return damage;
+        }
+        public void Prayer()
+        {
+            if (Energy >= 10)
+            {
+                Energy -= 10;
+                TakeHeal(20);
+            }
+            else
+            {
+                Console.WriteLine($"{Name} don't have enough energy to cast this spell! ");
+            }
+        }
 
+        public void SaintTouch(Unit unit)
+        {
+            if (Energy >= 9)
+            {
+                unit.TakeDamage(CountDamage() * 2);
+                Energy -= 9;
+            }
+            else
+            {
+                Console.WriteLine($"{Name} don't have enough energy to cast this spell! ");
+            }
         }
-        private bool ArmorOfFaith;
+
+        public bool IsArmorOfFaith { get; set; }
     }
 }

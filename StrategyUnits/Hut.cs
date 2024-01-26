@@ -4,7 +4,7 @@
     {
         public Peasant CreatePeasant()
         {
-            return new Peasant(30, 99, "Peasant");
+            return new Peasant(30, "Peasant", 0, 10);
         }
     }
 }
