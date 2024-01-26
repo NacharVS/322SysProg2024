@@ -9,42 +9,45 @@ namespace StrategyUnits
 {
     internal class MilitaryUnit : Unit// войны
     {
-        private int _minDamage;
-        private int _maxDamage;
         Random random = new Random();
-        public MilitaryUnit(int health, string name , int minDamage ,int maxDamage , int defence) : base(health, name, defence)
+        public MilitaryUnit(int health, string name, int minDamage, int maxDamage, int defence) : base(health, name, defence)
         {
-            _minDamage = minDamage;
-            _maxDamage = maxDamage;
+            MinDamage = minDamage;
+            MaxDamage = maxDamage;
         }
-        
-        public int MinDamage { get { return _minDamage; } }
-        public int MaxDamage { get { return _maxDamage; } }
+
+        public int MinDamage { get; }
+        public int MaxDamage { get; }
+
         private int demage;
-        public void InflictDamage(Unit unit , int percent)
+
+        public void InflictDamage(Unit unit, int percent)
         {
-            if (unit.Alive != false)
-            {
-                demage = unit.Defence - (random.Next(_maxDamage - 1, _maxDamage) * percent / 100) ;
-                Console.WriteLine($"Demage {demage} hp to {unit.Name}");
+            if (unit.Alive == false) {
+                return;
             }
+            demage = unit.Defence - (random.Next(MinDamage - 1, MaxDamage) * percent / 100);
+            unit.Health -= demage;
+            Console.WriteLine($"Damage {demage} hp to {unit.Name}");
 
 
         }
-        public void InflictDamage(Unit unit )
+
+        public void InflictDamage(Unit unit)
         {
-            if (unit.Alive != false)
-            {
-                demage = unit.Defence - random.Next(_maxDamage - 1, _maxDamage) ;
-                Console.WriteLine($"Demage {demage} hp to {unit.Name}");
-            }
-
-
+            if (unit.Alive == false){ 
+                return;
+                }
+            demage = unit.Defence - random.Next(MinDamage - 1, MaxDamage);
+            unit.Health -= demage;
+            Console.WriteLine($"Damage {demage} hp to {unit.Name}");
         }
+
+
         public override void ShowInfo()
         {
 
-            Console.WriteLine($"Unit: {Name} Health: {Health} Alive: {Alive} Min demage: {_minDamage} Max demage: {_maxDamage} Defence: {Defence} ");
+            Console.WriteLine($"Unit: {Name} Health: {Health} Alive: {Alive} Min demage: {MinDamage} Max demage: {MaxDamage} Defence: {Defence} ");
         }
     }
 }

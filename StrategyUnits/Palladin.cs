@@ -9,7 +9,7 @@ namespace StrategyUnits
 {
     internal class Palladin : MagicUnit
     {
-
+        private bool prayerBool = true;
 
         public Palladin(int health, string name, int minDamage, int maxDamage, int defence, int energy) : base(health, name, minDamage, maxDamage, defence, energy)
         {
@@ -25,23 +25,21 @@ namespace StrategyUnits
             {
                 unit.Health -= 40;
                 Energy -= 120;
-                Console.WriteLine($"Demage {40} hp to {unit.Name}");
+                Console.WriteLine($"Demage 40 hp to {unit.Name}");
             } 
         }
         public void Prayer()
         {
-            if(Energy > 10)
-            {
-                while(Energy < 10)
+
+                if (Health != MaxHealth || prayerBool == false )//yugsfyiugsiydfgiusgf
                 {
-                    Health += 20;
-                    Energy -= 10;
+                    prayerBool = false;
+                while (Health < MaxHealth && Energy > 0)
+                {
+                Health+=20;
+                Energy -= 10;
                 }
-            }
-            else
-            {
-                Console.WriteLine("No Heal");
-            }
+                }
         }
     }
 }

@@ -7,8 +7,8 @@ namespace StrategyUnits
         private int _health;
         private string? _name;
         private int _defence;
-        private int _maxHealth { get; set; }
-        public delegate void ChangeUnitHP(int health);
+        private int _maxHealth ;
+        public delegate void ChangeUnitHP( int health);
 
         public event ChangeUnitHP HealthIncreasedEvent;
         public event ChangeUnitHP HealthDecreasedEvent;
