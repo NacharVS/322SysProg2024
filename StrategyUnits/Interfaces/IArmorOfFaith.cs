@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal interface IMilitaryUnit
+    internal interface IArmorOfFaith
     {
+        public bool IsArmorOfFaith { get; set; }
     }
 }

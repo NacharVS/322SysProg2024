@@ -6,35 +6,57 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class Berserker : Footman
+    internal class Berserker : Unit, IBattleUnit, IArmoredUnit, IFrenzy, IRage
     {
-        public Berserker(int health, int mindamage, int maxdamage, int defense, string? name) : base(health, mindamage, maxdamage, defense, name)
+
+        public bool IsFrenzy { get; set; }
+        public int Armor { get; set; }
+        public int MinDamage { get; set; }
+        public int MaxDamage { get; set; }
+        public bool IsRage => Health <= MaxHealth * 0.5;
+        private Random random = new Random();
+
+        public Berserker(int health, string? name, int minDamage, int maxDamage, int armor) : base(health, name)
         {
+            MinDamage = minDamage;
+            MaxDamage = maxDamage;
+            Armor = armor;
         }
-        private bool LowHP;
 
         public void Frenzy()
         {
             Console.WriteLine($"{Name} is using Frenzy!");
-            double damage = CountDamage();
             if (Health <= MaxHealth * 0.3)
             {
-                LowHP = true;
+                IsFrenzy = true;
             }
         }
-        public override double CountDamage()
+        public double CountDamage()
         {
-            double damage = base.CountDamage();
-            if (LowHP)
+            double damage = random.Next(MinDamage, MaxDamage);
+            if (IsRage)
+            {
+                damage *= 1.5;
+            }
+            if (IsFrenzy)
+            {
                 damage *= 3;
+            }
             return damage;
         }
-        public override void GetHeal(double healAmount)
+        public override void TakeHeal(double healAmount)
         {
-            if (LowHP)
+            if (IsFrenzy)
                 Console.WriteLine($"{Name} is in Frenzy!");
             else
-            base.GetHeal(healAmount);
+            base.TakeHeal(healAmount);
         }
+
+        public void Attack(IHealthController unit)
+        {
+            unit.TakeDamage(CountDamage());
+        }
+
+
     }
 }

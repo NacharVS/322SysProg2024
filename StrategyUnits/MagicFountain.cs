@@ -15,14 +15,14 @@ namespace StrategyUnits
             EnergyCapacity = 1000;
         }
 
-        public void RestoreEnergy(MagicUnit magicUnit)
+        public void RestoreEnergy(IMagicUnit magicUnit)
         {
             if (EnergyCapacity > 0)
             {
                 int energy = Math.Min(EnergyCapacity*10, magicUnit.RemovedEnergy);
                 magicUnit.Energy += energy;
                 EnergyCapacity -= Convert.ToInt32(Math.Ceiling(energy/10d));
-                Console.WriteLine($"Fountain is restored {magicUnit.Name} {energy} energy.");
+                Console.WriteLine($"Fountain is restored {energy} energy.");
             }
             else
             {
@@ -31,15 +31,15 @@ namespace StrategyUnits
         }
         public Bishop CreateBishop()
         {
-            return new Bishop(60, 0, 0, 0, 60, "Bishop");
+            return new Bishop(60, "Bishop", 0, 0, 60);
         }
         public Paladin CreatePaladin()
         {
-            return new Paladin(50, 5, 10, 5, 70, "Paladin");
+            return new Paladin(50, "Paladin", 5, 10, 70, 5);
         }
         public Zealot CreateZealot()
         {
-            return new Zealot(50, 10, 15, 5, 20, "Zealot");
+            return new Zealot(50, "Zealot", 10, 15, 20, 5);
         }
     }
 }

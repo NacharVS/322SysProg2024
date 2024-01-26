@@ -1,41 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StrategyUnits
+﻿namespace StrategyUnits
 {
     internal class Grunt : Unit,IHealthController, IBattleUnit, IArmoredUnit
     {
-        public Grunt(int health, int damage, int armor)
+        private Random random = new Random();
+        public Grunt(int health, string? name, int minDamage, int maxDamage, int armor) : base(health, name)
         {
-            Health = 80;
-            MinDamage = 10;
-            MaxDamage = 20;
-            Armor = 2;
+            MinDamage = minDamage;
+            MaxDamage = maxDamage;
+            Armor = armor;
         }
 
-        public int Health { get; set; }
-    
         public int Armor { get ; set ; }
         public int MinDamage { get; set; }
         public int MaxDamage { get; set; }
 
         public void Attack(IHealthController unit)
         {
-            Random random = new Random();
             unit.TakeDamage(random.Next(MinDamage, MaxDamage));
         }
 
-        public void TakeDamage(int damage)
+        public double CountDamage()
         {
-            Health -= damage - Armor;
+            double damage = random.Next(MinDamage, MaxDamage);
+            return damage;
         }
-
-        public void TakeHeal(int healAmount)
+        public override void TakeDamage(double damage)
         {
-            throw new NotImplementedException();
+            if (Armor < damage)
+            {
+                Health -= damage - Armor;
+            }
+            else
+                Console.WriteLine("Damage is fully absorbed by unit defense!");
         }
     }
 }

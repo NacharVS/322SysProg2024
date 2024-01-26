@@ -1,29 +1,37 @@
 ﻿namespace StrategyUnits
 {
-    internal class Throll : IHealthController, IBattleUnit
+    internal class Throll : Unit,IHealthController, IBattleUnit
     {
-        public Throll() 
+        private Random random = new Random();
+        public Throll(int health, string? name, int minDamage, int maxDamage, int armor) : base(health, name)
         {
-            Health = 120;
-            Damage = 10;
+            MinDamage = minDamage;
+            MaxDamage = maxDamage;
+            Armor = armor;
         }
 
-        public int Health { get; set; }
-        public int Damage { get; set; }
+        public int Armor { get; set; }
+        public int MinDamage { get; set; }
+        public int MaxDamage { get; set; }
 
         public void Attack(IHealthController unit)
         {
-            unit.TakeDamage(Damage);
+            unit.TakeDamage(random.Next(MinDamage, MaxDamage));
         }
 
-        public void TakeDamage(int damage)
+        public double CountDamage()
         {
-            Health -= damage;
+            double damage = random.Next(MinDamage, MaxDamage);
+            return damage;
         }
-
-        public void TakeHeal(int healAmount)
+        public override void TakeDamage(double damage)
         {
-            throw new NotImplementedException();
-        }
+            if (Armor < damage)
+            {
+                Health -= damage - Armor;
+            }
+            else
+                Console.WriteLine("Damage is fully absorbed by unit defense!");
+        }   
     }
 }
