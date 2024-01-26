@@ -7,16 +7,22 @@ using System.Xml.Linq;
 
 namespace StrategyUnits
 {
-    internal class Bishop : IHealthController, IBattleUnit, IArmoredUnit
+    internal class Bishop : Unit, IHealthController, IArmoredUnit
     {
         private int _heal;
+        private int mana;
 
         public int Health {get;set;}
         public int Armor {get;set;}
-        public int Damage {get;set;}
+       public int MaxHealth { get;set;}
+        public int MaxMana { get ; set ; }
+        public int Damage { get;  set; }
+        object IHealthController.Name { get ; set ; }
+
 
         public void Heal(IHealthController unit)
         {
+            unit.TakeHeal(44);
             if (!IsAlive)
             {
                 base.ShowInfo();
