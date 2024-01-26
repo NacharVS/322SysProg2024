@@ -1,6 +1,6 @@
 ﻿namespace StrategyUnits
 {
-    internal class Bishop : Unit, IMilitary, IMagic
+    internal class Bishop : Unit, IMilitary, IMagic, IHealer
     {
         public int MinDamage { get; set; }
         public int MaxDamage { get; set; }

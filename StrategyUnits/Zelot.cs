@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.SymbolStore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class Zelot : Unit, IArmored, IMilitary, IMagic, IPrayer
+    internal class Zelot : Unit, IArmored, IMilitary, IMagic, IPrayer, IHaveSaintRow, IFaithArmored
     {
         public int Armor { get; set; }
         public int MinDamage { get; set; }
@@ -34,9 +35,9 @@ namespace StrategyUnits
             }
         }
         public int MaxMana { get; set; }
+        public bool IsArmorOfFaith { get; set; }
 
         private int _mana;
-
         private Random random = new Random();
 
         public Zelot(int health, string? name, int minDamage, int maxDamage, int armor, int mana) : base(health, name)
@@ -50,19 +51,18 @@ namespace StrategyUnits
             HealthDecreasedEvent += CheckArmorOfFaith;
         }
 
-        private void CheckArmorOfFaith(double health)
+        public void CheckArmorOfFaith(double health)
         {
-            if (health <= MaxHealth * 0.3 && !ArmorOfFaith)
+            if (health <= MaxHealth * 0.3 && !IsArmorOfFaith)
             {
-                ArmorOfFaith = true;
+                IsArmorOfFaith = true;
                 Armor += Armor;
             }
-            else if(health > MaxHealth * 0.3 && ArmorOfFaith)
+            else if(health > MaxHealth * 0.3 && IsArmorOfFaith)
             {
-                ArmorOfFaith = false;
+                IsArmorOfFaith = false;
                 Armor -= Armor / 2;
             }
-
         }
 
         public void Attack(IHealthController unit)
@@ -73,6 +73,14 @@ namespace StrategyUnits
         public double CountDamage()
         {
             return random.Next(MinDamage, MaxDamage);
+        }
+
+        public override void TakeDamage(double damage)
+        {
+            if (damage - Armor > 0)
+            {
+                base.TakeDamage(damage - Armor);
+            }
         }
 
         public void Prayer()
@@ -88,6 +96,13 @@ namespace StrategyUnits
             }
         }
 
-        private bool ArmorOfFaith;
+        public void SaintRow(IHealthController unit)
+        {
+            if (Mana >= 3)
+            {
+                unit.TakeDamage(CountDamage() * 2);
+                Mana -= 3;
+            }
+        }
     }
 }

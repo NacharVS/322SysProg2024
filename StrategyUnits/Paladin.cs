@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class Paladin : Unit, IArmored, IMilitary, IMagic
+    internal class Paladin : Unit, IArmored, IMilitary, IMagic, IHaveSaintRow
     {
         public int Armor { get; set; }
         public int MinDamage { get; set; }
@@ -48,7 +48,7 @@ namespace StrategyUnits
             Mana = mana;
         }
 
-        public void SaintJuglement(IHealthController unit)
+        public void SaintRow(IHealthController unit)
         {
             if (Mana >= 3)
             {
