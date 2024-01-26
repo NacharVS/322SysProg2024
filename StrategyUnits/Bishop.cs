@@ -1,18 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StrategyUnits
+﻿namespace StrategyUnits
 {
-    internal class Bishop : MagicUnit
+    internal class Bishop : Unit, IMilitary, IMagic
     {
-        public Bishop(int health, string? name, int minDamage, int maxDamage, int defence, int energy) : base(health, name, minDamage, maxDamage, defence, energy)
+        public int MinDamage { get; set; }
+        public int MaxDamage { get; set; }
+        public int Mana
         {
+            get { return _mana; }
+            set
+            {
+                if (value < 0)
+                {
+                    _mana = 0;
+                }
+                else
+                {
+                    if (value > MaxMana)
+                    {
+                        _mana = MaxMana;
+                    }
+                    else
+                    {
+                        _mana = value;
+                    }
+                }
+            }
         }
 
-        public void Heal(Unit unit)
+        public int MaxMana { get; set; }
+
+        private int _mana;
+        private Random random = new Random();
+
+        public Bishop(int health, string? name, int minDamage, int maxDamage, int mana) : base(health, name)
+        {
+            MinDamage = minDamage;
+            MaxDamage = maxDamage;
+            MaxMana = mana;
+            Mana = mana;
+        }
+
+        public void Attack(IHealthController unit)
+        {
+            unit.TakeDamage(CountDamage());
+        }
+
+        public double CountDamage()
+        {
+            return random.Next(MinDamage, MaxDamage);
+        }
+
+        public void Heal(IHealthController unit)
         {
             if (!IsAlive)
             {
@@ -22,7 +60,7 @@ namespace StrategyUnits
 
             if (!unit.IsAlive)
             {
-                Console.WriteLine($"{Name} не может лечить {unit.Name}, т.к. {unit.Name} мертв.");
+                Console.WriteLine($"{Name} не может лечить, т.к. пациент мертв.");
                 return;
             }
 
@@ -31,11 +69,11 @@ namespace StrategyUnits
                 double lives = Math.Min(unit.RemovedHealth, Mana / 2);
                 unit.TakeHeal(lives);
                 Mana -= Convert.ToInt32(Math.Ceiling(lives * 2));
-                Console.WriteLine($"{Name} восстановил {unit.Name} {lives} жизней.");
+                Console.WriteLine($"{Name} восстановил пациенту {lives} жизней.");
             }
             else
             {
-                Console.WriteLine($"У {Name} нет энергии для лечения {unit.Name}");
+                Console.WriteLine($"У {Name} нет энергии для лечения.");
             }
         }
     }

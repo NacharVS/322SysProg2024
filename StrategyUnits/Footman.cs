@@ -1,25 +1,29 @@
-﻿namespace StrategyUnits
+﻿using System.Runtime.Intrinsics.Arm;
+
+namespace StrategyUnits
 {
-    internal class Footman : Unit, IMilitary, IArmored 
+    internal class Footman : Unit, IMilitary, IArmored, IRageable
     {
         public int MinDamage { get; set; }
         public int MaxDamage { get; set; }
 
+        public int Armor { get; set; }
+
         private Random random = new Random();
 
-        public Footman(int health, string? name, int minDamage, int maxDamage, int defence) : base(health, name)
+        public Footman(int health, string? name, int minDamage, int maxDamage, int armor) : base(health, name)
         {
+            MinDamage = minDamage;
+            MaxDamage = maxDamage;
+            Armor = armor;
         }
 
-        private bool Rage()
-        {
-            return Health <= MaxHealth * 0.5;
-        }
+        public bool IsRage => Health <= MaxHealth * 0.5;
 
         public double CountDamage()
         {
             double damage = random.Next(MinDamage,MaxDamage);
-            if (Rage())
+            if (IsRage)
             {
                 damage *= 1.5;
             }
@@ -28,7 +32,12 @@
 
         public void Attack(IHealthController unit)
         {
-            throw new NotImplementedException();
+            unit.TakeDamage(CountDamage());
+        }
+
+        public override void TakeDamage(double damage)
+        {
+            base.TakeDamage(damage);
         }
     }
 }

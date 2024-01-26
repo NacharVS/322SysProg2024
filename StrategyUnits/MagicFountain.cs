@@ -15,14 +15,14 @@ namespace StrategyUnits
             EnergyCapacity = 1000;
         }
 
-        public void RestoreEnergy(MagicUnit magicUnit)
+        public void RestoreEnergy(IMagic magicUnit)
         {
             if (EnergyCapacity > 0)
             {
                 int mana = Math.Min(magicUnit.RemovedMana, EnergyCapacity * 10);
                 magicUnit.Mana += mana;
                 EnergyCapacity -= Convert.ToInt32(Math.Ceiling(mana / 10d));
-                Console.WriteLine($"Фонтан восстановил {magicUnit.Name} {mana} маны.");
+                Console.WriteLine($"Фонтан восстановил {mana} маны.");
             }
             else
             {
@@ -32,7 +32,7 @@ namespace StrategyUnits
 
         public Bishop CreateBishop()
         {
-            return new Bishop(50, "Bishop", 1, 3, 0, 12);
+            return new Bishop(50, "Bishop", 1, 3, 12);
         }
 
         public Paladin CreatePalladin()

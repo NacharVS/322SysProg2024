@@ -6,19 +6,65 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class Paladin : MagicUnit
+    internal class Paladin : Unit, IArmored, IMilitary, IMagic
     {
-        public Paladin(int health, string? name, int minDamage, int maxDamage, int defence, int energy) : base(health, name, minDamage, maxDamage, defence, energy)
+        public int Armor { get; set; }
+        public int MinDamage { get; set; }
+        public int MaxDamage { get; set; }
+        public int Mana
         {
+            get { return _mana; }
+            set
+            {
+                if (value < 0)
+                {
+                    _mana = 0;
+                }
+                else
+                {
+                    if (value > MaxMana)
+                    {
+                        _mana = MaxMana;
+                    }
+                    else
+                    {
+                        _mana = value;
+                    }
+                }
+            }
         }
 
-        public void SaintJuglement(Unit unit)
+        public int MaxMana { get; set; }
+
+        private int _mana;
+        private Random random = new Random();
+
+        public Paladin(int health, string? name, int minDamage, int maxDamage, int armor, int mana) : base(health, name)
+        {
+            MinDamage = minDamage;
+            MaxDamage = maxDamage;
+            Armor = armor;
+            MaxMana = mana;
+            Mana = mana;
+        }
+
+        public void SaintJuglement(IHealthController unit)
         {
             if (Mana >= 3)
             {
-                unit.GetDamage(CountDamage() * 2);
+                unit.TakeDamage(CountDamage() * 2);
                 Mana -= 3;
             }
+        }
+
+        public void Attack(IHealthController unit)
+        {
+            unit.TakeDamage(CountDamage());
+        }
+
+        public double CountDamage()
+        {
+            return random.Next(MinDamage, MaxDamage);
         }
 
         public void Prayer()
@@ -26,11 +72,19 @@ namespace StrategyUnits
             if(Mana >= 10) 
             {
                 Mana -= 10;
-                GetHeal(20);
+                TakeHeal(20);
             }
             else
             {
                 Console.WriteLine($"У {Name} недостаточно маны для заклинания Prayer");
+            }
+        }
+
+        public override void TakeDamage(double damage)
+        {
+            if(damage - Armor > 0)
+            {
+                base.TakeDamage(damage - Armor);
             }
         }
     }

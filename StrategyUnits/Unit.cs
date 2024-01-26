@@ -8,7 +8,7 @@
         private string? _name;
 
         public int MaxHealth { get; set; }
-        public bool IsAlive { get => _health > 0; }
+        public bool IsAlive => _health > 0;
 
         public Unit(int health, string? name)
         {
@@ -28,7 +28,7 @@
         public double Health 
         { 
             get => _health; 
-            protected set
+            set
             {
                 if(value < 0) 
                 {
@@ -56,7 +56,6 @@
         {
             get => MaxHealth - Health;
         }
-        double IHealthController.Health { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public void Move()
         {
@@ -75,9 +74,12 @@
             Console.WriteLine($"Unit: {_name} Health: {_health}/{MaxHealth}. {additionalText}");
         }
 
-        public void TakeDamage(double damage)
+        public virtual void TakeDamage(double damage)
         {
-            Health -= damage;
+            if (damage > 0)
+            { 
+                Health -= damage;
+            }
         }
 
         public virtual void TakeHeal(double healAmount)

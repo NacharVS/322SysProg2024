@@ -10,7 +10,7 @@ namespace StrategyUnits
     {
         public Peasant CreatePeasant()
         {
-            return new Peasant(30, "Peasant", 0);
+            return new Peasant(30, "Peasant");
         }
     }
 }

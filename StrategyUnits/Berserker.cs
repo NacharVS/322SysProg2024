@@ -6,13 +6,20 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class Berserker : Footman
+    internal class Berserker : Unit, IMilitary, IRageable, IFrenzy
     {
-        public Berserker(int health, string? name, int minDamage, int maxDamage, int defence) : base(health, name, minDamage, maxDamage, defence)
+        public Berserker(int health, string? name, int minDamage, int maxDamage) : base(health, name)
         {
+            MinDamage = minDamage;
+            MaxDamage = maxDamage;
         }
 
-        private bool IsFrenzy;
+        public bool IsFrenzy { get; set; }
+        public int MinDamage { get; set; }
+        public int MaxDamage { get; set; }
+        public bool IsRage => Health <= MaxHealth * 0.5;
+
+        private Random random = new Random();
 
         public void Frenzy() 
         {
@@ -22,9 +29,13 @@ namespace StrategyUnits
             }
         }
 
-        public override double CountDamage()
+        public double CountDamage()
         {
-            double damage = base.CountDamage();
+            double damage = random.Next(MinDamage,MaxDamage);
+            if (IsRage)
+            {
+                damage *= 1.5;
+            }
             if (IsFrenzy)
                 damage *= 3;
             return damage;
@@ -34,6 +45,11 @@ namespace StrategyUnits
         {
             if(!IsFrenzy)
                 base.TakeHeal(healAmount);
+        }
+
+        public void Attack(IHealthController unit)
+        {
+            unit.TakeDamage(CountDamage());
         }
     }
 }

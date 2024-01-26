@@ -2,6 +2,6 @@
 {
     internal interface IArmored
     {
-        public int Armor { get; protected set; }
+        public int Armor { get; set; }
     }
 }
