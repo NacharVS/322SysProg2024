@@ -2,7 +2,7 @@
 
 namespace StrategyUnits
 {
-    internal class Bishop : Unit, IMagicUnit, IBattleUnit
+    internal class Bishop : Unit, IMagicUnit, IBattleUnit, IHealer
     {
         public int _energy;
         private Random random = new Random();
