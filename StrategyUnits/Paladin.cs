@@ -19,17 +19,34 @@ namespace StrategyUnits
         {
         }
 
-        public void SaintMagic(Unit unit)
+        public void SaintMagic()
         {
-            while (unit.Health > 0 || mana >= 35)
+            while (Health > 0 || mana >= 35)
             {
-                unit.Health += 25;
+                Health += 25;
                 mana -= 35;
             }
         }
         public void ShowInfo()
         {
             Console.WriteLine($" Health: {Health}   Min demage: {MinDamage} Max demage: {MaxDamage} Unit: {Name} Defence: {Defense} Energy: {mana}");
+        }
+        public void Prayer()
+        {
+            if (mana >= 10)
+            {
+                Health += 20;
+                if (Health > MaxHealth)
+                {
+                    Health = MaxHealth;
+                }
+                mana -= 10;
+                Console.WriteLine("Prayer activated");
+            }
+            else
+            {
+                Console.WriteLine("Not enough mana");
+            }
         }
 
 

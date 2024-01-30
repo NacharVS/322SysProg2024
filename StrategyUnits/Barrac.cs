@@ -29,9 +29,17 @@ namespace StrategyUnits
         {
             return new Paladin(120, 70, 80, 90, "IntelligencePers", 7,8);
         }
-        public Paladin Createmythical()
+        public Paladin CreateMythical()
         {
             return new Paladin(87, 89, 140, 150, "dexterityPers", 10,10);
+        }
+        public Berserk CreateRar()
+        {
+            return new Berserk(150, 15, 16,130, "Rar",10);
+        }
+        public Zelot CreateChamp()
+        {
+            return new Zelot(70, 12, 13,15, "Epic", 2,5 );
         }
 
     }

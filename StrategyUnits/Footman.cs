@@ -23,6 +23,20 @@
         {
             unit.Health -= _damage;
         }
+        public void Rage()
+        {
+            if (Health <= 0)
+            {
+                Console.WriteLine("Defeated");
+                return;
+            }
 
+            if (Health < MaxHealth / 2)
+            {
+                _damage += _damage / 2;
+            }
+
+            Console.WriteLine("Rage activated");
+        }
     }
 }
