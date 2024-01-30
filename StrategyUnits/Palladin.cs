@@ -7,13 +7,41 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace StrategyUnits
 {
-    internal class Palladin : MagicUnit
+    internal class Palladin : Unit, IMagicUnit , IPrayer, IMagicDamage, IHealthControl
     {
-        private bool prayerBool = true;
+        Random random = new Random();
+         
 
-        public Palladin(int health, string name, int minDamage, int maxDamage, int defence, int energy) : base(health, name, minDamage, maxDamage, defence, energy)
+        public Palladin(int health, string name, int minDamage, int maxDamage, int defence, int energy) : base(health, name)
         {
+            MinDamage = minDamage;
+            MaxDamage = maxDamage;
+            Defence = defence;
+            Energy = energy;
+            prayerBool = true;
         }
+
+        public int Energy { get; set; }
+        public int MaxEnergy { get; set; }
+        public int MinDamage { get; set; }
+        public int MaxDamage { get; set; }
+        public int Defence { get; set; }
+        public int damaged { get; set; }
+        public bool prayerBool { get; set; }
+
+        public int RandomDamage(int MinDamage, int MaxDamage)
+        {
+            return random.Next(MinDamage - 1, MaxDamage);
+        }
+        public void InflictDamage(Unit unit)
+        {
+            TakeDamage(unit, RandomDamage(MinDamage, MaxDamage));
+        }
+        public void InflictDamage(Unit unit, int procent)
+        {
+            TakeDamage(unit, RandomDamage(MinDamage, MaxDamage) * procent / 100);
+        }
+
 
         public void MagicDemage( Unit unit)
         {
@@ -34,12 +62,17 @@ namespace StrategyUnits
                 if (Health != MaxHealth || prayerBool == false )//yugsfyiugsiydfgiusgf
                 {
                     prayerBool = false;
-                while (Health < MaxHealth && Energy > 0)
-                {
-                Health+=20;
-                Energy -= 10;
-                }
+                    while (Health < MaxHealth && Energy > 0)
+                    {
+                        Health+=20;
+                        Energy -= 10;
+                    }
                 }
         }
+        public void ShowInfo()
+        {
+            Console.WriteLine($"Unit: {Name} Health: {Health}  Energy: {Energy} Min demage: {MinDamage} Max demage: {MaxDamage} Defence: {Defence}");
+        }
+
     }
 }

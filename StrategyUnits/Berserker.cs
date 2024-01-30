@@ -6,11 +6,20 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class Berserker : Footman
+    internal class Berserker : Unit , IFrenzy, IInflictDamage, IDefence , IRandomDamgeController, IMilitaryUnit
     {
-        public Berserker(int health, string name, int minDamage, int maxDamage, int defence) : base(health, name, minDamage, maxDamage, defence)
+        Random random = new Random();
+        public Berserker(int health, string name, int minDamage, int maxDamage, int defence) : base(health, name)
         {
+            MinDamage = minDamage;
+            MaxDamage = maxDamage;
+            Defence = defence;
         }
+
+        public int Defence { get; set ; }
+        public int damaged { get; set ; }
+        public int MinDamage { get ; set; }
+        public int MaxDamage { get ; set; }
 
         public void Frenzy(Unit unit)
         {
@@ -23,8 +32,21 @@ namespace StrategyUnits
             }
         }
 
-
-
-        
+        public int RandomDamage(int MinDamage, int MaxDamage)
+        {
+            return random.Next(MinDamage - 1, MaxDamage);
+        }
+        public void InflictDamage(Unit unit)
+        {
+            TakeDamage(unit, RandomDamage(MinDamage, MaxDamage));
+        }
+        public void InflictDamage(Unit unit,  int procent)
+        {
+            TakeDamage(unit, RandomDamage(MinDamage, MaxDamage) * procent / 100);
+        }
+        public void ShowInfo()
+        {
+            Console.WriteLine($"Unit: {Name} Health: {Health}  Min demage: {MinDamage} Max demage: {MaxDamage} Defence: {Defence} ");
+        }
     }
 }

@@ -1,17 +1,33 @@
-﻿namespace StrategyUnits
+﻿using System;
+
+namespace StrategyUnits
 {
-    internal class Bishop : MagicUnit
+    internal class Bishop :Unit , IMagicUnit , IHealthControl
     {
-        public Bishop(string name , int health, int minDamage , int maxDamage,int defence, int energy) : base(health, name, minDamage, maxDamage , defence, energy)//медик
+        Random random = new Random();
+        public Bishop(string name , int health, int minDamage , int maxDamage,int defence, int energy) : base(health, name)//медик
         {
+            MinDamage = minDamage;
+            MaxDamage = maxDamage;
+            Defence = defence;
+            Energy = energy;
+
         }
-        public void Hill(Unit unit)
+
+        public int Energy { get ; set ; }
+        public int MaxEnergy { get ; set ; }
+        public int MinDamage { get ; set ; }
+        public int MaxDamage { get ; set ; }
+        public int Defence { get ; set ; }
+        public int damaged { get ; set ; }
+
+        public void GetHealth(Unit unit, int _health)
         {
-             if (Energy != 0 && unit.Alive != false)
+            if (Energy != 0)
             {
                 if (unit.Health != unit.MaxHealth)
                 {
-                while (unit.Health < unit.MaxHealth && Energy > 0)
+                    while (unit.Health < unit.MaxHealth && Energy > 0)
                     {
                         unit.Health++;
                         Energy -= 2;
@@ -20,29 +36,26 @@
                 else { Console.WriteLine("Unit Max HP"); }
             }
             else { Console.WriteLine("Cannot be hill"); }
-            
 
         }
 
-           public void Hill(Zectof unit)
+        public int RandomDamage(int MinDamage, int MaxDamage)
         {
-
-            if (Energy != 0 && unit.Alive != false && unit.ArmorOFFsithBool  == true)
-            {
-                if (unit.Health != unit.MaxHealth)
-                {
-                while (unit.Health < unit.MaxHealth && Energy > 0)
-                {
-                unit.Health++;
-                Energy -= 2;
-                }
-                }
-                else { Console.WriteLine("Unit Max HP"); }
-            }
-            else { Console.WriteLine("Cannot be hellping"); }
-            
-
+            return random.Next(MinDamage - 1, MaxDamage);
+        }
+        public void InflictDamage(Unit unit)
+        {
+            TakeDamage(unit, RandomDamage(MinDamage, MaxDamage));
+        }
+        public void InflictDamage(Unit unit, int procent)
+        {
+            TakeDamage(unit, RandomDamage(MinDamage, MaxDamage) * procent / 100);
         }
 
+
+        public void ShowInfo()
+        {
+            Console.WriteLine($"Unit: {Name} Health: {Health}  Energy: {Energy} Min demage: {MinDamage} Max demage: {MaxDamage} Defence: {Defence}");
+        }
     }
 }
