@@ -7,45 +7,32 @@ using System.Xml.Linq;
 
 namespace StrategyUnits
 {
-    internal class Bishop : Unit, IHealthController, IArmoredUnit
+    internal class Bishop : Unit, IMagicUnit, IHealthController, IArmoredUnit, IHealingSkill
     {
         private int _heal;
         private int mana;
-
-        public int Health {get;set;}
-        public int Armor {get;set;}
-       public int MaxHealth { get;set;}
-        public int MaxMana { get ; set ; }
-        public int Damage { get;  set; }
-        object IHealthController.Name { get ; set ; }
-
+        public int HealPoints { get; set; }
+        public int EnergyPoints { get; set; }
+        public int EnergyLimit { get; set; }
+        public int Armor { get; set ; }
 
         public void Heal(IHealthController unit)
         {
-            unit.TakeHeal(44);
-            if (!IsAlive)
+            if (EnergyPoints / 2 < unit.maxHealth - unit.health)
             {
-                base.ShowInfo();
-                Console.WriteLine("умер");
-                return;
-            }
-
-            if (!unit.IsAlive)
-            {
-                Console.WriteLine($"{Name} не может лечить {unit.Name}, т.к. {unit.Name} мертв.");
-                return;
-            }
-
-            if (mana >= 2)
-            {
-                double lives = Math.Min(unit.RemovedHealth, mana / 2);
-                unit.GetHeal((int)lives);
-                mana -= Convert.ToInt32(Math.Ceiling(lives * 2));
-                Console.WriteLine($"{Name} восстановил {unit.Name} {lives} жизней.");
+                while (EnergyPoints > 0)
+                {
+                    unit.GetHeal(1);
+                    EnergyPoints -= 2;
+                }
             }
             else
             {
-                Console.WriteLine($"{Name} нет энергии для лечения {unit.Name}");
+                while (unit.health < unit.maxHealth)
+                {
+                    unit.GetHeal(1);
+                    EnergyPoints -= 2;
+                }
             }
         }
 
@@ -54,19 +41,17 @@ namespace StrategyUnits
             Health -= damage - Armor;
         }
 
-        public void TakeHeal(int healAmount)
+        public void Refill(int EnergyAmount)
         {
-            throw new NotImplementedException();
+            EnergyPoints += EnergyAmount;
         }
 
-        public void Attack(IHealthController unit)
-        {
-            unit.TakeDamage(Damage);
-        }
-
-        public Bishop(int health, string? name, int minDamage, int maxDamage, int defence, int energy) : base(health, name, minDamage, maxDamage, defence, energy)
+        public Bishop(int health, string? name, int minDamage, int maxDamage, int defence, int energy) : base(health, name)
         {
             _heal = 7;
+            Armor = defence;
+            EnergyPoints = energy;
+            EnergyLimit = energy;
         }
     }
 }

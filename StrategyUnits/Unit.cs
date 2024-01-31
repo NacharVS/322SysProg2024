@@ -7,7 +7,7 @@
         private int _currenthealth;
         private string? _name;
 
-        public int MaxHealth { get; private set; }
+        public int maxHealth { get; private set; }
         public bool IsAlive => _currenthealth > 0;
 
 
@@ -15,7 +15,7 @@
         {
             _currenthealth = health;
             _name = name;
-            MaxHealth = health;
+            maxHealth = health;
 
             HealthIncreasedEvent += health => Console.WriteLine($"У {Name} здоровье увеличилось до {health}");
             HealthDecreasedEvent += health => Console.WriteLine($"У {Name} здоровье уменьшилось до {health}");
@@ -42,9 +42,9 @@
                 }
                 else
                 {
-                    if (value > MaxHealth)
+                    if (value > maxHealth)
                     {
-                        _currenthealth = MaxHealth;
+                        _currenthealth = maxHealth;
                     }
                     else
                     {
@@ -61,7 +61,7 @@
         public int Defence { get; set; }
         public double RemovedHealth
         {
-            get => MaxHealth - Health;
+            get => maxHealth - Health;
         }
         public void Move()
         {
@@ -89,13 +89,12 @@
 
         public virtual void ShowInfo()
         {
-            Console.WriteLine($"Unit: {_name} Health: {_currenthealth} MaxHealth: {MaxHealth} Defence:{Defence}");
+            Console.WriteLine($"Unit: {_name} Health: {_currenthealth} MaxHealth: {maxHealth} Defence:{Defence}");
         }
         public event HealthChangedDelegate HealthIncreasedEvent;
 
         public event HealthChangedDelegate HealthDecreasedEvent;
     }
-
 }
     
 

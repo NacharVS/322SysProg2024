@@ -3,34 +3,63 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace StrategyUnits
 {
-    internal class Paladin : MagicUnit
+    internal class Paladin : Unit, IHealthController, IBattleUnit, IMagicUnit, ISaintSword, IArmoredUnit
     {
-        public Paladin(int health, string? name, int minDamage, int maxDamage, int defence, int energy) : base(health, name, minDamage, maxDamage, defence, energy)
+        public int attack { get; set; }
+        public int DamageMin { get; set; }
+        public int DamageMax { get; set; }
+        public int HealPoints { get; set; }
+        public int EnergyPoints { get; set; }
+        public int EnergyLimit { get; set; }
+        public int Armor { get; set; }
+        Random random = new Random();
+
+        public Paladin(int health, string? name, int minDamage, int maxDamage, int defence, int energy) : base(health, name)
         {
 
         }
         public void SaintRow(Unit unit)
         {
-            while (unit.Health > 0 & mana > 0)
-            {
-                unit.Health -= 2;
-                mana += 2;
-            }
+            InflictDamage(unit);
+            EnergyPoints -= 30;
         }
         public void Prayer()
         {
-            if (mana >= 10)
+            if (EnergyPoints > 10)
             {
-                mana -= 10;
-                GetHeal(20);
+                EnergyPoints -= 10;
+                health += 20;
+            }
+        }
+
+        public void TakeDamage(int damage)
+        {
+            if (Armor > Damage)
+            {
+                Armor -= (int)Damage;
             }
             else
             {
-                Console.WriteLine($"У {Name} недостаточно маны для заклинания Prayer");
+                Damage -= Armor;
+                Armor = 0;
+                health -= Damage;
             }
+        }
+        public void InflictDamage(IHealthControl unit)
+        {
+            unit.TakeDamage(CountDamage());
+        }
+        public double CountDamage()
+        {
+            return random.Next(DamageMin, DamageMax);
+        }
+        public void Refill(int EnergyAmount)
+        {
+            EnergyPoints += EnergyAmount;
         }
     }
 }
