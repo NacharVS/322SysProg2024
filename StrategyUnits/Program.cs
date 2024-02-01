@@ -19,7 +19,7 @@ footman2.ShowInfo();
 ps1.ShowInfo();
 footman2.ShowInfo();
 bishop1.ShowInfo();
-altar.RestoreEnergy(bishop1);
+//altar.RestoreEnergy(bishop1);
 bishop1.ShowInfo();
 palladin.SaintRow(bishop1);
 palladin.ShowInfo();

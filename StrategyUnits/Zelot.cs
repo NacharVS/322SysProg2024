@@ -7,12 +7,14 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace StrategyUnits
 {
-    internal class Zelot: Unit, IMagicUnit, IArmoredUnit, IHealthController, IBattleUnit, ICheckArmorOfFaithSkill
+    internal class Zelot : Unit, IArmoredUnit, IHealthController, IBattleUnit, ICheckArmorOfFaithSkill
     {
         public Zelot(int health, string? name, int minDamage, int maxDamage, int defence, int energy) : base(health, name)
         {
-            HealthIncreasedEvent += CheckArmorOfFaith;
-            HealthDecreasedEvent += CheckArmorOfFaith;
+            DamageMin = minDamage;
+            DamageMax = maxDamage;
+            Armor = defence;
+            EnergyLimit = energy;
         }
 
         public int HealPoints { get; set; }
@@ -22,6 +24,9 @@ namespace StrategyUnits
         public int attack { get; set; }
         public int DamageMin { get; set; }
         public int DamageMax { get; set; }
+        public int MaxHealth { get; set; }
+        public int Damage { get; set; }
+
         Random random = new Random();
         public void Attack(IHealthController unit)
         {
@@ -41,39 +46,42 @@ namespace StrategyUnits
             {
                 Damage -= Armor;
                 Armor = 0;
-                health -= Damage;
+                Health -= Damage;
             }
         }
-    }
 
         public void TakeHeal(int healAmount)
         {
             throw new NotImplementedException();
         }
-    public double CountDamage()
-    {
-        return random.Next(DamageMin, DamageMax);
-    }
 
-    public void InflictDamage(IHealthControl unit)
-    {
-        unit.TakeDamage(CountDamage());
-    }
 
-    private void CheckArmorOfFaith(double health)
+
+        public double CountDamage()
         {
-            if (health <= MaxHealth * 0.3)
+            return random.Next(DamageMin, DamageMax);
+        }
+
+        public void InflictDamage(IHealthController unit)
+        {
+            unit.TakeDamage((int)CountDamage());
+        }
+
+        private void CheckArmorOfFaith(double health)
+        {
+            if (health <= MaxHealth*0.3)
             {
 
-                Defence += Defence;
+                Armor += Armor;
             }
             else if (health > MaxHealth * 0.3)
             {
 
-                Defence -= Defence / 2;
+                Armor -= Armor / 2;
             }
 
         }
 
     }
+}
 

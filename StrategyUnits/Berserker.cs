@@ -11,8 +11,8 @@ namespace StrategyUnits
     {
         public Berserker(int health, string? name, int minDamage, int maxDamage, int defence) : base(health, name)
         {
-            DamageMin = damagemin;
-            DamageMax = damagemax;
+            DamageMin = minDamage;
+            DamageMax = maxDamage;
             Name = name;
             Armor = defence;
         }
@@ -28,6 +28,7 @@ namespace StrategyUnits
         public bool IsRage { get; set; }
         public int Damage { get; set; }
         public int Armor { get; set; }
+        public int MaxHealth { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public void Frenzy()
         {
@@ -79,7 +80,7 @@ namespace StrategyUnits
         }
         public void InflictDamage(IHealthController unit)
         {
-            unit.TakeDamage(CountDamage());
+            unit.TakeDamage((int)CountDamage());
         }
         public void Rage()
         {

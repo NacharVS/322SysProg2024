@@ -38,7 +38,7 @@ namespace StrategyUnits
 
         public override void ShowInfo()
         {
-            Console.WriteLine($"Unit: {Name} Health: {Health} MaxHealth: {MaxHealth} Damange:{DamangeMax}-{DamangeMin} Defence:{Defence}");
+            Console.WriteLine($"Unit: {Name} Health: {Health} MaxHealth: {maxHealth} Damange:{DamangeMax}-{DamangeMin} Defence:{Defence}");
         }
     }
 }

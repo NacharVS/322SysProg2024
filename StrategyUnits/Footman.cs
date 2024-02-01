@@ -1,6 +1,6 @@
 ﻿namespace StrategyUnits
 {
-    internal class Footman : Unit, IHealthController, IArmoredUnit, IBattleUnit, IRage
+    internal class Footman : Unit, IHealthController, IArmoredUnit, IBattleUnit, IRage 
     {
         Random random = new Random();
         public int attack { get; set; }
@@ -13,11 +13,12 @@
 
         public int Damage
         {
-            get { return _damage; }
-            set { _damage = value; }
+            get { return Armor; }
+            set { Armor = value; }
         }
 
-       
+        public int MaxHealth { get ; set ; }
+
         private bool Rage()
         {
             return Health <= MaxHealth * 0.5;
@@ -27,17 +28,6 @@
 
         }
 
-        public void InflictDamage(Unit unit)
-        {
-            unit.TakeDamage(CountDamage());
-        }
-        public  double CountDamage()
-        {
-            if (!IsRage)
-                return random.Next(DamageMin, DamageMax);
-            else
-                return random.Next(DamageMin, DamageMax);
-        }
 
         public void TakeDamage(int damage)
         {
@@ -49,10 +39,31 @@
             {
                 Damage -= Armor;
                 Armor = 0;
-                health -= Damage;
+                Health -= Damage;
             }
         }
+        public void InflictDamage(Unit unit)
+        {
+            TakeDamage((int)CountDamage());
+        }
+        public  double CountDamage()
+        {
+            if (!IsRage)
+                return random.Next(DamageMin, DamageMax);
+            else
+                return random.Next(DamageMin, DamageMax);
+        }
 
+
+        public void TakeHeal(int healAmount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Attack(IHealthController unit)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
