@@ -3,24 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using StrategyUnits.Interfaces;
 
 namespace StrategyUnits
 {
-    internal class Paladin : MagicUnit
+    internal class Paladin : Unit, IMilitoryUnit, IPrayer, ISacredBlow, IShowInfo
     {
-        private int _energyCost;
-        public int EnergyCost
+        public int EnergyCost { get; set; }
+        public int MaxDamage { get; set; }
+        public int MinDamage { get; set; }
+
+        private Random random = new Random();
+        public int RandomDamage => random.Next(MinDamage, MaxDamage);
+
+        public int MaxEnergy { get; set; }
+
+        public int EnergySpent => (MaxEnergy - Energy);
+
+        public int Energy { get; set; }
+
+        public Paladin(int health, string? name, int defence, int minDamage, int maxDamage, int energy) : base(health, name, defence)
         {
-            get { return _energyCost; }
-            set { _energyCost = value; }
+            MaxDamage = maxDamage;
+            MinDamage = minDamage;
+            Energy = energy;
+            MaxEnergy = energy;
+
         }
 
-        public Paladin(int health, string? name, int defence, int minDamage, int maxDamage, int energy) : base(health, name, defence, minDamage, maxDamage, energy)
-        {
-
-        }
-
-        public void SacredBlow(Unit unit)
+        public void SacredBlow(IHealthController unit)
         {
             EnergyCost = 20;
             int damage = 20;
@@ -34,7 +45,7 @@ namespace StrategyUnits
             }
             else
             {
-                unit.TakingDamage(damage);
+                unit.TakeDamage(damage);
                 Energy -= EnergyCost;
             }
         }
@@ -61,6 +72,28 @@ namespace StrategyUnits
                 }
             }
             
+        }
+
+        public void InflictDamage(IHealthController unit)
+        {
+            int damage = RandomDamage;
+            if (Dead)
+            {
+                Console.WriteLine($"Атака не может быть проведена - атакующий персонаж, {Name}, мертв");
+            }
+            else if (unit.Dead)
+            {
+                Console.WriteLine($"Атака не может быть проведена - персонаж, {unit.Name}, которого атакуют, мертв");
+            }
+            else
+            {
+                unit.TakeDamage(damage);
+            }
+        }
+
+        public void ShowInfo()
+        {
+            Console.WriteLine($"Unit: {Name} Health: {Health}/{MaxHealth} Energy: {Energy}/{MaxEnergy} Defece: {Defence} Damage: {MinDamage}-{MaxDamage}");
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Xml.Linq;
+using StrategyUnits.Interfaces;
 
 namespace StrategyUnits
 {

@@ -1,4 +1,6 @@
-﻿namespace StrategyUnits
+﻿using StrategyUnits.Interfaces;
+
+namespace StrategyUnits
 {
     internal class Unit : IHealthController
     {
@@ -7,7 +9,7 @@
         private int _health;
         public int Defence { get; set; }
         public bool Dead { get; set; }
-        public int MaxHealth { get; private set; }
+        public int MaxHealth { get; set; }
         public string? Name {  get; set; }
         public Unit(int health, string? name, int defence)
         {
@@ -85,7 +87,7 @@
 
         public void TakeHeal(int healAmount)
         {
-            throw new NotImplementedException();
+            Health += healAmount;
         }
 
         public event HealthChangedDelegate HealthIncreasedEvent;

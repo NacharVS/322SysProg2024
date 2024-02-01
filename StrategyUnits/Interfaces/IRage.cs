@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StrategyUnits
+namespace StrategyUnits.Interfaces
 {
-    internal interface IRage
+    internal interface IRage : IMilitoryUnit
     {
+        public bool RageInfo { get; set; }
         public void Rage();
     }
 }

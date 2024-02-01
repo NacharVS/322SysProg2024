@@ -1,26 +1,25 @@
 ﻿using System;
+using StrategyUnits.Interfaces;
 
 namespace StrategyUnits
 {
-    internal class Footman : Unit, IMilitoryUnit, IShowInfo, IRage
+    internal class Footman : Unit, IShowInfo, IRage
     {
-        private int _health;
-        private bool _rage = false;
-        private int _minDamage;
-        private int _maxDamage;
         public int MaxDamage { get; set; }
         public int MinDamage { get; set; }
+        public bool RageInfo {  get; set; }
 
         private Random random = new Random();
 
         public Footman(int health, string? name, int defence, int minDamage, int maxDamage) : base(health, name, defence)
         {
-            _health = health;
-            _minDamage = minDamage;
-            _maxDamage = maxDamage;
+            RageInfo = false;
+            MinDamage = minDamage;
+            MaxDamage = maxDamage;
         }
 
-        public int RandomDamage => random.Next(_minDamage, _maxDamage);
+
+        public int RandomDamage => random.Next(MinDamage, MaxDamage);
 
         public void InflictDamage(IHealthController unit)
         {
@@ -41,22 +40,21 @@ namespace StrategyUnits
 
         public void Rage()
         {
-            int damage = RandomDamage;
             if (Dead)
             {
                 Console.WriteLine($"Умение не может быть проведено - выбранный персонаж, {Name}, мертв");
             }
             else
             {
-                if (Health <= MaxHealth / 2 && !_rage)
+                if (Health <= MaxHealth / 2 && !RageInfo)
                 {
-                    _rage = true;
+                    RageInfo = true;
                     MaxDamage += MaxDamage / 2;
                     MinDamage += MinDamage / 2;
                 }
-                else if (Health > MaxHealth / 2 && _rage)
+                else if (Health > MaxHealth / 2 && RageInfo)
                 {
-                    _rage = false;
+                    RageInfo = false;
                     MaxDamage -= MaxDamage / 2;
                     MinDamage -= MinDamage / 2;
                 }
@@ -65,7 +63,7 @@ namespace StrategyUnits
 
         public void ShowInfo()
         {
-            Console.WriteLine($"Unit: {Name} Health: {Health}/{MaxHealth} Defece: {Defence} Damage: {_minDamage}-{_maxDamage}");
+            Console.WriteLine($"Unit: {Name} Health: {Health}/{MaxHealth} Defece: {Defence} Damage: {MinDamage}-{MaxDamage}");
         }
     }
 }

@@ -3,19 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using StrategyUnits.Interfaces;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace StrategyUnits
 {
-    internal class Bishop : MagicUnit
+    internal class Bishop : Unit, IHeal, IShowInfo
     {
-        public int EnergyCost;
-        public Bishop() : base(20, "Bishop", 10, 1, 3, 60)
+        public Bishop(int health, string? name, int defence, int energy) : base(health, name, defence)
         {
-            
+            Energy = energy;
+            MaxEnergy = energy;
+            EnergyCost = 2;
         }
+        public int EnergyCost { get; set; }
+        public int MaxEnergy { get; set; }
+        public int EnergySpent => (MaxEnergy - Energy);
+        public int Energy { get; set; }
 
-        public void InFlickHeal(Unit unit)
+        public void Healing(IHealthController unit)
         {
             if (Dead)
             {
@@ -30,17 +36,21 @@ namespace StrategyUnits
                 if (unit.MaxHealth-unit.Health <= Energy / 2)
                 {
                     EnergyCost = unit.MaxHealth - unit.Health;
-                    unit.Health += EnergyCost;
+                    unit.TakeHeal(EnergyCost);
                     Energy -= EnergyCost*2;
                 }
                 else
                 {
                     EnergyCost = Energy / 2;
-                    unit.Health += EnergyCost;
+                    unit.TakeHeal(EnergyCost);
                     Energy -= EnergyCost*2;
                 }
             }
         }
-        
+
+        public void ShowInfo()
+        {
+            Console.WriteLine($"Unit: {Name} Health: {Health}/{MaxHealth} Energy: {Energy}/{MaxEnergy} Defece: {Defence}");
+        }
     }
 }
