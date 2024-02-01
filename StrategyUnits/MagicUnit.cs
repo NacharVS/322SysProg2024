@@ -10,7 +10,9 @@ namespace StrategyUnits
     internal class MagicUnit : Unit
     { 
         private int _mana;
-        public MagicUnit(int health, string? name, int _damangemax, int _damangemin, int mana, int defense) : base(health, name, _damangemax, _damangemin, defense)
+        public int MaxDamage { get;set; }
+        public int MinDamage { get; set; }
+        public MagicUnit(int health, string? name, int _damangemax, int _damangemin, int mana, int defense) : base(health, name)
         {
             MaxMana = mana;
             _mana = mana;
@@ -44,9 +46,9 @@ namespace StrategyUnits
             }
         }
         public int RemovedMana { get => MaxMana - mana; }
-        public override void ShowInfo()
+        public  void ShowInfo()
         {
-            Console.WriteLine($"Unit: {Name} Health: {Health} MaxHealth: {MaxHealth} Energy:{mana} MaxEnergy:{MaxMana} DamangeMax:{DamangeMax} DamangeMin:{DamangeMin} Defence:{Defence} ");
+            Console.WriteLine($"Unit: {Name} Health: {Health} MaxHealth: {maxHealth} Energy:{mana} MaxEnergy:{MaxMana} DamangeMax:{MaxDamage} DamangeMin:{MinDamage} Defence:{Defence} ");
         }
     }
 }

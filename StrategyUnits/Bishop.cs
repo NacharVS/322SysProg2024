@@ -9,8 +9,8 @@ namespace StrategyUnits
 {
     internal class Bishop : Unit,  IHealthController, IArmoredUnit, IHealingSkill
     {
-        private int _heal;
-        private int mana;
+     
+       
         public int HealPoints { get; set; }
         public int EnergyPoints { get; set; }
         public int EnergyLimit { get; set; }
@@ -54,7 +54,7 @@ namespace StrategyUnits
 
         public Bishop(int health, string? name, int minDamage, int maxDamage, int defence, int energy) : base(health, name)
         {
-            _heal = 7;
+         
             Armor = defence;
             EnergyPoints = energy;
             EnergyLimit = energy;
