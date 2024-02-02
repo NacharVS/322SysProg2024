@@ -48,6 +48,6 @@ Berserker berserker1 = barrack.GetDrykinRahimi();
 berserker.ShowInfo();
 berserker1.ShowInfo();
 
-berserker.InflictDamage(berserker1);
+berserker.InflictDamage(pl);
 
 

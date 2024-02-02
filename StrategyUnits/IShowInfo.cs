@@ -9,6 +9,7 @@ namespace StrategyUnits
     internal interface IShowInfo
     {
         public void ShowInfo();
+        
 
     }
 }

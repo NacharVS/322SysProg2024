@@ -10,6 +10,6 @@ namespace StrategyUnits
     {
        
         int damaged { get; set; }
-        public int RandomDamage(int MinDamage, int MaxDamage );
+        public int RandomDamage();
     }
 }

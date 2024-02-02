@@ -32,17 +32,17 @@ namespace StrategyUnits
             }
         }
 
-        public int RandomDamage(int MinDamage, int MaxDamage)
+        public int RandomDamage()
         {
             return random.Next(MinDamage - 1, MaxDamage);
         }
         public void InflictDamage(Unit unit)
         {
-            TakeDamage(unit, RandomDamage(MinDamage, MaxDamage));
+            TakeDamage(unit, RandomDamage());
         }
         public void InflictDamage(Unit unit,  int procent)
         {
-            TakeDamage(unit, RandomDamage(MinDamage, MaxDamage) * procent / 100);
+            TakeDamage(unit, RandomDamage() * procent / 100);
         }
         public void ShowInfo()
         {
