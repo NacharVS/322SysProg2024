@@ -1,6 +1,6 @@
 ﻿namespace StrategyUnits.Interfaces
 {
-    internal interface IMilitoryUnit
+    internal interface IMilitoryUnit :IHealthController
     {
         public int MaxDamage { get; set; }
         public int MinDamage { get; set; }

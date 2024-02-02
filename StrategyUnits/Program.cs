@@ -8,6 +8,7 @@ Berserker berserker = barrac.CreateBerserker();
 Bishop bishop = barrac.CreateBishop();
 Paladin paladin = barrac.CreatePalladin();
 Zealot zealot = barrac.CreateZealot();
+Church church = new Church();
 
 peasant.HealthDecreasedEvent += DropHealth;
 peasant.HealthIncreasedEvent += AddHealth;
@@ -33,6 +34,8 @@ Console.WriteLine();
 footman.InflictDamage(paladin);
 paladin.ShowInfo();
 paladin.Prayer();
+paladin.ShowInfo();
+church.EnergyRegen(paladin);
 paladin.ShowInfo();
 
 static void AddHealth(int MethHealth)
