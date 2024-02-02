@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits.Interfaces
 {
-    internal interface IBattleUnit
+    internal interface IMagicUnit
     {
-        public int DamageMin { get; set; }
+        public int Energy { get; set; }
+        public int EnergyMax { get; set; }
+        public int RemoveEnergy => EnergyMax - Energy;
 
-        public int DamageMax { get; set; }
-        public void Attack(IHealthControll unit);
     }
 }

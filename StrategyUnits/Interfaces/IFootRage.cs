@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits.Interfaces
 {
-    internal interface IHealerUnit
+    internal interface IFootRage
     {
-       // public int Heal { get; set; }
-        public void Healing (IHealthControll unit);
+        public void Rage();
     }
 }

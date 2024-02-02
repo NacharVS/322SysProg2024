@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits.Interfaces
 {
-    internal interface IBattleUnit
+    internal interface IFaith
     {
-        public int DamageMin { get; set; }
+        public bool IsArmorFaith { get; set; }
 
-        public int DamageMax { get; set; }
-        public void Attack(IHealthControll unit);
+        public void ArmorFaith(int health);
     }
 }
