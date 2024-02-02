@@ -1,6 +1,6 @@
 ﻿namespace StrategyUnits
 {
-    internal class Unit
+    internal class Unit : IHealController
     {
 
         public delegate void HealthChangedDelegate(double health);
@@ -9,7 +9,7 @@
 
         public int _MaxHealth;
         public int Defence { get; set; }
-        public int MaxHealth { get; private set; }
+        public int MaxHealth { get;  set; }
         
 
         public Unit(int health,  string? name)
@@ -36,7 +36,7 @@
             {
                 return _health;
             }
-            private set
+            set
             {
                 if (value < 0)
                 {
