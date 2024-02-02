@@ -24,5 +24,9 @@ namespace StrategyUnits
         {
             return new Paladin(70, "Palladin", 7, 11, 16, 80);
         }
+        public Bishop CreateBishop()
+        {
+            return new Bishop(50, "Bishop", 9, 90);
+        }
     }
 }

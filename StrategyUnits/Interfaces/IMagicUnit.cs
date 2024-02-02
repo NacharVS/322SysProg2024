@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StrategyUnits.Interfaces
+﻿namespace StrategyUnits.Interfaces
 {
-    internal interface IMagicUnit
+    internal interface IMagicUnit : IHealthController
     {
         public int MaxEnergy { get; set; }
         public int EnergySpent { get; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StrategyUnits.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -40,29 +41,29 @@ namespace StrategyUnits
             energyReserve = 10;
         }
 
-        public void EnergyRegen(MagicUnit magicUnit)
+        public void EnergyRegen(IMagicUnit unit)
         {
-            if (magicUnit.Dead)
+            if (unit.Dead)
             {
-                Console.WriteLine($"Церковь не может восстановить энергию - персонаж, {magicUnit.Name}, мертв");
+                Console.WriteLine($"Церковь не может восстановить энергию - персонаж, {unit.Name}, мертв");
             }
             else
             {
                 if (EnergyChurch > 0)
                 {
-                    if (magicUnit.EnergySpent >= EnergyChurch * energyReserve)
+                    if (unit.EnergySpent >= EnergyChurch * energyReserve)
                     {
-                        magicUnit.Energy += EnergyChurch * energyReserve;
+                        unit.Energy += EnergyChurch * energyReserve;
                         EnergyChurch = 0;
                     }
                     else
                     {
                         Restoration = 1;
-                        while (Restoration * energyReserve < magicUnit.EnergySpent)
+                        while (Restoration * energyReserve < unit.EnergySpent)
                         {
                             Restoration++;
                         }
-                        magicUnit.Energy += Restoration*energyReserve;
+                        unit.Energy += Restoration*energyReserve;
                         EnergyChurch -= Restoration;
                     }
                 }
