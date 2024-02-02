@@ -9,6 +9,7 @@ namespace StrategyUnits
 {
     internal class Zelot : Unit, IArmoredUnit, IHealthController, IBattleUnit, ICheckArmorOfFaithSkill
     {
+        private bool ArmorOfFaith;
         public Zelot(int health, string? name, int minDamage, int maxDamage, int defence, int energy) : base(health, name)
         {
             DamageMin = minDamage;
@@ -69,19 +70,23 @@ namespace StrategyUnits
 
         private void CheckArmorOfFaith(double health)
         {
-            if (health <= MaxHealth*0.3)
+            if (health > maxHealth * 0.3 && ArmorOfFaith)
             {
-
-                Armor += Armor;
+                ArmorOfFaith = false;
+                Armor = Armor - Armor / 2;
             }
-            else if (health > MaxHealth * 0.3)
+            else if (health <= maxHealth * 0.3 && !ArmorOfFaith)
             {
-
-                Armor -= Armor / 2;
+                ArmorOfFaith = true;
+                Armor = Armor * 2;
             }
 
         }
 
+        void ICheckArmorOfFaithSkill.CheckArmorOfFaith(double _health)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

@@ -8,6 +8,6 @@ namespace StrategyUnits
 {
     internal interface ICheckArmorOfFaithSkill
     {
-
+        public void CheckArmorOfFaith(double _health);
     }
 }

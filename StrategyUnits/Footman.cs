@@ -19,9 +19,12 @@
 
         public int MaxHealth { get ; set ; }
 
-        private bool Rage()
+        public void Rage()
         {
-            return Health <= MaxHealth * 0.5;
+            if( Health <= MaxHealth * 0.5)
+            {
+                IsRage = true;
+            }
         }
         public Footman(int health, string? name, int minDamage, int maxDamage, int defence) : base(health, name)
         {

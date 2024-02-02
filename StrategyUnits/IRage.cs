@@ -8,6 +8,6 @@ namespace StrategyUnits
 {
     internal interface IRage
     {
-       
+        public void Rage();
     }
 }
