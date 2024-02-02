@@ -8,8 +8,7 @@ namespace StrategyUnits.Interfaces
 {
     internal interface IFaith
     {
-        public bool IsArmorFaith { get; set; }
 
-        public void ArmorFaith(int health);
+        public void ArmorOfFaiths(int health);
     }
 }

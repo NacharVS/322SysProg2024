@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StrategyUnits
+namespace StrategyUnits.Useless
 {
     internal class MilitaryUnit : Unit
     {
@@ -18,7 +18,7 @@ namespace StrategyUnits
         }
         public int AmountDamage()
         {
-            return random.Next(_damageMIN , _damageMAX + 1);
+            return random.Next(_damageMIN, _damageMAX + 1);
         }
 
         public virtual void InflictedDamage(Unit unit)
@@ -33,20 +33,20 @@ namespace StrategyUnits
             {
                 Console.WriteLine("Юнит мертв, действие невозможно!");
             }
-            
+
         }
         public delegate void InflictDamageDelegate(int damage, int health, string nameVictim, string nameCausedDamage);
         public event InflictDamageDelegate InflictDamageEvent;
 
     }
 }
-        //public int DamageMinimum
-        //{
-        //    get { return _damageMIN; }
-        //    set { _damageMIN = value; }
-        //}
-        //public int DamageMaximum
-        //{
-        //    get { return _damageMAX; }
-        //    set { _damageMAX = value; }
-        //}
+//public int DamageMinimum
+//{
+//    get { return _damageMIN; }
+//    set { _damageMIN = value; }
+//}
+//public int DamageMaximum
+//{
+//    get { return _damageMAX; }
+//    set { _damageMAX = value; }
+//}

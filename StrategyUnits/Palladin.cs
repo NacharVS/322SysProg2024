@@ -3,24 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using StrategyUnits.Interfaces;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace StrategyUnits
 {
-    internal class Palladin : MagicUnit
+    internal class Palladin : Unit, IArmoredUnit, IMilitaryUnit, IMagicUnit, ISaintKick, IPrayer
     {
-        public Palladin(int health, string? name, int minDamage, int maxDamage, int defence) : base(health, name, minDamage, maxDamage, defence)
+        public int DamageMin { get; set; }
+        public int DamageMax { get; set; }
+        public int Energy { get ; set; }
+        public int EnergyMax { get ; set ; }
+
+        
+
+        private Random random = new Random();
+
+        public Palladin(int health, string? name, int defence) : base(health, name, defence)
         {
         }
 
-      
-        public void SaintKick(Unit unit)
+        public int AmountDamage()
+        {
+            return random.Next(DamageMin, DamageMax + 1);
+        }
+        public void SaintKick(IHealthControll unit)
         {
            
            if (Energy >= 3)
             {
                 Energy -= 3;
-                unit.GetDamage(AmountDamage() * 2);
+                unit.TakeDamage(AmountDamage() * 2);
                 
             }
         }
@@ -33,7 +46,12 @@ namespace StrategyUnits
                 
             }
         }
-        
+
+        public void Attack(IHealthControll unit)
+        {
+            unit.TakeDamage(AmountDamage());
+        }
+
     }
 }
   //public void AttackMag(MagicUnit magicunit)

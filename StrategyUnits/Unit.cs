@@ -1,6 +1,8 @@
-﻿namespace StrategyUnits
+﻿using StrategyUnits.Interfaces;
+
+namespace StrategyUnits
 {
-    internal class Unit
+    internal class Unit : IHealthControll
     {
         private int Currenthealth;
         private string? _name;
@@ -62,6 +64,9 @@
             }
         }
 
+        public int HealthMax { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        bool IHealthControll.Alive { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         public void Move()
         {
             Console.WriteLine("Is moving");
@@ -92,6 +97,17 @@
             if (CountHeal > 0)
                 Health += CountHeal;
         }
+
+        public void TakeDamage(int damage)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TakeHeal(int healAmount)
+        {
+            throw new NotImplementedException();
+        }
+
         public delegate void HealthDelegate(int Health);
         public event HealthDelegate OnHealthIncreased;
         public event HealthDelegate OnHealthDecreased;

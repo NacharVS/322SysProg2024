@@ -12,7 +12,8 @@ namespace StrategyUnits.Interfaces
         public int HealthMax { get; set; }
         public bool Alive { get; set; }
         public void TakeDamage(int damage);
-        public int RemoveHealth => HealthMax - Health;
+        public int DelHealth => HealthMax - Health;
         public void TakeHeal(int healAmount);
+        public string Name { get; set; }
     }
 }

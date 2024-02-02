@@ -1,14 +1,32 @@
-﻿using static System.Net.Mime.MediaTypeNames;
+﻿using StrategyUnits.Interfaces;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace StrategyUnits
 {
-    internal class Footman : MilitaryUnit
+    internal class Footman : Unit, IMilitaryUnit, IArmoredUnit, IFootRage
     {
-        //private int _Damage;
+        public int DamageMin { get; set ; }
+        public int DamageMax { get; set; }
 
-        public Footman(int health, string? name, int minDamage, int maxDamage, int defence) : base(health, name,  minDamage,  maxDamage, defence)
+        public void Attack(IHealthControll unit)
         {
+            unit.TakeDamage(AmountDamage());
         }
+        private Random random = new Random();
+
+        public Footman(int health, string? name, int defence, int minDamage, int maxDamage ) : base(health, name, defence)
+        {
+            DamageMin = minDamage;
+            DamageMax = maxDamage;
+            Defence = defence;
+        }
+
+        public int AmountDamage()
+        {
+            return random.Next(DamageMin, DamageMax + 1);
+        }
+
+
         public void Rage() //Ярость
         {
             int damage = AmountDamage();

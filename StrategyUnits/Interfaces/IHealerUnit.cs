@@ -8,7 +8,7 @@ namespace StrategyUnits.Interfaces
 {
     internal interface IHealerUnit
     {
-       // public int Heal { get; set; }
-        public void Healing (IHealthControll unit);
+        // public int Heal { get; set; }
+        public void Heal(IHealthControll unit);
     }
 }
