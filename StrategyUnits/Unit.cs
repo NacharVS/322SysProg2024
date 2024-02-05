@@ -2,32 +2,22 @@
 
 namespace StrategyUnits
 {
-    internal class Unit
+    internal class Unit : IHealthControl, IShowInfo
     {
-        private int _currenthealth;
+        private int _health;
+        private int _maxhealth;
         private string? _name;
-        private int _energy;
+       
         public int _altar = 5000;
-        public int _maxenergy;
-
-        public int MaxHealth { get;  set; }
         
-        public Unit(int health, int mana, int maxmana, string? name,int defence)
-        {
-            _currenthealth = health;
-            _name = name;
-            MaxHealth = health;
-            _energy = mana;
-            _maxenergy = maxmana;
-            _defence = defence;
-        }
 
-        public int _defence;
-        public Unit(int health, int defence, string? name)
+        public int MaxHealth { get; set; }
+
+        public Unit(int health, string? name)
         {
-            _currenthealth = health;
             _name = name;
-            _defence = defence;
+            Health = health;
+            MaxHealth = _health;
         }
 
         public string Name
@@ -35,12 +25,13 @@ namespace StrategyUnits
             get { return _name; }
             set { _name = value; }
         }
-        public int MaxMana
-        {
-            get { return _maxenergy; }
-            set { _maxenergy = value; }
+      
+        public int Health { get; set; }
+        public int maxhealth 
+        { 
+            get { return _maxhealth; } 
+            set { _maxhealth = value; } 
         }
-
         public int Health
         {
             get

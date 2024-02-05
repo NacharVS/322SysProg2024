@@ -6,17 +6,33 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class Paladin : MagicUnit
+    internal class Paladin : Unit, IMagicUnit, IPrayer, ISaintHeal, IHealthControl
     {
-        public Paladin() : base(80,4,5,"Palladin",6,100)
+        Random random = new Random();
+        public int Energy { get; set; }
+        public int MaxEnergy { get; set; }
+        public int MinDamage { get; set; }
+        public int MaxDamage { get; set; }
+        public int Defence { get; set; }
+        public int damaged { get; set; }
+        public Palladin(int health, int mindamage, int maxdamage, string name, int defence, int energy) : base(health, name)
         {
+            MinDamage = mindamage;
+            MaxDamage = maxdamage;
+            Defence = defence;
+            Energy = energy;
         }
 
-        public Paladin(int health, int mindamage, int maxdamage, string? name, int defence, int energy) : base(health, mindamage, maxdamage, name, defence, energy)
+        public int RandomDamage(int MinDamage, int MaxDamage)
         {
+            return random.Next(MinDamage - 1, MaxDamage);
+        }
+        public void InflictDamage(Unit unit)
+        {
+            TakeDamage(unit, RandomDamage(MinDamage, MaxDamage));
         }
 
-        
+
         public void Prayer()
         {
             if (Energy >= 10)
@@ -49,11 +65,10 @@ namespace StrategyUnits
         }
 
 
-        public override void ShowInfo()
+        public void ShowInfo()
         {
-            Console.WriteLine($" Health: {Health}   Min demage: {_mindamage} Max demage: {_maxdamage} Unit: {Name} Defence: {_defence} Energy: {Energy} altar: {_altar}");
+            Console.WriteLine($"Unit: {Name} Health: {Health}  Energy: {Energy} Min demage: {MinDamage} Max demage: {MaxDamage} Defence: {Defence}");
         }
-        
     }
 }
 

@@ -1,31 +1,31 @@
 ﻿namespace StrategyUnits
 {
-    internal class Footman : Unit
+    internal class Footman : Unit, IMilitaryUnit, IInflictDamage, IDefence, IRandomDamgeController, IRage
     {
-        private int _damage;
+        Random random = new Random();
+
+        public int Defence { get; set; }
+        public int MinDamage { get; set; }
+        public int MaxDamage { get; set; }
+        public int damaged { get; set; }
 
 
-
-        public int Damage
+        public Footman(int health, int mindamage, int maxdamage, string? name, int defence) : base(health, name)
         {
-            get { return _damage; }
-            set { _damage = value; }
-        }
-
-        public Footman() : base(60, 25, 25, "Footman", 4)
-        {
-            _damage = 7;
-        }
-
-        public Footman(int health, int mindamage, int maxdamage, string? name, int defence) : base(health, mindamage, maxdamage, name, defence)
-        {
+            Defence = defence;
+            MinDamage = mindamage;
+            MaxDamage = maxdamage;
         }
 
 
 
+        public int RandomDamage(int MinDamage, int MaxDamage)
+        {
+            return random.Next(MinDamage - 1, MaxDamage);
+        }
         public void InflictDamage(Unit unit)
         {
-            unit.Health -= _damage;
+            TakeDamage(unit, RandomDamage(MinDamage, MaxDamage));
         }
 
 
@@ -43,6 +43,10 @@
             }
 
             Console.WriteLine("Rage activated");
+        }
+        public void ShowInfo()
+        {
+            Console.WriteLine($"Unit: {Name} Health: {Health}  Min demage: {MinDamage} Max demage: {MaxDamage} Defence: {Defence} ");
         }
     }
 }

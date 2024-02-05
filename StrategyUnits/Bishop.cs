@@ -7,58 +7,36 @@ using System.Xml.Linq;
 
 namespace StrategyUnits
 {
-    internal class Bishop : Unit
+    internal class Bishop : Unit, IMagicUnit, IHealthControl
     {
         private int _heal;
-
+        Random random = new Random();
         public int Heal
         {
             get { return _heal; }
             set { _heal = value; }
-        }
-        public Bishop() : base(25, 60, 60, "Bishop",4)
+        }  
+        public Bishop( int health, int minDamage, int maxDamage, string name, int defence, int energy) : base(health, name)
         {
-            _heal = 7;
-            Energy = 40;
-            MaxEnergy = Energy;
+            MinDamage = minDamage;
+            MaxDamage = maxDamage;
+            Defence = defence;
+            Energy = energy;
         }
-        public void InflictHeal(Unit unit)
-        {
-            while (unit.Health < unit.MaxHealth)
-            {
-                unit.Health++;
-                Altar(2);
-            }
-        }
+        public int Energy { get; set; }
+        public int MaxEnergy { get; set; }
+        public int MinDamage { get; set; }
+        public int MaxDamage { get; set; }
+        public int Defence { get; set; }
+        public int damaged { get; set; }
+        
 
-        private int _energy;
-        public int MaxEnergy;
 
-        public int Energy
+
+
+        public void ShowInfo()
         {
-            get
-            {
-                return _energy;
-            }
-            set
-            {
-                if (value < 0)
-                {
-                    _energy = 0;
-                }
-                else
-                {
-                    if (_energy > MaxHealth)
-                        _energy = MaxHealth;
-                    else
-                        _energy = value;
-                }
-                _energy = value;
-            }
-        }
-        public override void ShowInfo()
-        {
-            Console.WriteLine($"Unit: {Name} Health: {Health} MaxHealth: {MaxHealth} Energy:{Energy} MaxEnergy:{MaxEnergy} altar: {_altar}");
+            Console.WriteLine($"Unit: {Name} Health: {Health}  Energy: {Energy} Min demage: {MinDamage} Max demage: {MaxDamage} Defence: {Defence}");
         }
     }
 }
