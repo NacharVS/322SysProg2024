@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class IPrayer
+    internal interface IPrayer
     {
+        public void Prayer();
     }
 }

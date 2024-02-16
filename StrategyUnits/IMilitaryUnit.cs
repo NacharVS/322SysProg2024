@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class IMilitaryUnit
+    internal interface IMilitaryUnit
     {
+        public int MinDamage { get; set; }
+        public int MaxDamage { get; set; }
+        public void ShowInfo();
     }
 }

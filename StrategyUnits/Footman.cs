@@ -39,7 +39,7 @@
 
             if (Health < MaxHealth / 2) 
             {
-                _damage += _damage / 2; 
+                damaged += damaged / 2; 
             }
 
             Console.WriteLine("Rage activated");

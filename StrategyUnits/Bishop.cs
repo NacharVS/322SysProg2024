@@ -30,13 +30,33 @@ namespace StrategyUnits
         public int Defence { get; set; }
         public int damaged { get; set; }
         
-
+        
 
 
 
         public void ShowInfo()
         {
             Console.WriteLine($"Unit: {Name} Health: {Health}  Energy: {Energy} Min demage: {MinDamage} Max demage: {MaxDamage} Defence: {Defence}");
+        }
+
+        public void InflictDamage(Unit unit)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int RandomDamage(int MinDamage, int MaxDamage)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void GetHealth(Footman footman2)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void GetHealth(Peasant ps1)
+        {
+            throw new NotImplementedException();
         }
     }
 }

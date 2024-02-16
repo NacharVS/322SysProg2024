@@ -16,7 +16,7 @@ namespace StrategyUnits
         {
             if (Health < 0.3 * MaxHealth)
             {
-                _defence += _defence;
+                Defence += Defence;
                 Console.WriteLine("Armor  activated");
             }
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class IShowInfo
+    internal interface IShowInfo
     {
         public void ShowInfo();
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class IFrenzy
+    internal interface IFrenzy
     {
         public bool berserkmode { get; set; }
         public void Frenzy();

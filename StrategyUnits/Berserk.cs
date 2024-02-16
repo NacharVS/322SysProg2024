@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class Berserk : Unit,IFrenzy, IInflictDamage, IDefence, IRandomDamgeController, IMilitaryUnit
+    internal class Berserk : Unit, IFrenzy ,IInflictDamage, IDefence, IRandomDamgeController, IMilitaryUnit,IHealthControl
     {
         Random random = new Random();
-        public Berserk(int health, int mindamage, int maxdamage, string? name, int defence) : base(health, mindamage, maxdamage, name, defence)
+        public Berserk(int health, int mindamage, int maxdamage, string? name, int defence) : base(health, name)
         {
             MinDamage = mindamage;
             MaxDamage = maxdamage;
@@ -29,6 +29,8 @@ namespace StrategyUnits
         public int damaged { get; set; }
         public int MinDamage { get; set; }
         public int MaxDamage { get; set; }
+        bool IFrenzy.berserkmode { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         public int RandomDamage(int MinDamage, int MaxDamage)
         {
             return random.Next(MinDamage - 1, MaxDamage);

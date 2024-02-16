@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class IRage
+    internal interface IRage
     {
         public void Rage();
     }

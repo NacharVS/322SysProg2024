@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class IMagicUnit
+    internal interface IMagicUnit : IMilitaryUnit, IInflictDamage, IDefence, IRandomDamgeController
     {
+        public int Energy { get; set; }
+        public int MaxEnergy { get; set; }
     }
 }

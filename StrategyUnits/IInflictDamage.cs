@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class IInflictDamage
+    internal interface IInflictDamage
     {
         public void InflictDamage(Unit unit);
     }

@@ -1,11 +1,11 @@
 ﻿using StrategyUnits;
 
 Barracs barracs = new Barracs();    
-Footman footman = new Footman();
-Footman footman2 = new Footman();
+Footman footman = barracs.CreateFootman();
+Footman footman2 = barracs.CreateRecruit();
 Peasant ps1 = new Peasant();
-Bishop bishop1 = new Bishop();
-Paladin pl = new Paladin();
+Bishop bishop1 = barracs.CreateBishop();
+Paladin pl = barracs.CreateAncient();
 Berserk berserk = barracs.CreateLegendary();
 Zelot zel = barracs.CreateEpic();
 
@@ -15,8 +15,8 @@ footman.InflictDamage(ps1);
 footman.InflictDamage(footman2);
 ps1.ShowInfo();
 footman2.ShowInfo();
-bishop1.InflictHeal(footman2);
-bishop1.InflictHeal(ps1);
+bishop1.GetHealth(footman2);
+bishop1.GetHealth(ps1);
 footman.ShowInfo();
 ps1.ShowInfo();
 bishop1.ShowInfo();

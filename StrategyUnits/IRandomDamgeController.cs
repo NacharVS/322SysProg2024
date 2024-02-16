@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class IRandomDamgeController
+    internal interface IRandomDamgeController
     {
         int damaged { get; set; }
         public int RandomDamage(int MinDamage, int MaxDamage);

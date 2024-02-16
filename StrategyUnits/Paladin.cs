@@ -15,7 +15,7 @@ namespace StrategyUnits
         public int MaxDamage { get; set; }
         public int Defence { get; set; }
         public int damaged { get; set; }
-        public Palladin(int health, int mindamage, int maxdamage, string name, int defence, int energy) : base(health, name)
+        public Paladin(int health, int mindamage, int maxdamage, string name, int defence, int energy) : base(health, name)
         {
             MinDamage = mindamage;
             MaxDamage = maxdamage;
@@ -55,7 +55,7 @@ namespace StrategyUnits
         {
             if (Energy>=25)
             {
-                _defence += 3;
+                Defence += 3;
                 Energy -= 25;
             }
             else

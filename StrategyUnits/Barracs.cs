@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -42,6 +43,11 @@ namespace StrategyUnits
         public Zelot CreateEpic()
         {
             return new Zelot(70, 12, 13, "Epic", 2,200);
+        }
+
+        public Bishop CreateBishop()
+        {
+            return new Bishop(40, 5, 6, "Bishop", 2,90);
         }
     }
 }

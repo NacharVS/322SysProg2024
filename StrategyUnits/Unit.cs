@@ -8,7 +8,7 @@ namespace StrategyUnits
         private int _maxhealth;
         private string? _name;
        
-        public int _altar = 5000;
+        
         
 
         public int MaxHealth { get; set; }
@@ -32,28 +32,6 @@ namespace StrategyUnits
             get { return _maxhealth; } 
             set { _maxhealth = value; } 
         }
-        public int Health
-        {
-            get
-            {
-                return _currenthealth;
-            }
-            set
-            {
-                if (value < 0)
-                {
-                    _currenthealth = 0;
-                }
-                else
-                {
-                    if(_currenthealth > MaxHealth)
-                        _currenthealth = MaxHealth;
-                    else
-                        _currenthealth = value;
-                }
-                _currenthealth = value;
-            }
-        }
 
       
         public void Move()
@@ -63,13 +41,18 @@ namespace StrategyUnits
 
         public virtual void ShowInfo() 
         {
-            Console.WriteLine($"Unit: {_name} Health: {_currenthealth} MaxHealth {MaxHealth} Mana: {_energy} altar: {_altar}");
+            Console.WriteLine($"Unit: {_name} Health: {Health} MaxHealth {MaxHealth}");
         }
 
-        public void Altar(int Amount)
+        public void TakeDamage(Unit unit, int _damage)
         {
-            _energy += Amount;
-            _altar -= Amount;
+            throw new NotImplementedException();
+        }
+
+        public void GetHealth(Unit unit, int _health)
+        {
+
+           unit.Health += _health;
         }
     }
 }

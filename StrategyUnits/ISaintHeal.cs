@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StrategyUnits
 {
-    internal class ISaintHeal
+    internal interface ISaintHeal
     {
         public void SaintHeal();
     }
