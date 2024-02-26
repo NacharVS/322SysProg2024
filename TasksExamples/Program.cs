@@ -1,22 +1,17 @@
-﻿Task task = new Task(() =>
+﻿async void FactorialAsync()
 {
-    Console.WriteLine("Task Started");
-    for (int i = 0; i < 10; i++)
+    await Task.Run(() =>
     {
-        Console.WriteLine($"task: {i}");
-        Thread.Sleep(500);
-    }
-    Console.WriteLine("Task Ended");
-});
-task.Start();
-
-
-Console.WriteLine("Main started");
-
-for (int i = 0; i < 5; i++)
-{
-    Console.WriteLine($"main: {i}");
-    Thread.Sleep(500);
+        
+        int res = 1;
+        for (int i = 1; i < 10; i++)
+        {
+            res *= i;
+            Thread.Sleep(500);
+            Console.WriteLine(res);
+        }
+    });
 }
-task.Wait();
-Console.WriteLine("Main ended");
+FactorialAsync();
+Console.ReadLine();
+Console.ReadLine();
