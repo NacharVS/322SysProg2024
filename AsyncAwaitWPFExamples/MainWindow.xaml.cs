@@ -16,28 +16,38 @@ using System.Windows.Shapes;
 
 namespace AsyncAwaitWPFExamples
 {
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+        int a = 0;
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            while (File.Exists(@"C:\Users\Vadim.Nacharov\Desktop\testdoc.txt"))
-            {
-
-            }
-            MessageBox.Show("File is deleted or changed!");
+            lbl1.Content = await Task.Run(()=> MethodAsync());
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            lbl1.Content = "qqqqqqqqqqqqq";
+
+            lbl1.Content = a++.ToString();
+        }
+
+        string MethodAsync()
+        {
+   
+                while (File.Exists(@"C:\Users\Vadim.Nacharov\Desktop\testdoc.txt"))
+                {
+
+                }
+                
+            return "File changed";
         }
     }
 }
